@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Model;
+
+use App\User;
+use Illuminate\Database\Eloquent\Model;
+
+class Page extends Model
+{
+    protected $table        = 'page';
+
+    protected $fillable     = [
+        'title',
+        'slug',
+        'blog_id',
+        'user_id'
+    ];
+
+    public function blog()
+    {
+        return $this->belongsTo(Blog::class, 'blog_id', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+}
