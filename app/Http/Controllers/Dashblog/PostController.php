@@ -12,9 +12,9 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($blogid)
     {
-        return view('dashblog.post.index');
+        return view('dashblog.post.index', compact('blogid'));
     }
 
     /**
@@ -22,9 +22,9 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($blogid)
     {
-        return view('dashblog.post.add');
+        return view('dashblog.post.add', compact('blogid'));
     }
 
     /**

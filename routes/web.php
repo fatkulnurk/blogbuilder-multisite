@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::group(['prefix' => 'page'], function (){
     Auth::routes(['verify' => true]);
@@ -21,6 +19,30 @@ Route::group(['prefix' => 'page'], function (){
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
+// Route for blog
+Route::group(['domain' => '{username}.{domain}.{tld}'], function(){
+    Route::get('/', function (\Illuminate\Http\Request $request, $username = null, $domain = null, $tld = null) {
+
+        echo 'halo '.$username.' dengan domain '.$domain.'.'.$tld.' '.$request->getHost();
+    });
+
+    Route::get('/{slug}', function () {
+
+    });
+
+    Route::get('/category/{slug}', function () {
+
+    });
+
+    Route::get('/search/', function () {
+
+    });
+});
+//Route::domain('{account}.dibumi.com')->group(function () {
+//    Route::get('user/{id}', function ($account, $id) {
+//        return "hahahaha";
+//    });
+//});
 
 // Route for dashboard
 Route::group(['namespace' => 'Dashboard', 'prefix' => 'dashboard', 'middleware' => ['auth', 'verified']], function () {
@@ -52,3 +74,39 @@ Route::group(['namespace' => 'Dashboard', 'prefix' => 'dashboard', 'middleware' 
     });
 });
 
+
+// Route For Dashblog
+Route::group(['namespace' => 'Dashblog', 'prefix' => 'dashblog/{blogid}'], function () {
+    Route::get('/', 'DashBlogController@index')->name('dashblog.index');
+
+    Route::group(['prefix' => 'post'], function () {
+        Route::get('/', 'PostController@index')->name('dashblog.post.index');
+        Route::get('/add', 'PostController@create')->name('dashblog.post.add');
+    });
+
+    Route::group(['prefix' => 'category'], function () {
+        Route::get('/', 'CategoryController@index')->name('dashblog.category.index');
+        Route::get('/add', 'CategoryController@create')->name('dashblog.category.add');
+    });
+
+    Route::group(['prefix' => 'page'], function () {
+        Route::get('/', 'PageController@index')->name('dashblog.page.index');
+        Route::get('/add', 'PageController@create')->name('dashblog.page.add');
+    });
+
+    Route::group(['prefix' => 'comment'], function () {
+        Route::get('/', 'CommentController@index')->name('dashblog.comment.index');
+        Route::get('/spam', 'CommentController@create')->name('dashblog.comment.spam');
+    });
+
+//    Route::group(['prefix' => ''], function () {
+//        Route::get('/', 'Controller@')->name('dashblog..index');
+//        Route::get('/', 'Controller@')->name('dashblog..add');
+//    });
+});
+
+
+
+Route::get('/', function () {
+    return view('welcome');
+});

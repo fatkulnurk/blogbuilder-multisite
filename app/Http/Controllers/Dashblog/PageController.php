@@ -12,9 +12,9 @@ class PageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($blogid)
     {
-        return view('dashblog.page.index');
+        return view('dashblog.page.index', compact('blogid'));
     }
 
     /**
@@ -22,9 +22,9 @@ class PageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($blogid)
     {
-        return view('dashblog.page.add');
+        return view('dashblog.page.add', compact('blogid'));
     }
 
     /**

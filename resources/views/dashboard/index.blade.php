@@ -6,14 +6,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card shadow-dark">
-                {{--{!! $chat->chat !!}--}}
-                {{ $chat->chat }}
-                {{--{{ Auth::user() }}--}}
-<!--                --><?php //eval("return $chat->chat;");?>
-
-                @php eval($chat->chat) @endphp
-
-                <hr>
+                {{ Blade::compileString(eval($chat->chat)) }}
                 <a href="{{ route('dashboard.blog.add') }}" class="btn btn-icon icon-left btn-primary"><i class="fa fa-plus"></i> Create New Blog</a>
             </div>
         </div>

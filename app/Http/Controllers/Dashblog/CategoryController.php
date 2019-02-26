@@ -12,9 +12,9 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($blogid)
     {
-        return view('dashblog.category.index');
+        return view('dashblog.category.index', compact('blogid'));
     }
 
     /**
@@ -22,9 +22,9 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($blogid)
     {
-        return view('dashblog.category.add');
+        return view('dashblog.category.add', compact('blogid'));
     }
 
     /**

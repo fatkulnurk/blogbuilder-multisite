@@ -12,9 +12,9 @@ class DashBlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($blogid)
     {
-        return view('dashblog.index');
+        return view('dashblog.index', compact('blogid'));
     }
 
     /**

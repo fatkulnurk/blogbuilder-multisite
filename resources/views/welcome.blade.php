@@ -80,6 +80,7 @@
             @endif
 
             <div class="content">
+                @wkwkwk()
                 <div class="title m-b-md">
                     Belajar atau Tetinggal
                 </div>
