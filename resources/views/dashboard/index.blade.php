@@ -6,7 +6,6 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card shadow-dark">
-                {{ Blade::compileString(eval($chat->chat)) }}
                 <a href="{{ route('dashboard.blog.add') }}" class="btn btn-icon icon-left btn-primary"><i class="fa fa-plus"></i> Create New Blog</a>
             </div>
         </div>
@@ -16,65 +15,17 @@
                     <div class="card-header">
                         <h4>{{ $blog->title }}</h4>
                         <div class="card-header-action">
-                            <a href="#" class="btn btn-primary">
+                            <a href="{{ route('dashblog.index', ['blogid' => $blog->id]) }}" class="btn btn-primary">
                                 Manage Blog
                             </a>
                         </div>
                     </div>
                     <div class="card-body">
-                        <p>{{ $blog->short_desc }}</p>
+                        <p>{{ $blog->description }}</p>
                     </div>
                 </div>
             </div>
         @endforeach
-        <div class="col-12 col-md-6 col-lg-6">
-            <div class="card shadow-dark">
-                <div class="card-header">
-                    <h4>Ini Judul Blognya</h4>
-                    <div class="card-header-action">
-                        <a href="#" class="btn btn-primary">
-                            Manage Blog
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-6">
-            <div class="card shadow-dark">
-                <div class="card-header">
-                    <h4>Ini Judul Blognya</h4>
-                    <div class="card-header-action">
-                        <a href="#" class="btn btn-primary">
-                            Manage Blog
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-6">
-            <div class="card shadow-dark">
-                <div class="card-header">
-                    <h4>Ini Judul Blognya</h4>
-                    <div class="card-header-action">
-                        <a href="#" class="btn btn-primary">
-                            Manage Blog
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div class="section-body">

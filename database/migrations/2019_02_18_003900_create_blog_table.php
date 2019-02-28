@@ -31,7 +31,7 @@ class CreateBlogTable extends Migration
             $table->integer('templte_mobile_status')->default(\App\Enum\StatusTemplateEnum::OFF);
             $table->text('meta_header')->nullable();
             $table->text('meta_footer')->nullable();
-            $table->string('logo');
+            $table->string('logo')->nullable();
             $table->timestamps();
         });
     }

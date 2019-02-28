@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
 
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
 
@@ -64,6 +66,7 @@
                         </div>
                     </div>
                     <div class="section-body">
+                        @include('layouts.notification')
                         @yield('content')
                     </div>
                 </section>

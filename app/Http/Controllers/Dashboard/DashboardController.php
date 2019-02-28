@@ -12,9 +12,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $chat = Chatroom::first();
-
-        $blogs      = Blog::where('user_id', Auth::id())->orderBy('created_at', 'desc');
-        return view('dashboard.index', compact('blogs', 'chat'));
+        $blogs      = Blog::where('user_id', Auth::id())->orderBy('created_at', 'desc')->get();
+        return view('dashboard.index', compact('blogs'));
     }
 }

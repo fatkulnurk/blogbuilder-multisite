@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashblog;
 
+use App\Model\CategoryPost;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -24,7 +25,8 @@ class PostController extends Controller
      */
     public function create($blogid)
     {
-        return view('dashblog.post.add', compact('blogid'));
+        $category = CategoryPost::where('blog_id', $blogid);
+        return view('dashblog.post.add', compact('blogid', 'category'));
     }
 
     /**

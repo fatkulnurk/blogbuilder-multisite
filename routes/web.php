@@ -20,15 +20,16 @@ Route::group(['prefix' => 'page'], function (){
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
 // Route for blog
-Route::group(['domain' => '{username}.{domain}.{tld}'], function(){
-    Route::get('/', function (\Illuminate\Http\Request $request, $username = null, $domain = null, $tld = null) {
+//Route::group(['domain' => '{username}.{domain}.{tld}'], function(){
+//    Route::get('/', function (\Illuminate\Http\Request $request, $username = null, $domain = null, $tld = null) {
+//
+//        echo 'halo '.$username.' dengan domain '.$domain.'.'.$tld.' '.$request->getHost();
+//    });
+Route::group(['domain' => '{subdomain}.dibumi.com', 'namespace' => 'Blog'], function(){
 
-        echo 'halo '.$username.' dengan domain '.$domain.'.'.$tld.' '.$request->getHost();
-    });
+    Route::get('/', 'BlogController@index')->name('blog.index');
 
-    Route::get('/{slug}', function () {
-
-    });
+    Route::get('/{slug}', 'BlogController@show')->name('blog.show');
 
     Route::get('/category/{slug}', function () {
 
@@ -45,12 +46,13 @@ Route::group(['domain' => '{username}.{domain}.{tld}'], function(){
 //});
 
 // Route for dashboard
-Route::group(['namespace' => 'Dashboard', 'prefix' => 'dashboard', 'middleware' => ['auth', 'verified']], function () {
+Route::group(['namespace' => 'Dashboard', 'prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     Route::get('/', 'DashboardController@index')->name('dashboard.index');
 
     Route::group(['prefix' => 'blog'], function () {
         Route::get('/', 'BlogController@index')->name('dashboard.blog.index');
         Route::get('/add', 'BlogController@create')->name('dashboard.blog.add');
+        Route::post('/add', 'BlogController@store')->name('dashboard.blog.store');
     });
 
     Route::group(['prefix' => 'chatroom'], function () {
@@ -76,7 +78,7 @@ Route::group(['namespace' => 'Dashboard', 'prefix' => 'dashboard', 'middleware' 
 
 
 // Route For Dashblog
-Route::group(['namespace' => 'Dashblog', 'prefix' => 'dashblog/{blogid}'], function () {
+Route::group(['namespace' => 'Dashblog', 'prefix' => 'dashblog/{blogid}', 'middleware' => ['auth', 'isOwnerBlog']], function () {
     Route::get('/', 'DashBlogController@index')->name('dashblog.index');
 
     Route::group(['prefix' => 'post'], function () {
