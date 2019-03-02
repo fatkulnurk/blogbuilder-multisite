@@ -17,11 +17,11 @@ class isOwnerBlog
      */
     public function handle($request, Closure $next)
     {
-        $blog = Blog::where('user_id', Auth::id())
-            ->where('id', $request->route()->parameter('blogid'))->count();
-
-        if ($blog > 0) {
-            return $next($request);
+        $blog = Blog::findOrFail($request->route()->parameter('blogid'));
+        if ($blog) {
+            if ($blog->where('user_id', Auth::id())->count() > 0) {
+                return $next($request);
+            }
         }
     }
 }
