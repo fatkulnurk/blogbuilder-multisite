@@ -12,7 +12,10 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $blogs      = Blog::where('user_id', Auth::id())->orderBy('created_at', 'desc')->get();
+        $blogs      = Blog::where('user_id', Auth::id())
+            ->with('domain')
+            ->orderBy('created_at', 'desc')
+            ->get();
         return view('dashboard.index', compact('blogs'));
     }
 }
