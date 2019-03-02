@@ -64,4 +64,12 @@ class Blog extends Model
     {
         return $this->hasMany(Post::class, 'blog_id', 'id');
     }
+
+    //https://laraveldaily.com/pivot-tables-and-many-to-many-relationships/
+    public function ownerBlog()
+    {
+        return $this->belongsToMany(User::class,'blog_owner', 'blog_id', 'user_id')
+            ->withPivot('role')
+            ->withTimestamps();
+    }
 }

@@ -8,6 +8,7 @@
 
 namespace App\Services;
 
+use App\Enum\StatusOwnerBlogEnum;
 use App\Enum\TemplateDefault;
 use App\Http\Requests\Dashboard\StoreBlog;
 use App\Model\Blog;
@@ -28,6 +29,7 @@ class CreateBlogInit
     {
         $this->createTemplate();
         $this->createBlog($blog, $this->template);
+        $this->createOwnerBlog();
         $this->createCategory();
         $this->category = CategoryPost::first();
         $this->createPost();
@@ -63,7 +65,7 @@ class CreateBlogInit
     private function createBlog(StoreBlog $blog, Template $template)
     {
         $blog = Blog::create([
-            'subdomain'         => $blog->subdomain,
+            'subdomain'         => Str::lower($blog->subdomain),
             'domain_id'         => $blog->domain,
             'title'             => $blog->title,
             'short_desc'        => $blog->short_desc,
@@ -78,6 +80,12 @@ class CreateBlogInit
         ]);
 
         $this->blogId  = $blog->id;
+    }
+
+    private function createOwnerBlog()
+    {
+        $createOwner = Blog::findOrFail($this->blogId);
+        $createOwner->ownerBlog()->attach(Auth::id(), ['role' => StatusOwnerBlogEnum::ADMIN]);
     }
 
     private function createCategory()

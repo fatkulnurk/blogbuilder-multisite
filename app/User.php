@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Model\BlogOwner;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -88,5 +89,12 @@ class User extends Authenticatable implements MustVerifyEmail
     public function comments()
     {
         return $this->hasMany(PostComment::class, 'user_id', 'id');
+    }
+
+    public function ownerBlog()
+    {
+        return $this->belongsToMany(Blog::class, 'blog_owner', 'blog_id', 'user_id')
+            ->withPivot('role')
+            ->withTimestamps();
     }
 }
