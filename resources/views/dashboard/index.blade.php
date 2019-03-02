@@ -43,6 +43,7 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        <p>{{ $blog->subdomain}}.{{$blog->domain->domain}}</p>
                         <p>{{ $blog->description }}</p>
                     </div>
                 </div>
