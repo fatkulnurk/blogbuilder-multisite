@@ -28,7 +28,7 @@ class Blog extends Model
 
 
     // Mutator
-    public function setSubdomainAttribue($value)
+    public function setSubdomainAttribute($value)
     {
         $this->attributes['subdomain']  = Str::lower($value);
     }
