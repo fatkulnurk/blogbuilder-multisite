@@ -4,6 +4,7 @@ namespace App\Model;
 
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Blog extends Model
 {
@@ -25,6 +26,14 @@ class Blog extends Model
         'logo'
     ];
 
+
+    // Mutator
+    public function setSubdomainAttribue($value)
+    {
+        $this->attributes['subdomain']  = Str::lower($value);
+    }
+
+    // Relationship
     public function domain()
     {
         return $this->belongsTo(Domain::class, 'domain_id', 'id');

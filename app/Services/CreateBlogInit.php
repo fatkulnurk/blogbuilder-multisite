@@ -65,7 +65,8 @@ class CreateBlogInit
     private function createBlog(StoreBlog $blog, Template $template)
     {
         $blog = Blog::create([
-            'subdomain'         => Str::lower($blog->subdomain),
+//            'subdomain'         => Str::lower($blog->subdomain),
+            'subdomain'         => $blog->subdomain,
             'domain_id'         => $blog->domain,
             'title'             => $blog->title,
             'short_desc'        => $blog->short_desc,
