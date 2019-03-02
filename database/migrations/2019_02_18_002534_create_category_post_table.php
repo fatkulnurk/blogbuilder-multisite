@@ -17,7 +17,7 @@ class CreateCategoryPostTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('slug');
-            $table->text('description')->nullable();
+            $table->string('description')->nullable();
             $table->unsignedInteger('blog_id');
 
             $table->unique(['slug', 'blog_id']);

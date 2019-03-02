@@ -18,6 +18,7 @@ class CreatePageTable extends Migration
             $table->string('title');
             $table->longText('body');
             $table->string('slug');
+            $table->string('status')->default(\App\Enum\StatusPageEnum::PUBLISH);
             $table->unsignedInteger('blog_id');
             $table->unsignedInteger('user_id');
 

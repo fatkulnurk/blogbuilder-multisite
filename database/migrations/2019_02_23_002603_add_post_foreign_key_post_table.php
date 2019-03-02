@@ -27,6 +27,10 @@ class AddPostForeignKeyPostTable extends Migration
                 ->references('id')
                 ->on('users');
 
+            $table->foreign('update_user_id')
+                ->references('id')
+                ->on('users');
+
         });
     }
 

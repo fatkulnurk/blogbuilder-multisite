@@ -20,9 +20,12 @@ class CreatePostTable extends Migration
             $table->string('thumbnail')->default(null);
             $table->string('slug');
             $table->string('label');
+            $table->string('status')->default(\App\Enum\StatusPostEnum::PUBLISH);
+            $table->string('privilege')->nullable();
             $table->unsignedInteger('category_post_id');
             $table->unsignedInteger('blog_id');
             $table->unsignedInteger('user_id');
+            $table->unsignedInteger('update_user_id')->nullable();
 
             $table->unique(['slug', 'blog_id']);
 
