@@ -9,7 +9,21 @@
 namespace App\Services;
 
 
+use App\Model\Page;
+
 class PageService
 {
+    protected $blogId;
+
+    public function __construct($blogId)
+    {
+        $this->blogId = $blogId;
+    }
+
+    public function all()
+    {
+        $page = Page::where('blog_id', $this->blogId);
+        return $page;
+    }
 
 }

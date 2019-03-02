@@ -8,8 +8,21 @@
 
 namespace App\Services;
 
+use App\Model\CategoryPost;
 
 class CategoryPostService
 {
+    protected $blogId;
+
+    public function __construct($blogId)
+    {
+        $this->blogId = $blogId;
+    }
+
+    public function all()
+    {
+        $category = CategoryPost::where('blog_id', $this->blogId);
+        return $category;
+    }
 
 }

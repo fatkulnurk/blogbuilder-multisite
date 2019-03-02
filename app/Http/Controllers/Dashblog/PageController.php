@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers\Dashblog;
 
+use App\Services\PageService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class PageController extends Controller
 {
+
+    protected $pageService;
+    public function __construct()
+    {
+        $this->pageService = new PageService(\request()->route()->parameter('blogid'));
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,8 @@ class PageController extends Controller
      */
     public function index($blogid)
     {
-        return view('dashblog.page.index', compact('blogid'));
+        $page = $this->pageService->all()->paginate(10);
+        return view('dashblog.page.index', compact('blogid', 'page'));
     }
 
     /**

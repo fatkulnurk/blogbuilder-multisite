@@ -24,15 +24,23 @@ class StoreBlog extends FormRequest
     public function rules()
     {
         return [
-            'subdomain'         => 'required|unique:blog,subdomain,domain_id',
-            'title'             => 'required|max:50',
-            'short_desc'        => 'required|max:190',
-            'description'       => 'required|max:190',
-            'category_blog_id'  => 'required',
-            'domain'            => 'required',
+            'subdomain'         => 'required|regex:/(^[A-Za-z0-9-]+$)+/|unique:blog,subdomain,domain_id',
+            'title'             => 'required|string|max:50',
+            'short_desc'        => 'required|string|max:190',
+            'description'       => 'required|regex:/(^[A-Za-z09 ,.-]+$)+/|max:190',
+            'category_blog_id'  => 'required|int',
+            'domain'            => 'required|int',
             'logo'              => 'nullable',
-            'meta_header'       => 'nullable',
-            'meta_footer'       => 'nullable',
+            'meta_header'       => 'nullable|string',
+            'meta_footer'       => 'nullable|string',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'subdomain.regex' => 'subdomain hanya terdiri dari tanda hubung (-), huruf dan angka.',
+            'description.regex' => 'deskripsi hanya terdiri dari tanda koma (,), titik (.), hubung (-), huruf dan angka.'
         ];
     }
 }
