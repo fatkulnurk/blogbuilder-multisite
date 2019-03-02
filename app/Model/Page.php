@@ -13,7 +13,9 @@ class Page extends Model
         'title',
         'slug',
         'blog_id',
-        'user_id'
+        'user_id',
+        'body',
+        'status'
     ];
 
     public function blog()
