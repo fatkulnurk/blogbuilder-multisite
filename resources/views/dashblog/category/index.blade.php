@@ -36,55 +36,22 @@
                                         <th>Description</th>
                                         <th>Option</th>
                                     </tr>
-                                    <tr>
-                                        <td>Laravel 5 Tutorial: Introduction</td>
-                                        <td>
-                                            <p>t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                                        </td>
-                                        <td>
-                                            <a><button class="btn btn-primary">Edit</button></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Laravel 5 Tutorial: Introduction</td>
-                                        <td>
-                                            <p>t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                                        </td>
-                                        <td>
-                                            <a><button class="btn btn-primary">Edit</button></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Laravel 5 Tutorial: Introduction</td>
-                                        <td>
-                                            <p>t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                                        </td>
-                                        <td>
-                                            <a><button class="btn btn-primary">Edit</button></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Laravel 5 Tutorial: Introduction</td>
-                                        <td>
-                                            <p>t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                                        </td>
-                                        <td>
-                                            <a><button class="btn btn-primary">Edit</button></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Laravel 5 Tutorial: Introduction</td>
-                                        <td>
-                                            <p>t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                                        </td>
-                                        <td>
-                                            <a><button class="btn btn-primary">Edit</button></a>
-                                        </td>
-                                    </tr>
-                                </table>
+
+                                    @foreach($category as $item)
+                                        <tr>
+                                            <td>{{ $item->name }}</td>
+                                            <td>
+                                                <p>{{ $item->description }}</p>
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('dashblog.category.show', ['blogid' => $blogid, 'id' => $item->id]) }}"><button class="btn btn-primary">Edit</button></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                                                    </table>
                             </div>
                         </div>
-                        <div class="card-footer align-content-center">
+                        <div class="card-footer align-content-center text-center">
                             <nav>
                                 <ul class="pagination">
                                     <li class="page-item disabled">

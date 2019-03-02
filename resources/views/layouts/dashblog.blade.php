@@ -91,11 +91,41 @@
         @show
 
     <!-- Main Content -->
+        {{--<div class="main-content">--}}
+            {{--<section class="section">--}}
+                {{--@yield('content')--}}
+            {{--</section>--}}
+        {{--</div>--}}
+
         <div class="main-content">
             <section class="section">
-                @yield('content')
+                <section class="section">
+                    <div class="section-header">
+                        <h1>@yield('title', 'Hayo ini judulnya apa')</h1>
+                        <div class="section-header-breadcrumb">
+                            <div class="breadcrumb-item active"><a href="{{ route('dashboard.index') }}">Dashblog</a></div>
+                            <div class="breadcrumb-item">@yield('title', 'Ini halaman apa')</div>
+                        </div>
+                    </div>
+                    <div class="section-body">
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+                        @include('layouts.notification')
+                        @yield('content')
+                    </div>
+                </section>
             </section>
         </div>
+
         <footer class="main-footer">
             <div class="footer-left">
                 Copyright &copy; 2019 Dibumi.Com

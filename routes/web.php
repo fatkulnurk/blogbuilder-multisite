@@ -89,6 +89,8 @@ Route::group(['namespace' => 'Dashblog', 'prefix' => 'dashblog/{blogid}', 'middl
     Route::group(['prefix' => 'category'], function () {
         Route::get('/', 'CategoryController@index')->name('dashblog.category.index');
         Route::get('/add', 'CategoryController@create')->name('dashblog.category.add');
+        Route::get('/{id}', 'CategoryController@show')->name('dashblog.category.show');
+        Route::post('/store', 'CategoryController@store')->name('dashblog.category.store');
     });
 
     Route::group(['prefix' => 'page'], function () {
@@ -111,4 +113,8 @@ Route::group(['namespace' => 'Dashblog', 'prefix' => 'dashblog/{blogid}', 'middl
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/lfm', function () {
+    return view('laravel-fm');
 });
