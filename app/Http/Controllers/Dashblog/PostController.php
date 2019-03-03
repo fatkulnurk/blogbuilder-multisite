@@ -25,7 +25,7 @@ class PostController extends Controller
      */
     public function create($blogid)
     {
-        $category = CategoryPost::where('blog_id', $blogid);
+        $category = CategoryPost::where('blog_id', $blogid)->get();
         return view('dashblog.post.add', compact('blogid', 'category'));
     }
 
