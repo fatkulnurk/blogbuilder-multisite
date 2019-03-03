@@ -40,16 +40,16 @@
                     <li class="dropdown {{ Active::checkRoute(['dashblog.post.*', 'dashblog.category.*']) }}">
                         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Postingan</span></a>
                         <ul class="dropdown-menu">
-                            <li><a class="nav-link" href="{{ route('dashblog.post.add', ['blogid' => $blogid]) }}">Tambah Postingan</a></li>
+                            <li><a class="nav-link" href="{{ route('dashblog.post.create', ['blogid' => $blogid]) }}">Tambah Postingan</a></li>
                             <li><a class="nav-link" href="{{ route('dashblog.post.index', ['blogid' => $blogid]) }}">Semua Postingan</a></li>
-                            <li><a class="nav-link" href="{{ route('dashblog.category.add', ['blogid' => $blogid]) }}">Tambah Kategori</a></li>
+                            <li><a class="nav-link" href="{{ route('dashblog.category.create', ['blogid' => $blogid]) }}">Tambah Kategori</a></li>
                             <li><a class="nav-link" href="{{ route('dashblog.category.index', ['blogid' => $blogid]) }}">Semua Kategori</a></li>
                         </ul>
                     </li>
                     <li class="dropdown {{ Active::checkRoute(['dashblog.page.*']) }}">
                         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-newspaper"></i> <span>Halaman</span></a>
                         <ul class="dropdown-menu">
-                            <li><a class="nav-link" href="{{ route('dashblog.page.add', ['blogid' => $blogid]) }}">Tambah Halaman</a></li>
+                            <li><a class="nav-link" href="{{ route('dashblog.page.create', ['blogid' => $blogid]) }}">Tambah Halaman</a></li>
                             <li><a class="nav-link" href="{{ route('dashblog.page.index', ['blogid' => $blogid]) }}">Semua Halaman</a></li>
                         </ul>
                     </li>

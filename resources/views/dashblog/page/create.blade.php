@@ -9,38 +9,46 @@
                 <div class="card-header">
                     <h4>Tambah Halaman Baru</h4>
                 </div>
-                <div class="card-body">
-                    <div class="form-group mb-4">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label class="col-form-label">Title</label>
-                                <input type="text" class="form-control" placeholder="type title here">
-                            </div>
+                <form method="post" action="{{ route('dashblog.page.store', ['blogid' => $blogid]) }}">
+                    @csrf
+                    <div class="card-body">
+                        <div class="form-group mb-4">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="col-form-label">Title</label>
+                                    <input name="title" type="text" class="form-control" placeholder="type title here" value="{{ old('title') }}">
+                                </div>
 
-                            <div class="col-md-6">
-                                <label class="col-form-label">Status Page</label>
-                                <select class="form-control selectric">
-                                    @foreach(\App\Enum\StatusPageEnum::getAll() as $key => $value)
-                                        <option value="{{ $key }}">{{ $value }}</option>
-                                    @endforeach
-                                </select>
+                                <div class="col-md-6">
+                                    <label class="col-form-label">Status Page</label>
+                                    <select class="form-control selectric" name="status">
+                                        @foreach(\App\Enum\StatusPageEnum::getAll() as $key => $value)
+                                            <option value="{{ $key }}" @if (old('status') == $key)
+                                                selected
+                                            @endif>{{ $value }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="col-form-label">Content</label>
+                            <textarea name="body" class="form-control my-editor">{{ old('body') }}</textarea>
+                        </div>
+                        <div class="form-group mb-4">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button class="btn btn-primary btn-block">Submit</button>
+                                </div>
+                                <div class="col-6">
+                                    <a href="{{ route('dashblog.page.index', ['blogid' => $blogid]) }}" class="btn btn-light btn-block">Cancel</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group mb-4">
-                        <label class="col-form-label">Content</label>
-                        <textarea name="content" class="form-control my-editor"></textarea>
-                    </div>
-                    <div class="form-group mb-4">
-                        <div class="row">
-                            <div class="col-6">
-                                <button class="btn btn-primary btn-block">Submit</button>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn btn-light btn-block">Cancel</button>
-                            </div>
-                        </div>
-                    </div>
+                </form>
+                <div class="card-footer bg-light">
+                    {{ __('card-footer.page-create') }}
                 </div>
             </div>
         </div>

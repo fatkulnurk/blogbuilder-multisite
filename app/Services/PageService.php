@@ -20,9 +20,17 @@ class PageService
         $this->blogId = $blogId;
     }
 
-    public function all()
+    public function all($title)
     {
         $page = Page::where('blog_id', $this->blogId);
+
+        if ($title) {
+            $page->where('title', 'like', '%'.$title.'%');
+        }
+
+        $page->with('user')
+            ->orderBy('created_at', 'desc');
+
         return $page;
     }
 

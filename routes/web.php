@@ -83,19 +83,27 @@ Route::group(['namespace' => 'Dashblog', 'prefix' => 'dashblog/{blogid}', 'middl
 
     Route::group(['prefix' => 'post'], function () {
         Route::get('/', 'PostController@index')->name('dashblog.post.index');
-        Route::get('/add', 'PostController@create')->name('dashblog.post.add');
+        Route::get('/create', 'PostController@create')->name('dashblog.post.create');
     });
 
     Route::group(['prefix' => 'category'], function () {
         Route::get('/', 'CategoryController@index')->name('dashblog.category.index');
-        Route::get('/add', 'CategoryController@create')->name('dashblog.category.add');
+        Route::get('/create', 'CategoryController@create')->name('dashblog.category.create');
+        Route::post('/', 'CategoryController@store')->name('dashblog.category.store');
         Route::get('/{id}', 'CategoryController@show')->name('dashblog.category.show');
-        Route::post('/store', 'CategoryController@store')->name('dashblog.category.store');
+        Route::get('/{id}/edit', 'CategoryController@edit')->name('dashblog.category.edit');
+        Route::put('/{id}', 'CategoryController@update')->name('dashblog.category.update');
+        Route::delete('/{id}', 'CategoryController@destroy')->name('dashblog.category.destroy');
     });
 
     Route::group(['prefix' => 'page'], function () {
         Route::get('/', 'PageController@index')->name('dashblog.page.index');
-        Route::get('/add', 'PageController@create')->name('dashblog.page.add');
+        Route::get('/create', 'PageController@create')->name('dashblog.page.create');
+        Route::post('/', 'PageController@store')->name('dashblog.page.store');
+        Route::get('/{id}', 'PageController@show')->name('dashblog.page.show');
+        Route::get('/{id}/edit', 'PageController@edit')->name('dashblog.page.edit');
+        Route::put('/{id}', 'PageController@update')->name('dashblog.page.update');
+        Route::delete('/{id}', 'PageController@destroy')->name('dashblog.page.destroy');
     });
 
     Route::group(['prefix' => 'comment'], function () {
