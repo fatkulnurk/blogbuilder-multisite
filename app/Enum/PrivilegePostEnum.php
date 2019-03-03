@@ -33,7 +33,9 @@ class StatusPostEnum extends Enum
     {
         $data = [
             self::PUBLISH   => 'Publish',
-            self::DRAFT     => 'Draft'
+            self::DRAFT     => 'Draft',
+            self::DELETE    => 'Delete',
+            self::TRASH     => 'Trash'
         ];
         return $data;
     }

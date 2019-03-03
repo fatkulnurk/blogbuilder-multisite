@@ -28,4 +28,14 @@ class StatusPageEnum extends Enum
 
         return $data[$status];
     }
+
+    public static function getAll()
+    {
+        $data = [
+            self::PUBLISH       => 'Publish',
+            self::DRAFT         => 'Draft'
+        ];
+
+        return $data;
+    }
 }
