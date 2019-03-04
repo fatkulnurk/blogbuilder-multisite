@@ -84,6 +84,11 @@ Route::group(['namespace' => 'Dashblog', 'prefix' => 'dashblog/{blogid}', 'middl
     Route::group(['prefix' => 'post'], function () {
         Route::get('/', 'PostController@index')->name('dashblog.post.index');
         Route::get('/create', 'PostController@create')->name('dashblog.post.create');
+        Route::post('/', 'PostController@store')->name('dashblog.post.store');
+        Route::get('/{id}', 'PostController@show')->name('dashblog.post.show');
+        Route::get('/{id/edit}', 'PostController@edit')->name('dashblog.post.edit');
+        Route::put('/{id}', 'PostController@update')->name('dashblog.post.update');
+        Route::delete('/{id}', 'PostController@destroy')->name('dashblog.post.destroy');
     });
 
     Route::group(['prefix' => 'category'], function () {

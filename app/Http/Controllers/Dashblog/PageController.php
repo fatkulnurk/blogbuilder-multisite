@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Dashblog;
 
+use App\Enum\StatusPageEnum;
 use App\Http\Requests\Dashblog\StorePage;
 use App\Http\Requests\Dashblog\UpdatePage;
 use App\Model\Blog;
 use App\Model\Page;
 use App\Services\PageService;
+use App\Services\Random;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -29,7 +31,9 @@ class PageController extends Controller
      */
     public function index(Request $request, $blogid)
     {
-        $pages = $this->pageService->all($request->title)->paginate(10);
+        $pages = $this->pageService->all($request->title)
+            ->whereNotIn('status',[StatusPageEnum::DELETE, StatusPageEnum::TRASH])
+            ->paginate(10);
         return view('dashblog.page.index', compact('blogid', 'pages'));
     }
 
@@ -54,7 +58,13 @@ class PageController extends Controller
         $page = new Page();
         $page->title    = $request->title;
         $page->body     = $request->body;
-        $page->slug     = Str::slug($request->title);
+
+        if (Page::where('slug', Str::slug($request->title))->exists()) {
+            $page->slug     = Str::slug($request->title.'-'.Random::string());
+        } else {
+            $page->slug     = Str::slug($request->title);
+        }
+
         $page->status   = $request->status;
         $page->user()->associate(User::findOrFail(Auth::id()));
         $page->blog()->associate(Blog::findOrFail($blogid));
@@ -112,8 +122,13 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($blogid, $id)
     {
-        //
+        $page = Page::findOrFail($id);
+        $page->status = StatusPageEnum::TRASH;
+        $page->save();
+
+        return redirect()->route('dashblog.page.index', ['blogid' => $blogid])
+            ->with('success', __('dashblog-page.destroy'));
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Dashblog;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePage extends FormRequest
+class UpdateCategory extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,8 @@ class StorePage extends FormRequest
     public function rules()
     {
         return [
-            'title'     => 'required|string|max:190',
-            'body'      => 'required|string',
-            'status'    => 'required|integer'
+            'name'          => 'required|string|min:1|max:150',
+            'description'   => 'nullable|string|max:190'
         ];
     }
 }

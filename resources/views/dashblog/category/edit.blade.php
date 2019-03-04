@@ -1,6 +1,6 @@
 @extends('layouts.dashblog')
 
-@section('title', 'Add Category')
+@section('title', 'Edit Category')
 
 @section('content')
     <div class="row">
@@ -10,11 +10,12 @@
                     <h4>Tambah Kategori Baru</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('dashblog.category.store', ['id' => $blogid]) }}" method="post">
+                    <form action="{{ route('dashblog.category.update', ['blogid' => $blogid, 'categoryid' => $category->id]) }}" method="post">
                         @csrf
+                        @method('PUT')
                         <div class="form-group">
                             <label class="col-form-label">Title</label>
-                            <input type="text" class="form-control" placeholder="type title here" name="name" value="{{ old('name') }}">
+                            <input type="text" class="form-control" placeholder="type title here" name="name" value="{{ old('name', $category->name) }}">
                             @if ($errors->has('name'))
                                 <div class="text-danger" role="alert">
                                     <strong>{{ $errors->first('name') }}</strong>
@@ -23,7 +24,7 @@
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">Description</label>
-                            <textarea type="text" class="form-control" placeholder="type title here" name="description">{{ old('description') }}</textarea>
+                            <textarea type="text" class="form-control" placeholder="type title here" name="description" maxlength="190">{{ old('description', $category->description) }}</textarea>
                             @if ($errors->has('description'))
                                 <div class="text-danger" role="alert">
                                     <strong>{{ $errors->first('description') }}</strong>

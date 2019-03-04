@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'page-create'       => 'Url akan disesuaikan dengan judul secara otomatis.',
-    'page-update'       => 'Merubah judul maka akan merubah url page secara otomatis.',
+    'page-create'       => 'Slug url akan disesuaikan dengan judul secara otomatis dan jika ada yang sama maka ditambahkan random 3 huruf pada bagian belakang secara otomatis oleh sistem.',
+    'page-update'       => 'Merubah judul tidak akan merubah slug url.',
 ];

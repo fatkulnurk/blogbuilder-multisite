@@ -10,63 +10,70 @@
                     <h4>Tambah Postingan Baru</h4>
                 </div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="form-group mb-4">
-                                <label class="col-form-label">Title</label>
-                                <input type="text" class="form-control" placeholder="type title here">
-                            </div>
-
-                            <div class="form-group mb-4">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label class="col-form-label">Category</label>
-                                        <select class="form-control selectric">
-                                            @foreach($category as $cat)
-                                                <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="col-form-label">Status Post</label>
-                                        <select class="form-control selectric">
-                                            @foreach(\App\Enum\StatusPostEnum::getAll() as $key => $value)
-                                                <option value="{{ $key }}">{{ $value }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group mb-4">
-                                <label class="col-form-label">Tags</label>
-                                <input type="text" class="form-control inputtags">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group mb-4">
-                                <label class="col-form-label">Thumbnail</label>
-                                <div id="image-preview" class="image-preview">
-                                    <label for="image-upload" id="image-label">Choose File</label>
-                                    <input type="file" name="image" id="image-upload" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group mb-4">
-                        <label class="col-form-label">Content</label>
-                        <textarea name="content" class="form-control my-editor"></textarea>
-                    </div>
-                    <div class="form-group mb-4">
+                    <form method="POST" action="{{ route('dashblog.post.store', ['blogid' => $blogid]) }}" enctype="multipart/form-data">
+                        @csrf
                         <div class="row">
-                            <div class="col-6">
-                                <button class="btn btn-primary btn-block">Submit</button>
+                            <div class="col-md-8">
+                                <div class="form-group mb-4">
+                                    <label class="col-form-label">Title</label>
+                                    <input type="text" class="form-control" placeholder="type title here" name="title" value="{{ old('title') }}">
+                                </div>
+
+                                <div class="form-group mb-4">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="col-form-label">Category</label>
+                                            <select class="form-control selectric" name="category">
+                                                @foreach($category as $cat)
+                                                    <option value="{{ $cat->id }}" @if (old('category') == $cat->id)
+                                                        selected
+                                                    @endif>{{ $cat->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="col-form-label">Status Post</label>
+                                            <select class="form-control selectric" name="status">
+                                                @foreach(\App\Enum\StatusPostEnum::getAll() as $key => $value)
+                                                    <option value="{{ $key }}" @if (old('status'))
+                                                        selected
+                                                    @endif>{{ $value }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-4">
+                                    <label class="col-form-label">Tags / Label</label>
+                                    <input type="text" class="form-control inputtags" name="label" value="{{ old('label') }}">
+                                </div>
                             </div>
-                            <div class="col-6">
-                                <button class="btn btn-light btn-block">Cancel</button>
+                            <div class="col-md-4">
+                                <div class="form-group mb-4">
+                                    <label class="col-form-label">Thumbnail</label>
+                                    <div id="image-preview" class="image-preview">
+                                        <label for="image-upload" id="image-label">Choose File</label>
+                                        <input type="file" name="image" id="image-upload" />
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="form-group mb-4">
+                            <label class="col-form-label">Content</label>
+                            <textarea class="form-control my-editor" name="body">{{ old('body') }}</textarea>
+                        </div>
+                        <div class="form-group mb-4">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button class="btn btn-primary btn-block">Submit</button>
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn btn-light btn-block">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="card-footer">
 

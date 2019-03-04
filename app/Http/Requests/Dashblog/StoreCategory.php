@@ -24,7 +24,7 @@ class StoreCategory extends FormRequest
     public function rules()
     {
         return [
-            'name'          => 'required|string|min:1|max:150|unique:category_post,slug,blog_id',
+            'name'          => 'required|string|min:1|max:150',
             'description'   => 'nullable|string|max:190'
         ];
     }

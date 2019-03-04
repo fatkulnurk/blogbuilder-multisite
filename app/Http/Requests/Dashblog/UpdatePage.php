@@ -24,7 +24,7 @@ class UpdatePage extends FormRequest
     public function rules()
     {
         return [
-            'title'     => 'required|max:190|unique:page,title,blog_id',
+            'title'     => 'required|string|max:190',
             'body'      => 'required|string',
             'status'    => 'required|integer'
         ];

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Dashblog;
 
+use App\Http\Requests\Dashblog\StorePost;
 use App\Model\CategoryPost;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -35,9 +37,13 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePost $request, $blogid)
     {
-        //
+        $path = $request->file('image')->store('thumbnail/'.$blogid);
+//        return $path;
+//        return Storage::get($path);
+        return Storage::url($path);
+//        return $request;
     }
 
     /**

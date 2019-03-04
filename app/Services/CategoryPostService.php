@@ -19,9 +19,12 @@ class CategoryPostService
         $this->blogId = $blogId;
     }
 
-    public function all()
+    public function all($title)
     {
         $category = CategoryPost::where('blog_id', $this->blogId);
+        if ($title) {
+            $category->where('name', 'like', '%'.$title.'%');
+        }
         return $category;
     }
 
