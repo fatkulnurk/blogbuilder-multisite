@@ -28,7 +28,7 @@ class CreateBlogTable extends Migration
             $table->unsignedInteger('template_dekstop')->default(null);
             $table->integer('template_dekstop_status')->default(\App\Enum\StatusTemplateEnum::ON);
             $table->unsignedInteger('template_mobile')->default(null);
-            $table->integer('templte_mobile_status')->default(\App\Enum\StatusTemplateEnum::OFF);
+            $table->integer('template_mobile_status')->default(\App\Enum\StatusTemplateEnum::OFF);
             $table->text('meta_header')->nullable();
             $table->text('meta_footer')->nullable();
             $table->string('logo')->nullable();

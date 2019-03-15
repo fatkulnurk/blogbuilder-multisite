@@ -11,7 +11,7 @@
                     <div class="card-header-form">
                         <form method="get" action="{{ route('dashblog.page.index', ['blogid' => $blogid]) }}">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search" name="title" value="{{ old('title') }}">
+                                <input type="text" class="form-control" placeholder="Search" name="title" value="{{ old('title', $search) }}">
                                 <div class="input-group-btn">
                                     <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                                 </div>

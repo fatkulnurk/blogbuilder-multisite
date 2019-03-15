@@ -35,6 +35,11 @@ class Post extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
+    public function updateUser()
+    {
+        return $this->belongsTo(User::class, 'update_user_id', 'id');
+    }
+
     public function comments()
     {
         return $this->hasMany(PostComment::class, 'post_id', 'id');

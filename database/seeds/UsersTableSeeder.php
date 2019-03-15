@@ -65,5 +65,20 @@ class UsersTableSeeder extends Seeder
             'birthday'      => '1999-01-18',
         ]);
 
+        // Seeder
+        factory(App\User::class, 100)->create()->each(function ($user){
+           $user->userDetail()->save(factory(App\Model\UserDetail::class)->make());
+
+//           $user->blogs()->save(factory(App\Model\Blog::class, 5)->make());
+           $user->blogs()->save(factory(App\Model\Blog::class)->make());
+//           $user->blogs()->templateDekstop()->save(factory(App\Model\Template::class)->make());
+
+
+//           $user->blogs()->save(factory(App\Model\Blog::class,2))->create()->each(function ($blogs){
+//               $blogs->templateDekstop()->saveMany(factory(App\Model\Template::class)->make());
+//           });
+
+
+        });
     }
 }

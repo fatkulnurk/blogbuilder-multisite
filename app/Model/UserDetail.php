@@ -11,9 +11,11 @@ class UserDetail extends Authenticatable
     protected $table    = 'user_detail';
     protected $fillable = [
         'user_id',
+        'profile',
         'first_name',
         'middle_name',
         'last_name',
+        'bio',
         'birthday',
         'address',
         'phone_number',

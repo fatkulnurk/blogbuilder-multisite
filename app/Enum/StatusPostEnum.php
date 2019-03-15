@@ -20,10 +20,10 @@ class StatusPostEnum extends Enum
     public static function getDescriptions($status)
     {
         $data = [
-            self::PUBLISH   => 'Publish',
-            self::DRAFT     => 'Draft',
-            self::DELETE    => 'Delete',
-            self::TRASH     => 'Trash'
+            self::PUBLISH   => '<div class="badge badge-primary">Publish</div>',
+            self::DRAFT     => '<div class="badge badge-warning">Draft</div>',
+            self::DELETE    => '<div class="badge badge-info">Delete</div>',
+            self::TRASH     => '<div class="badge badge-danger">Trash</div>'
         ];
 
         return $data[$status];

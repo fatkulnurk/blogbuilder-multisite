@@ -39,11 +39,6 @@ Route::group(['domain' => '{subdomain}.dibumi.com', 'namespace' => 'Blog'], func
 
     });
 });
-//Route::domain('{account}.dibumi.com')->group(function () {
-//    Route::get('user/{id}', function ($account, $id) {
-//        return "hahahaha";
-//    });
-//});
 
 // Route for dashboard
 Route::group(['namespace' => 'Dashboard', 'prefix' => 'dashboard', 'middleware' => ['auth']], function () {
@@ -71,11 +66,20 @@ Route::group(['namespace' => 'Dashboard', 'prefix' => 'dashboard', 'middleware' 
 
     Route::group(['prefix' => 'account'], function () {
         Route::get('/', 'AccountController@index')->name('dashboard.account.index');
+        Route::get('/email', 'EmailController@edit')->name('dashboard.account.email');
+        Route::put('/email', 'EmailController@update')->name('dashboard.account.email.update');
         Route::get('/profile', 'AccountController@edit')->name('dashboard.account.profile');
-        Route::get('/password', 'AccountController@index')->name('dashboard.account.password');
+        Route::put('/profile', 'AccountController@update')->name('dashboard.account.profile.update');
+        Route::get('/password', 'PasswordController@edit')->name('dashboard.account.password');
+        Route::put('/password', 'PasswordController@update')->name('dashboard.account.password.update');
     });
 });
 
+// Route For CDN
+Route::group(['namespace' => 'ContentDelivery', 'prefix' => 'cdn'], function (){
+    Route::get('/thumbnail/post/{id}', 'ImagesController@post')->name('content.images.thumbnail.post');
+    Route::get('/thumbnail/user/{id}', 'ImagesController@user')->name('content.images.thumbnail.user');
+});
 
 // Route For Dashblog
 Route::group(['namespace' => 'Dashblog', 'prefix' => 'dashblog/{blogid}', 'middleware' => ['auth', 'isOwnerBlog']], function () {
@@ -86,7 +90,7 @@ Route::group(['namespace' => 'Dashblog', 'prefix' => 'dashblog/{blogid}', 'middl
         Route::get('/create', 'PostController@create')->name('dashblog.post.create');
         Route::post('/', 'PostController@store')->name('dashblog.post.store');
         Route::get('/{id}', 'PostController@show')->name('dashblog.post.show');
-        Route::get('/{id/edit}', 'PostController@edit')->name('dashblog.post.edit');
+        Route::get('/{id}/edit', 'PostController@edit')->name('dashblog.post.edit');
         Route::put('/{id}', 'PostController@update')->name('dashblog.post.update');
         Route::delete('/{id}', 'PostController@destroy')->name('dashblog.post.destroy');
     });
@@ -115,19 +119,60 @@ Route::group(['namespace' => 'Dashblog', 'prefix' => 'dashblog/{blogid}', 'middl
         Route::get('/', 'CommentController@index')->name('dashblog.comment.index');
         Route::get('/spam', 'CommentController@create')->name('dashblog.comment.spam');
     });
-
-//    Route::group(['prefix' => ''], function () {
-//        Route::get('/', 'Controller@')->name('dashblog..index');
-//        Route::get('/', 'Controller@')->name('dashblog..add');
-//    });
 });
 
+// ------------------- ROUTE PUBLIC----------------------- //
 
+// landing page
+Route::get('/', 'LandingController@index')->name('homepage');
 
-Route::get('/', function () {
-    return view('welcome');
+// Namespace ExploreSite
+Route::group(['namespace' => 'ExploreSite'], function (){
+
+    // post by category
+    Route::group(['prefix' => 'topics'], function (){
+        Route::get('/', 'PostController@index')->name('public.topics.index');
+
+        Route::get('/{categoryBlogName}', 'PostController@show')->name('public.topics.show');
+    });
+
+    // post by label
+    Route::group(['prefix' => 'label'], function (){
+        Route::get('/', function () {
+
+        });
+        Route::get('/{label}', function () {
+
+        });
+    });
+
+    // user detail in public
+    Route::group(['prefix' => 'user'], function (){
+        Route::get('/{username}', 'UserController@profile')->name('public.profile');
+    });
+
+    // directory blog
+    Route::group(['prefix' => 'blog'], function (){
+        Route::get('/', function (){})->name('public.blog.index');
+        Route::get('/category', function (){})->name('public.blog.category');
+        Route::get('/category/{categoryid}', function (){})->name('public.blog.category.index');
+        Route::get('/top', function (){})->name('public.blog.top');
+    });
+
+    Route::group(['prefix' => 'forum'], function (){
+        Route::get('/', function () {
+
+        })->name('public.forum.index');
+    });
+
+    Route::group(['prefix' => 'chatting'], function (){
+        Route::get('/', function () {
+
+       })->name('public.chatting.index');
+    });
 });
 
+// testing
 Route::get('/lfm', function () {
     return view('laravel-fm');
 });

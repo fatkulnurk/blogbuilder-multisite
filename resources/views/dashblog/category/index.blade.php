@@ -26,18 +26,27 @@
                                 <th width="10px">#</th>
                                 <th width="220px">Name</th>
                                 <th>Description</th>
-                                <th width="40px">Option</th>
                             </tr>
 
                             @foreach($category as $item)
                                 <tr>
                                     <td>{{ (( $category->currentPage() - 1 ) * $category->perPage() ) + $loop->iteration }}</td>
-                                    <td>{{ $item->name }}</td>
-                                    <td>
-                                        <p>{{ $item->description }}</p>
+                                    <td>{{ $item->name }}
+                                        <div class="table-links">
+                                            <a href="{{ route('dashblog.category.show', ['blogid' => $blogid, 'id' => $item->id]) }}">View</a>
+                                            <div class="bullet"></div>
+                                            <a href="{{ route('dashblog.category.edit', ['blogid' => $blogid, 'id' => $item->id]) }}">Edit</a>
+                                            <div class="bullet"></div>
+                                            <a onclick="deleteData(this)" href="javascript:void(0);" class="text-danger">Trash
+                                                <form action="{{ route('dashblog.category.destroy', ['blogid' => $blogid, 'categoryid' => $item->id]) }}" method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                </form>
+                                            </a>
+                                        </div>
                                     </td>
                                     <td>
-                                        <a href="{{ route('dashblog.category.edit', ['blogid' => $blogid, 'id' => $item->id]) }}"><button class="btn btn-primary">Edit</button></a>
+                                        <p>{{ $item->description }}</p>
                                     </td>
                                 </tr>
                             @endforeach

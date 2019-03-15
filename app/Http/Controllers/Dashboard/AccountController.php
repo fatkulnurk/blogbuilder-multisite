@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Http\Requests\Dashboard\UpdateProfile;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -55,9 +56,9 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        return view('dashboard.account.edit-profile');
     }
 
     /**
@@ -67,9 +68,19 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProfile $request)
     {
-        //
+        $request->user()->userDetail->fill([
+            'first_name'        => $request->first_name,
+            'middle_name'       => $request->middle_name,
+            'last_name'         => $request->last_name,
+            'birthday'          => $request->birthday,
+            'address'           => $request->address,
+            'phone_number'      => $request->phone_number,
+            'bio'               => $request->bio
+        ])->save();
+
+        return redirect()->route('dashboard.account.index')->with('success', __('dashboard-profile.change-profile-success'));
     }
 
     /**

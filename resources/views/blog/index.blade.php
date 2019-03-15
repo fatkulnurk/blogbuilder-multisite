@@ -1,2 +1,3 @@
-{{ $blog->subdomain }}
-{{ $blog }}
+{!! $header !!}
+
+{{ $posts }}

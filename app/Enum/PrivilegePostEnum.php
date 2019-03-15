@@ -10,7 +10,7 @@ namespace App\Enum;
 
 use MyCLabs\Enum\Enum;
 
-class StatusPostEnum extends Enum
+class PrivilegePostEnum extends Enum
 {
     const PUBLISH   = 1;
     const DRAFT     = 2;

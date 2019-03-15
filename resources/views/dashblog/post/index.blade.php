@@ -9,9 +9,9 @@
                 <div class="card-header">
                     <h4>Semua Postingan</h4>
                     <div class="card-header-form">
-                        <form>
+                        <form action="{{ route('dashblog.post.index', ['blogid' => $blogid]) }}" method="get">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search">
+                                <input type="text" class="form-control" placeholder="Search" name="title" value="{{ old('title', $search) }}">
                                 <div class="input-group-btn">
                                     <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                                 </div>
@@ -19,7 +19,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body p-0">
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <tr>
@@ -29,72 +29,34 @@
                                 <th>Created At</th>
                                 <th>Status</th>
                             </tr>
-                            <tr>
-                                <td>Laravel 5 Tutorial: Introduction
-                                    <div class="table-links">
-                                        <a href="#">View</a>
-                                        <div class="bullet"></div>
-                                        <a href="#">Edit</a>
-                                        <div class="bullet"></div>
-                                        <a href="#" class="text-danger">Trash</a>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="#">Web Developer</a>,
-                                    <a href="#">Tutorial</a>
-                                </td>
-                                <td>
-                                    <a href="#">
-                                        <div class="d-inline-block ml-1">Rizal Fakhri</div>
-                                    </a>
-                                </td>
-                                <td>2018-01-20</td>
-                                <td><div class="badge badge-primary">Published</div></td>
-                            </tr>
-                            <tr>
-                                <td>Laravel 5 Tutorial: CRUD
-                                    <div class="table-links">
-                                        <a href="#">View</a>
-                                        <div class="bullet"></div>
-                                        <a href="#">Edit</a>
-                                        <div class="bullet"></div>
-                                        <a href="#" class="text-danger">Trash</a>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="#">Web Developer</a>,
-                                    <a href="#">Tutorial</a>
-                                </td>
-                                <td>
-                                    <a href="#">
-                                        <div class="d-inline-block ml-1">Rizal Fakhri</div>
-                                    </a>
-                                </td>
-                                <td>2018-01-20</td>
-                                <td><div class="badge badge-danger">Draft</div></td>
-                            </tr>
-                            <tr>
-                                <td>Laravel 5 Tutorial: Deployment
-                                    <div class="table-links">
-                                        <a href="#">View</a>
-                                        <div class="bullet"></div>
-                                        <a href="#">Edit</a>
-                                        <div class="bullet"></div>
-                                        <a href="#" class="text-danger">Trash</a>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="#">Web Developer</a>,
-                                    <a href="#">Tutorial</a>
-                                </td>
-                                <td>
-                                    <a href="#">
-                                        <div class="d-inline-block ml-1">Rizal Fakhri</div>
-                                    </a>
-                                </td>
-                                <td>2018-01-20</td>
-                                <td><div class="badge badge-warning">Pending</div></td>
-                            </tr>
+                            @foreach($posts as $post)
+                                <tr>
+                                    <td>{{ $post->title }}
+                                        <div class="table-links">
+                                            <a href="{{ route('dashblog.post.show', ['blogid' => $blogid, 'id' => $post->id]) }}">View</a>
+                                            <div class="bullet"></div>
+                                            <a href="{{ route('dashblog.post.edit', ['blogid' => $blogid, 'id' => $post->id]) }}">Edit</a>
+                                            <div class="bullet"></div>
+                                            <a onclick="deleteData(this)" href="javascript:void(0);" class="text-danger">Trash
+                                                <form action="{{ route('dashblog.post.destroy', ['blogid' => $blogid, 'postid' => $post->id]) }}" method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                </form>
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#">{{ $post->categoryPost->name }}</a>
+                                    </td>
+                                    <td>
+                                        <a href="#">
+                                            <div class="d-inline-block ml-1">{{ $post->user->name }}</div>
+                                        </a>
+                                    </td>
+                                    <td>{{ $post->created_at }}</td>
+                                    <td>{!! \App\Enum\StatusPostEnum::getDescriptions($post->status) !!}</td>
+                                </tr>
+                            @endforeach
                         </table>
                     </div>
                 </div>
@@ -131,4 +93,11 @@
 @endsection
 
 @push('push-footer')
+    <script type="text/javascript">
+        function deleteData(a) {
+            if(confirm("{{ __('dashblog-post.destroy-warning') }}") == true){
+                $(a).find('form').submit();
+            }
+        }
+    </script>
 @endpush

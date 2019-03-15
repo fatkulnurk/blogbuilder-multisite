@@ -34,7 +34,10 @@ class PageController extends Controller
         $pages = $this->pageService->all($request->title)
             ->whereNotIn('status',[StatusPageEnum::DELETE, StatusPageEnum::TRASH])
             ->paginate(10);
-        return view('dashblog.page.index', compact('blogid', 'pages'));
+
+        $search = $request->title;
+
+        return view('dashblog.page.index', compact('blogid', 'pages', 'search'));
     }
 
     /**

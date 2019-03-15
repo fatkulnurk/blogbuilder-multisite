@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers\Dashblog;
 
+use App\Enum\StatusPostEnum;
 use App\Http\Requests\Dashblog\StorePost;
+use App\Model\Blog;
 use App\Model\CategoryPost;
+use App\Model\Post;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -15,9 +21,17 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($blogid)
+    public function index(Request $request, $blogid)
     {
-        return view('dashblog.post.index', compact('blogid'));
+        $posts = Post::with('categoryPost', 'user')
+            ->where('blog_id', $blogid)
+            ->where('title','like', '%'.$request->title.'%')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $search = $request->title;
+
+        return view('dashblog.post.index', compact('blogid', 'posts', 'search'));
     }
 
     /**
@@ -39,11 +53,26 @@ class PostController extends Controller
      */
     public function store(StorePost $request, $blogid)
     {
-        $path = $request->file('image')->store('thumbnail/'.$blogid);
-//        return $path;
-//        return Storage::get($path);
-        return Storage::url($path);
-//        return $request;
+        $post = new Post();
+        $post->title        = $request->title;
+        $post->body         = $request->body;
+        $post->thumbnail     = $request->file('image')->store('thumbnail/'.$blogid);
+        if (Post::where('slug', Str::slug($request->title))->exists()) {
+            $post->slug     = Str::slug($request->title.'-'.Random::string());
+        } else {
+            $post->slug     = Str::slug($request->title);
+        }
+        $post->label        = $request->label;
+        $post->status       = $request->status;
+
+        $post->categoryPost()->associate(CategoryPost::findOrFail($request->category));
+        $post->blog()->associate(Blog::findOrFail($blogid));
+        $post->user()->associate(User::findOrFail(Auth::id()));
+        $post->updateUser()->associate(User::findOrFail(Auth::id()));
+        $post->save();
+
+        return redirect()->route('dashblog.post.index', ['blogid'=> $blogid])
+            ->with('success', __('dashblog-post.store'));
     }
 
     /**
@@ -52,9 +81,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($blogid, $id)
     {
-        //
+        return __('error.empty');
     }
 
     /**
@@ -63,9 +92,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($blogid, $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $category = CategoryPost::where('blog_id', $blogid)->get();
+        return view('dashblog.post.edit', compact('blogid', 'post', 'category'));
     }
 
     /**
@@ -75,9 +106,27 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $blogid, $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->title    = $request->title;
+        $post->status   = $request->status;
+        $post->body     = $request->body;
+
+        if ($request->file('image')) {
+            $post->thumbnail     = $request->file('image')->store('thumbnail/'.$blogid);
+        }
+
+        $post->label        = $request->label;
+        $post->status       = $request->status;
+
+        $post->categoryPost()->associate(CategoryPost::findOrFail($request->category));
+        $post->updateUser()->associate(User::findOrFail(Auth::id()));
+
+        $post->save();
+
+        return redirect()->route('dashblog.post.index', ['blogid' => $blogid])
+            ->with('success', __('dashblog-post.update'));
     }
 
     /**
@@ -86,8 +135,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($blogid, $id)
     {
-        //
+        $page = Post::findOrFail($id);
+        $page->status = StatusPostEnum::TRASH;
+        $page->save();
+
+        return redirect()->route('dashblog.post.index', ['blogid' => $blogid])
+            ->with('success', __('dashblog-post.destroy'));
     }
 }
