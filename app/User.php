@@ -46,6 +46,20 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    // Scope
+    public function scopeSearch($query, $key)
+    {
+        $query->with('userDetail')
+            ->orWhere('name','like', '%'.$key.'%')
+            ->whereHas('userDetail', function ($userProfile) use ($key){
+                $userProfile->orWhere('first_name', 'like', '%'.$key.'%')
+                    ->orWhere('middle_name', 'like', '%'.$key.'%')
+                    ->orWhere('last_name', 'like', '%'.$key.'%');
+            });
+    }
+
+    // Relationship
+
     public function userDetail()
     {
         return $this->hasOne(UserDetail::class, 'user_id', 'id');

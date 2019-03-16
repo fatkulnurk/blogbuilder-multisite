@@ -226,6 +226,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Active' => Pyaesone17\ActiveState\ActiveFacade::class,
 
+        // Custom
+        'Search' => App\Facades\Search\Search::class,
     ],
 
 ];

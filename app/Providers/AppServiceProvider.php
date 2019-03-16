@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Facades\Search\SearchFactory;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,6 +15,8 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+
+        $this->app->bind('search', SearchFactory::class);
     }
 
     /**

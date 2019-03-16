@@ -70,7 +70,7 @@ class UsersTableSeeder extends Seeder
            $user->userDetail()->save(factory(App\Model\UserDetail::class)->make());
 
 //           $user->blogs()->save(factory(App\Model\Blog::class, 5)->make());
-           $user->blogs()->save(factory(App\Model\Blog::class)->make());
+//           $user->blogs()->save(factory(App\Model\Blog::class)->make());
 //           $user->blogs()->templateDekstop()->save(factory(App\Model\Template::class)->make());
 
 

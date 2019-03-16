@@ -31,7 +31,7 @@ class ImagesController extends Controller
 
     public function user($id)
     {
-        $user = User::findOrFail($id)->with('userDetail');
+        $user = User::with('userDetail')->findOrFail($id);
 
         if (Storage::exists($user->userDetail->profile)) {
             return Storage::get($user->userDetail->profile);

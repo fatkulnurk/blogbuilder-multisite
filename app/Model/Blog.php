@@ -26,6 +26,14 @@ class Blog extends Model
         'logo'
     ];
 
+    // Local Scope
+    public function scopeSearch($query, $key)
+    {
+        $query->where('subdomain','like', '%'.$key.'%')
+            ->orWhere('title','like', '%'.$key.'%')
+            ->orWhere('short_desc','like', '%'.$key.'%')
+            ->orWhere('description','like', '%'.$key.'%');
+    }
 
     // Mutator
     public function setSubdomainAttribute($value)

@@ -125,9 +125,12 @@ Route::group(['namespace' => 'Dashblog', 'prefix' => 'dashblog/{blogid}', 'middl
 
 // landing page
 Route::get('/', 'LandingController@index')->name('homepage');
+Route::get('/crawl', 'Statistic\Crawl@index')->name('crawl');
 
 // Namespace ExploreSite
 Route::group(['namespace' => 'ExploreSite'], function (){
+
+    Route::get('search', 'SearchController@index')->name('public.search');
 
     // post by category
     Route::group(['prefix' => 'topics'], function (){

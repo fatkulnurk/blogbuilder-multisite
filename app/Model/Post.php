@@ -20,6 +20,15 @@ class Post extends Model
         'user_id'
     ];
 
+    // scope
+    public function scopeSearch($query, $key)
+    {
+        $query->where('title','like', '%'.$key.'%')
+            ->orWhere('label', 'like', '%'.$key.'%')
+            ->orWhere('body','like', '%'.$key.'%');
+    }
+
+    // relation
     public function categoryPost()
     {
         return $this->belongsTo(CategoryPost::class, 'category_post_id');
