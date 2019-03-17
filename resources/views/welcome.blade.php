@@ -1,6 +1,6 @@
 @extends('layouts.explore_site')
 
-@section('title', 'Dashboard')
+@section('title', 'Ini Landing Page')
 @section('content')
 
     <div class="hero is-medium is-info">
