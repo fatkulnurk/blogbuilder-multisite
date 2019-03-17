@@ -16,7 +16,8 @@ class CategoryController extends Controller
     protected $categoryPostService;
     public function __construct()
     {
-        $this->categoryPostService = new CategoryPostService(\request()->route()->parameter('blogid'));
+//        $this->categoryPostService = new CategoryPostService(\request()->route()->parameter('blogid'));
+        $this->categoryPostService = new CategoryPostService(\request('blogid'));
     }
 
     /**
@@ -29,6 +30,7 @@ class CategoryController extends Controller
         $category = $this->categoryPostService
             ->all($request->title)
             ->paginate(10);
+
         return view('dashblog.category.index', compact('blogid', 'category'));
     }
 

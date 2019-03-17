@@ -21,7 +21,8 @@ class PageController extends Controller
     protected $pageService;
     public function __construct()
     {
-        $this->pageService = new PageService(\request()->route()->parameter('blogid'));
+//        $this->pageService = new PageService(\request()->route()->parameter('blogid'));
+        $this->pageService = new PageService(\request('blogid'));
     }
 
     /**
