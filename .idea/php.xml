@@ -91,8 +91,6 @@
       <path value="$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server" />
       <path value="$PROJECT_DIR$/vendor/pyaesone17/active-state" />
       <path value="$PROJECT_DIR$/vendor/myclabs/php-enum" />
-      <path value="$PROJECT_DIR$/vendor/prettus/l5-repository" />
-      <path value="$PROJECT_DIR$/vendor/prettus/laravel-validation" />
       <path value="$PROJECT_DIR$/vendor/unisharp/laravel-filemanager" />
       <path value="$PROJECT_DIR$/vendor/intervention/image" />
     </include_path>
