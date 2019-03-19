@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
@@ -20,12 +21,28 @@ class Post extends Model
         'user_id'
     ];
 
+    protected $appends      = [
+        'date',
+        'date_ago'
+    ];
+
     // scope
     public function scopeSearch($query, $key)
     {
         $query->where('title','like', '%'.$key.'%')
             ->orWhere('label', 'like', '%'.$key.'%')
             ->orWhere('body','like', '%'.$key.'%');
+    }
+
+    // accessor
+    public function getDateAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])->format('M d, Y');
+    }
+
+    public function getDateAgoAttribute()
+    {
+        return Carbon::now()->diffInDays($this->attributes['created_at']);
     }
 
     // relation

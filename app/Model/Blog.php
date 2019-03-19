@@ -69,7 +69,7 @@ class Blog extends Model
 
     public function categoryPosts()
     {
-        return $this->hasMany(Post::class, 'blog_id', 'id');
+        return $this->hasMany(CategoryPost::class, 'blog_id', 'id');
     }
 
     public function pages()
