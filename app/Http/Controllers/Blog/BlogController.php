@@ -8,61 +8,93 @@ use App\Fnk\TemplateEnum\TplBlogIndexPostEnum;
 use App\Model\Blog;
 use App\Model\Post;
 use App\Model\Template;
+use App\Services\Blog\TemplateData;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Fnk\TemplateEngine\FnkTemplate;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Lex\Parser;
 
 class BlogController extends Controller
 {
-    public function index($username)
-    {
-        $blog   = Blog::where('subdomain', $username)->first();
-        $posts = Post::whereHas('blog.domain', function ($query) use ($username){
-            $query->where('subdomain', $username);
-        })->orderBy('created_at', 'desc')->get();
-
-//        return view('blog.index', compact('blog', 'posts'));
-
-        $template = $blog->templateDekstop;
-//        $tplHeader = new FnkTemplate($template->code_header);
-//        $tplHeader->set(TplBlogHeaderEnum::TITLE, $blog->title);
-//        $tplHeader->set(TplBlogHeaderEnum::SHORT_DESC, $blog->short_desc);
-//        $header = $tplHeader->render();
-
-        $beforePosts    = strstr($template->code_index, TplBlogIndexPostEnum::LINE_START, true);
-
-        return $beforePosts;
-        $posts          = strpos($template->code_index, TplBlogIndexPostEnum::LINE_START);
-        $posts          = strpos($posts, TplBlogIndexPostEnum::LINE_STOP);
-        $afterPosts     = strstr($template->code_index, TplBlogIndexPostEnum::LINE_STOP);
-
-        $tplIndexPost   = new FnkTemplate($template->code_index);
-
-
-        return view('blog.index', compact( 'header', 'posts'));
-
-    }
-
-    public function show($username, $slug)
+    public function index(Request $request, $username)
     {
         $blog = Blog::where('subdomain', $username)->first();
-        $post = Post::where('slug', $slug)
+        $post = $blog->posts()->with('user')->orderBy('created_at', 'DESC')->paginate(10);
+        $category = $blog->categoryPosts()->get();
+        $template = $blog->templateDekstop()->first();
+        $templateHtml = $template->code_header
+                .$template->code_index
+            .$template->code_footer;
+
+        $tplTest = '
+        <!HTML Doctype>
+        <html>
+        <head>
+            <title>{{ title }}</title>
+        </head>
+        <body>
+            {{ post }}            
+            <div style="background: red">
+
+                {{ title }} - {{ user.userdetail.first_name }}
+                <hr>
+                {{ labels }}
+                    {{ item }} - 
+                {{ /labels }}
+            </div>
+            {{ /post }}
+            <hr>
+            
+            {{ category }}
+            {{ name }}
+            {{ /category }}
+        </body>
+        </html>
+        ';
+
+        $lex = new Parser();
+        echo $lex->parse($templateHtml, [
+            'blog' => $blog,
+            'post' => $post,
+            'category' => $category,
+            'url' => TemplateData::url($request),
+            'csrf' => TemplateData::csrf(),
+
+            // local
+            'pagination' => TemplateData::pagination($post),
+
+        ]);
+    }
+
+    public function show(Request $request, $username, $slug)
+    {
+        $blog = Blog::where('subdomain', $username)->first();
+        $post = Post::with('comments')
+            ->where('slug', $slug)
             ->whereHas('blog.domain', function ($query) use ($username){
             $query->where('subdomain', $username);
         })->first();
 
+        $category = $blog->categoryPosts()->get();
+
         $template = $blog->templateDekstop;
 
-        $tplHeader = new FnkTemplate($template->code_header);
-        $tplHeader->set(TplBlogHeaderEnum::TITLE, $blog->title);
-        $tplHeader->set(TplBlogHeaderEnum::SHORT_DESC, $blog->short_desc);
-        $header = $tplHeader->render();
+        $templateHtml = $template->code_header.
+            $template->code_post.
+            $template->code_footer;
 
-        $tplPost = new FnkTemplate($template->code_post);
-        $tplPost->set(TplPostEnum::TITLE, $post->title);
-        $tplPost->set(TplPostEnum::AUTHOR, $post->user->name);
-        $post = $tplPost->render();
+        $lex = new Parser();
+        echo $lex->parse($templateHtml, [
+            'blog' => $blog,
+            'post' => $post,
+            'category' => $category,
+            'url' => TemplateData::url($request),
+            'csrf' => TemplateData::csrf(),
 
-        return view('blog.post', compact('header', 'post'));
+            // local
+            'comment' => $post->comments,
+        ]);
     }
+
 }
