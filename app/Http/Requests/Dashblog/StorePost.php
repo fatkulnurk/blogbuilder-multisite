@@ -25,9 +25,9 @@ class StorePost extends FormRequest
     {
         return [
             'title'         => 'required|string|max:190',
-            'body'          => 'required|string',
+            'body'          => 'required|string|max:65000',
             'image'         => 'nullable|max:2000',
-            'label'         => 'required|string',
+            'label'         => 'required|string|max:190',
             'status'        => 'required|integer',
             'category'      => 'required|integer'
         ];

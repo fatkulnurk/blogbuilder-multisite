@@ -17,6 +17,13 @@ class AppServiceProvider extends ServiceProvider
         //
 
         $this->app->bind('search', SearchFactory::class);
+
+        require_once app_path('Helpers/Helper.php');
+
+        // mendaftarkan banyak helper sekaligus
+//        foreach (glob(app_path('Helpers/*.php')) as $filename) {
+//            require_once $filename;
+//        }
     }
 
     /**

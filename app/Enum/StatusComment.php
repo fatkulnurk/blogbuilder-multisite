@@ -12,7 +12,7 @@ use MyCLabs\Enum\Enum;
 
 class StatusComment extends Enum
 {
-    const AKTIVE         = 1;
+    const ACTIVE        = 1;
     const PENDING       = 2;
     const SPAM          = 3;
     const TRASH         = 4;
@@ -20,12 +20,24 @@ class StatusComment extends Enum
     public static function getDescriptions($status)
     {
         $data = [
-            self::AKTIVE        => 'Aktif',
+            self::ACTIVE        => 'Aktif',
             self::PENDING       => 'Pending',
             self::SPAM          => 'Spam',
             self::TRASH         => 'Trash'
         ];
 
         return $data[$status];
+    }
+
+    public static function getAll()
+    {
+        $data = [
+            self::ACTIVE        => 'Aktif',
+            self::PENDING       => 'Pending',
+            self::SPAM          => 'Spam',
+            self::TRASH         => 'Trash'
+        ];
+
+        return $data;
     }
 }

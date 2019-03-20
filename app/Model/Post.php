@@ -3,7 +3,9 @@
 namespace App\Model;
 
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
@@ -20,6 +22,13 @@ class Post extends Model
         'user_id'
     ];
 
+    protected $appends      = [
+        'body_short',
+        'date',
+        'date_ago',
+        'labels'
+    ];
+
     // scope
     public function scopeSearch($query, $key)
     {
@@ -27,6 +36,48 @@ class Post extends Model
             ->orWhere('label', 'like', '%'.$key.'%')
             ->orWhere('body','like', '%'.$key.'%');
     }
+
+    // accessor
+    public function getDateAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])->format('M d, Y');
+    }
+
+    public function getDateAgoAttribute()
+    {
+        return Carbon::now()->diffInDays($this->attributes['created_at']);
+    }
+
+    public function getLabelsAttribute()
+    {
+        return label_to_array($this->attributes['label']);
+    }
+
+    public function getBodyShortAttribute()
+    {
+        return Str::limit($this->attributes['body'], 150);
+    }
+
+//    public function getLabelAttribute()
+//    {
+//        $label = array();
+//
+//        foreach (json_decode($this->attributes['label']) as $item) {
+//            $label[] = [
+//                'item' => $item
+//            ];
+//        }
+//
+//        return $label;
+//        return json_decode($this->attributes['label']);
+//    }
+
+    // muttator
+//    public function setLabelAttribute($value)
+//    {
+//        $label = explode(',', $value);
+//        $this->attributes['label'] = json_encode($label);
+//    }
 
     // relation
     public function categoryPost()

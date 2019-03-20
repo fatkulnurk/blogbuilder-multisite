@@ -15,6 +15,10 @@
 
 Route::group(['prefix' => 'page'], function (){
     Auth::routes(['verify' => true]);
+
+    Route::get('/logout', function () {
+        Auth::logout();
+    });
 });
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
@@ -28,12 +32,13 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 Route::group(['domain' => '{subdomain}.dibumi.com', 'namespace' => 'Blog'], function(){
 
     Route::get('/', 'BlogController@index')->name('blog.index');
+    Route::get('index.html', 'BlogController@index')->name('blog.index');
 
     Route::get('/{slug}', 'BlogController@show')->name('blog.show');
 
-    Route::get('/category/{slug}', function () {
+    Route::post('/{slug}', 'CommentController@store')->name('blog.store-comment')->middleware('auth');
 
-    });
+    Route::get('/category/{slug}', 'CategoryController@show')->name('blog.category');
 
     Route::get('/search/', function () {
 
@@ -119,6 +124,16 @@ Route::group(['namespace' => 'Dashblog', 'prefix' => 'dashblog/{blogid}', 'middl
         Route::get('/', 'CommentController@index')->name('dashblog.comment.index');
         Route::get('/spam', 'CommentController@create')->name('dashblog.comment.spam');
     });
+
+    Route::group(['prefix' => 'theme', 'namespace' => 'Theme'], function (){
+       Route::group(['prefix' => 'desktop'], function (){
+           Route::get('/', 'ThemeDesktopController@index')->name('dashblog.theme.desktop.index');
+       });
+
+       Route::group(['prefix' => 'mobile'], function (){
+           Route::get('/', 'ThemeMobileController@index')->name('dashblog.theme.mobile.index');
+       });
+    });
 });
 
 // ------------------- ROUTE PUBLIC----------------------- //
@@ -126,6 +141,10 @@ Route::group(['namespace' => 'Dashblog', 'prefix' => 'dashblog/{blogid}', 'middl
 // landing page
 Route::get('/', 'LandingController@index')->name('homepage');
 Route::get('/crawl', 'Statistic\Crawl@index')->name('crawl');
+
+Route::get('test-helper', function () {
+    return label_to_array('ini hanya, percobaan, saya');
+});
 
 // Namespace ExploreSite
 Route::group(['namespace' => 'ExploreSite'], function (){

@@ -57,7 +57,18 @@
                         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-comment"></i> <span>Komentar</span></a>
                         <ul class="dropdown-menu">
                             <li><a class="nav-link" href="{{ route('dashblog.comment.index', ['blogid' => $blogid]) }}">Semua Komentar</a></li>
+                            <li><a class="nav-link" href="{{ route('dashblog.comment.spam', ['blogid' => $blogid]) }}">Komentar Aktif</a></li>
+                            <li><a class="nav-link" href="{{ route('dashblog.comment.spam', ['blogid' => $blogid]) }}">Komentar Pending</a></li>
                             <li><a class="nav-link" href="{{ route('dashblog.comment.spam', ['blogid' => $blogid]) }}">Komentar Spam</a></li>
+                            <li><a class="nav-link" href="{{ route('dashblog.comment.spam', ['blogid' => $blogid]) }}">Komentar Trash</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-toolbox"></i> <span>Template</span></a>
+                        <ul class="dropdown-menu">
+                            {{--<li><a class="nav-link" href="">Tema Mobile</a></li>--}}
+                            <li><a class="nav-link" href="{{ route('dashblog.theme.desktop.index') }}">Tema Dekstop</a></li>
+                            <li><a class="nav-link" href="">Explore Template</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -89,13 +100,6 @@
             </aside>
             </div>
         @show
-
-    <!-- Main Content -->
-        {{--<div class="main-content">--}}
-            {{--<section class="section">--}}
-                {{--@yield('content')--}}
-            {{--</section>--}}
-        {{--</div>--}}
 
         <div class="main-content">
             <section class="section">
