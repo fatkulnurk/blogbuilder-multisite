@@ -32,7 +32,7 @@
                                         <p>
                                             <strong><a href="{{ route('blog.show', ['subdomain' => $post->blog->subdomain , 'slug' => $post->slug]) }}">{{ $post->title }}</a></strong> <small><a href="{{ route('public.profile', $post->user->name) }}">{{ '@'.$post->user->name}}</a></small>
                                             <br>
-                                            {{ strip_tags(substr($post->body, 1, 200)) }}.
+                                            {{ $post->body_short }}.
                                         </p>
                                     </div>
                                     <nav class="level is-mobile">

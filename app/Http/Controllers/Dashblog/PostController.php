@@ -84,7 +84,11 @@ class PostController extends Controller
      */
     public function show($blogid, $id)
     {
-        return __('error.empty');
+        $post = Post::with('blog.domain')->findOrFail($id);
+
+
+        return redirect('//'.$post->blog->subdomain.'.'.$post->blog->domain->domain.'/'.$post->slug);
+//        return __('error.empty');
     }
 
     /**

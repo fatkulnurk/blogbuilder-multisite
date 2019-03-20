@@ -64,32 +64,30 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-toolbox"></i> <span>Template</span></a>
+                        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-tablet-alt"></i> <span>Template</span></a>
                         <ul class="dropdown-menu">
-                            {{--<li><a class="nav-link" href="">Tema Mobile</a></li>--}}
-                            <li><a class="nav-link" href="{{ route('dashblog.theme.desktop.index') }}">Tema Dekstop</a></li>
+                            <li><a class="nav-link" href="?">Tema Mobile</a></li>
+                            <li><a class="nav-link" href="{{ route('dashblog.theme.desktop.index', ['blogid' => $blogid ]) }}">Tema Dekstop</a></li>
                             <li><a class="nav-link" href="">Explore Template</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-toolbox"></i> <span>Blog+</span></a>
                         <ul class="dropdown-menu">
-                            <li><a class="nav-link" href="">Pengaturan Blog</a></li>
-                            <li><a class="nav-link" href="">Tema Mobile</a></li>
-                            <li><a class="nav-link" href="">Tema Dekstop</a></li>
-                            <li><a class="nav-link" href="">Explore Tema</a></li>
+                            <li><a class="nav-link" href="{{ route('dashblog.setting.information.edit', ['blogid' => $blogid]) }}">Informasi Blog</a></li>
+                            <li><a class="nav-link" href="{{ route('dashblog.setting.blog.edit', ['blogid' => $blogid]) }}">Pengaturan Blog</a></li>
                             <li><a class="nav-link" href="">Statistik</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-paper-plane"></i> <span>Komunitas</span></a>
-                        <ul class="dropdown-menu">
-                            <li><a class="nav-link" href="">Chat Room</a></li>
-                            <li><a class="nav-link" href="">Private Chat</a></li>
-                            <li><a class="nav-link" href="">Forum</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="nav-link" href=""><i class="fas fa-pencil-ruler"></i> <span>Credits</span></a></li>
+                    {{--<li class="dropdown">--}}
+                        {{--<a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-paper-plane"></i> <span>Komunitas</span></a>--}}
+                        {{--<ul class="dropdown-menu">--}}
+                            {{--<li><a class="nav-link" href="">Chat Room</a></li>--}}
+                            {{--<li><a class="nav-link" href="">Private Chat</a></li>--}}
+                            {{--<li><a class="nav-link" href="">Forum</a></li>--}}
+                        {{--</ul>--}}
+                    {{--</li>--}}
+                    <li><a class="nav-link" href=""><i class="fas fa-hands-helping"></i> <span>Request Fitur</span></a></li>
                 </ul>
 
                 <div class="mt-4 mb-4 p-3 hide-sidebar-mini">

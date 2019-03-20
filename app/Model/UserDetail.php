@@ -23,6 +23,16 @@ class UserDetail extends Authenticatable
         'security_answer'
     ];
 
+    protected $appends  = [
+        'full_name'
+    ];
+
+    // accessor
+    public function getFullNameAttribute(){
+        return $this->attributes['first_name'].' '.$this->attributes['middle_name'].' '.$this->attributes['last_name'];
+    }
+
+    // relation
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');

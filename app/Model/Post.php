@@ -25,6 +25,7 @@ class Post extends Model
     protected $appends      = [
         'body_short',
         'date',
+        'clock',
         'date_ago',
         'labels'
     ];
@@ -43,6 +44,11 @@ class Post extends Model
         return Carbon::parse($this->attributes['created_at'])->format('M d, Y');
     }
 
+    public function getClockAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])->format('H:i');
+    }
+
     public function getDateAgoAttribute()
     {
         return Carbon::now()->diffInDays($this->attributes['created_at']);
@@ -55,7 +61,8 @@ class Post extends Model
 
     public function getBodyShortAttribute()
     {
-        return Str::limit($this->attributes['body'], 150);
+        $htmlClear = strip_tags($this->attributes['body']);
+        return Str::limit($htmlClear, 150);
     }
 
 //    public function getLabelAttribute()

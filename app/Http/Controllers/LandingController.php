@@ -10,10 +10,10 @@ class LandingController extends Controller
 {
     public function index()
     {
-        $posts = Post::with('user', 'categoryPost', 'blog','blog.categoryBlog')
+        $posts = Post::with('user', 'categoryPost', 'blog.categoryBlog')
             ->orderBy('created_at', 'desc')->paginate(10);
-        $categoryBlog = CategoryBlog::all();
+//        $categoryBlog = CategoryBlog::all();
 
-        return view('welcome', compact('posts', 'categoryBlog'));
+        return view('welcome', compact('posts'));
     }
 }

@@ -32,11 +32,13 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 Route::group(['domain' => '{subdomain}.dibumi.com', 'namespace' => 'Blog'], function(){
 
     Route::get('/', 'BlogController@index')->name('blog.index');
+    Route::get('style.css', 'staticController@styleCss')->name('blog.css');
+    Route::get('main.js', 'staticController@mainJs')->name('blog.javascript');
     Route::get('index.html', 'BlogController@index')->name('blog.index');
 
     Route::get('/{slug}', 'BlogController@show')->name('blog.show');
 
-    Route::post('/{slug}', 'CommentController@store')->name('blog.store-comment')->middleware('auth');
+    Route::post('/{slug}', 'CommentController@store')->name('blog.store-comment');
 
     Route::get('/category/{slug}', 'CategoryController@show')->name('blog.category');
 
@@ -128,11 +130,20 @@ Route::group(['namespace' => 'Dashblog', 'prefix' => 'dashblog/{blogid}', 'middl
     Route::group(['prefix' => 'theme', 'namespace' => 'Theme'], function (){
        Route::group(['prefix' => 'desktop'], function (){
            Route::get('/', 'ThemeDesktopController@index')->name('dashblog.theme.desktop.index');
+           Route::get('/edit', 'ThemeDesktopController@edit')->name('dashblog.theme.desktop.edit');
+           Route::post('/edit', 'ThemeDesktopController@update')->name('dashblog.theme.desktop.update');
        });
 
-       Route::group(['prefix' => 'mobile'], function (){
-           Route::get('/', 'ThemeMobileController@index')->name('dashblog.theme.mobile.index');
-       });
+//       Route::group(['prefix' => 'mobile'], function (){
+//           Route::get('/', 'ThemeMobileController@index')->name('dashblog.theme.mobile.index');
+//       });
+    });
+
+    Route::group(['prefix' => 'setting'], function (){
+        Route::get('/', 'InformationBlogController@edit')->name('dashblog.setting.information.edit');
+        Route::post('/', 'InformationBlogController@update')->name('dashblog.setting.information.update');
+        Route::get('blog', 'SettingBlogController@edit')->name('dashblog.setting.blog.edit');
+        Route::post('blog', 'SettingBlogController@update')->name('dashblog.setting.blog.update');
     });
 });
 
