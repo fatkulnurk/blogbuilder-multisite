@@ -12,5 +12,15 @@ namespace App\Services\Blog;
 
 class Category
 {
-
+    /*
+     * Show Post In Category
+     * {subdomain}.{domain}.{tld}/category/{slug}
+     * */
+    public static function getPost($request, $model)
+    {
+        return [
+            'url' => self::url($request),
+            'pagination' => self::pagination($model),
+        ];
+    }
 }

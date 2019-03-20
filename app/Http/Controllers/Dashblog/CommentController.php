@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashblog;
 
+use App\Model\PostComment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -12,8 +13,20 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($blogid)
+    public function index(Request $request, $blogid)
     {
+        $comment = PostComment::with('post.blog', 'user')
+            ->whereHas('post.blog', function ($blog) use ($blogid){
+                $blog->where('blog_id', $blogid);
+            })
+            ->where('body','like', '%'.$request->title.'%')
+            ->orderBy('created_at', 'desc')
+
+            ->paginate(10);
+
+        $search = $request->title;
+
+        return view('dashblog.comment.index', compact('blogid', 'comment', 'search'));
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashblog;
 
 use App\Enum\StatusPostEnum;
 use App\Http\Requests\Dashblog\StorePost;
+use App\Http\Requests\Dashblog\UpdatePost;
 use App\Model\Blog;
 use App\Model\CategoryPost;
 use App\Model\Post;
@@ -27,7 +28,7 @@ class PostController extends Controller
             ->where('blog_id', $blogid)
             ->where('title','like', '%'.$request->title.'%')
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->paginate(10);
 
         $search = $request->title;
 
@@ -106,7 +107,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $blogid, $id)
+    public function update(UpdatePost $request, $blogid, $id)
     {
         $post = Post::findOrFail($id);
         $post->title    = $request->title;

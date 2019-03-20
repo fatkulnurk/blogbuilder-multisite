@@ -10,7 +10,27 @@
 namespace App\Services\Blog;
 
 
-class TemplateCheck
+use App\Model\Blog;
+
+class Template
 {
+     // cek template yang aktif yang mana
+    public static function get(Blog $blog)
+    {
+
+    }
+
+    // menggunakan template dekstop
+    public static function dekstop(Blog $blog)
+    {
+//        $template =
+//        return $template;
+    }
+
+    // menggunakan template mobile
+    public static function mobile()
+    {
+
+    }
 
 }
