@@ -6,7 +6,6 @@ class TemplateLibTableSeeder extends Seeder
 {
 
     protected $codeHeader = <<<EOT
-    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +20,7 @@ class TemplateLibTableSeeder extends Seeder
   {{ if exists post.title }}
   {{ post.title }}
   {{ elseif not exists post.title }}
-  {{ blog.title }}
+  {{ global.blog.title }}
   
   {{ endif }}
   </title>
@@ -45,25 +44,18 @@ class TemplateLibTableSeeder extends Seeder
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand" href="/">{{ blog.title }}</a>
+      <a class="navbar-brand" href="{{ global.url.url_root }}">{{ global.blog.title }}</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+        {{ global.category }}
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="/category/{{ slug }}">{{ name }}</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="about.html">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="post.html">Sample Post</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact</a>
-          </li>
+        {{ /global.category }}
         </ul>
       </div>
     </div>
@@ -71,7 +63,8 @@ class TemplateLibTableSeeder extends Seeder
 EOT;
 
     protected $codeFooter = <<<EOT
-    
+        
+ 
   <hr>
 
   <!-- Footer -->
@@ -119,12 +112,13 @@ EOT;
   <script src="https://blackrockdigital.github.io/startbootstrap-clean-blog/js/clean-blog.min.js"></script>
 
 </body>
+
 </html>
 
 EOT;
 
     protected $codeIndex = <<<EOT
-    
+        
   <!-- Page Header -->
   <header class="masthead" style="background-image: url('https://source.unsplash.com/random/1080x400')">
     <div class="overlay"></div>
@@ -144,7 +138,7 @@ EOT;
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-      {{ post }}
+      {{ posts }}
         <div class="post-preview">
           <a href="/{{ slug }}">
             <h2 class="post-title">
@@ -159,10 +153,10 @@ EOT;
             on {{ date }}</p>
         </div>
         <hr>
-        {{ /post }}
+        {{ /posts }}
         <!-- Pager -->
         <div class="clearfix">
-          <a class="btn btn-primary float-right" href="{{ pagination.next_page_url }}">Older Posts &rarr;</a>
+          <a class="btn btn-primary float-right" href="{{ pagination.next_page_url }}">Older Posts →</a>
         </div>
       </div>
     </div>
@@ -171,7 +165,7 @@ EOT;
 EOT;
 
     protected $codePost = <<<EOT
-    <!-- Page Header -->
+<!-- Page Header -->
   <header class="masthead" style="background-image: url('https://source.unsplash.com/random/1080x400')">
     <div class="overlay"></div>
     <div class="container">
@@ -202,6 +196,21 @@ EOT;
     </div>
   </article>
   <hr>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+  <h3>Comment</h3>
+  {{ comment }}
+  {{ user.name }} <br>
+  {{ body }}  <hr>
+
+  {{ /comment }}
+  <form action="{{ global.url.url }}" method="post">
+  {{ global.csrf.csrf_field }}
+  <textarea name="body" class="form-control">
+</textarea>
+<button class="btn btn-block btn-primary">Submit</button>
+</form>
 EOT;
 
     /**
@@ -214,16 +223,12 @@ EOT;
         \App\Model\TemplateLib::create([
             'name'              => 'FNK Test',
             'stylesheet'        => 'body {background:white};',
-            'script_header'     => '',
-            'script_post_up'    => '',
-            'script_post_down'  => '',
-            'script_nav_up'     => '',
-            'script_nav_down'   => '',
-            'script_footer'     => '',
+            'javascript'        => '',
             'code_header'       => $this->codeHeader,
             'code_footer'       => $this->codeFooter,
             'code_index'        => $this->codeIndex,
             'code_search'       => '<h1>saya di search</h1>',
+            'code_category'     => '<h1>saya di category</h1>',
             'code_page'         => '<h1>saya di page</h1>',
             'code_post'         => $this->codePost,
             'code_about'        => '<h1>saya di about</h1>',

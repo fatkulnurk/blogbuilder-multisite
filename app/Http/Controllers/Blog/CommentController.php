@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Blog;
 
+use App\Enum\StatusComment;
 use App\Http\Requests\Blog\CommentStore;
 use App\Model\Post;
 use App\Model\PostComment;
@@ -20,6 +21,7 @@ class CommentController extends Controller
 
         $postComment = new PostComment();
         $postComment->body = $request->body;
+        $postComment->status = StatusComment::PENDING;
         $postComment->user()->associate(Auth::id());
         $postComment->post()->associate($post->id);
         $postComment->save();

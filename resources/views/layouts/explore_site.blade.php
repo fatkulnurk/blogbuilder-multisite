@@ -14,26 +14,6 @@
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
 
-    <script type="text/javascript">
-
-
-        window.onload=function(){
-
-            window.addEventListener('online', () => {
-                document.getElementById('is-offline').classList.remove('is-show');	document.getElementById('is-online').classList += ' is-show';
-                setTimeout(() => {
-                    document.getElementById('is-online').classList.remove('is-show');
-                }, 5000);
-            });
-
-            window.addEventListener('offline', () => {
-                document.getElementById('is-online').classList.remove('is-show');	document.getElementById('is-offline').classList += ' is-show';
-            });
-
-        }
-
-    </script>
-
     <style>
         body,button,input,select,textarea{
             font-family:-apple-system,BlinkMacSystemFont,"Open Sans",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif
@@ -49,7 +29,7 @@
             width: 45vw;
         }
 
-        .box{
+        .box, .button, .btn{
             border-radius: 0;
         }
 
@@ -112,11 +92,10 @@
                 <div class="navbar-end">
                     <div class="navbar-item has-dropdown is-hoverable">
                         <a class="navbar-link">
-                            Explore
+                            <span class="icon"><i class="fas fa-th"></i></span> <span>Explore</span>
                         </a>
 
                         <div class="navbar-dropdown">
-
                             <a href="{{ route('public.blog.index') }}" class="navbar-item">
                                 Blog
                             </a>
@@ -126,7 +105,27 @@
                             <a href="{{ route('public.chatting.index') }}" class="navbar-item">
                                 Chatting
                             </a>
+                        </div>
+                    </div>
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            Page
+                        </a>
+
+                        <div class="navbar-dropdown">
+                            <a class="navbar-item">
+                                About
+                            </a>
+                            <a class="navbar-item">
+                                Contact
+                            </a>
                             <hr class="navbar-divider">
+                            <a class="navbar-item">
+                                Term of Service
+                            </a>
+                            <a class="navbar-item">
+                                Policy Privacy
+                            </a>
                             <a class="navbar-item">
                                 Report an issue
                             </a>

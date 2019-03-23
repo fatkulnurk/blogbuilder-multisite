@@ -9,10 +9,18 @@
 
 namespace App\Services\Blog;
 
-use Illuminate\Support\Facades\Request;
+use App\Model\Blog;
+use Illuminate\Http\Request;
 
 class TemplateData
 {
+    public static function global(Request $request)
+    {
+        return [
+            'url' => self::url($request),
+            'csrf' => self::csrf()
+        ];
+    }
 
     // Get Information Url
     public static function url($request)

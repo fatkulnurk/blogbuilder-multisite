@@ -37,11 +37,19 @@
                 <ul class="sidebar-menu">
                     <li class="menu-header">Dashboard</li>
                     <li><a class="nav-link" href="{{ route('dashblog.index', ['blogid' => $blogid]) }}"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
-                    <li class="dropdown {{ Active::checkRoute(['dashblog.post.*', 'dashblog.category.*']) }}">
+                    <li class="dropdown {{ Active::checkRoute(['dashblog.post.*']) }}">
                         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Postingan</span></a>
                         <ul class="dropdown-menu">
                             <li><a class="nav-link" href="{{ route('dashblog.post.create', ['blogid' => $blogid]) }}">Tambah Postingan</a></li>
                             <li><a class="nav-link" href="{{ route('dashblog.post.index', ['blogid' => $blogid]) }}">Semua Postingan</a></li>
+                            <li><a class="nav-link" href="{{ route('dashblog.post-publish.index', ['blogid' => $blogid]) }}">Post Terpublish</a></li>
+                            <li><a class="nav-link" href="{{ route('dashblog.post-draft.index', ['blogid' => $blogid]) }}">Draft Tersimpan</a></li>
+                            <li><a class="nav-link" href="{{ route('dashblog.post-trash.index', ['blogid' => $blogid]) }}">Keranjang Sampah</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown {{ Active::checkRoute([ 'dashblog.category.*']) }}">
+                        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-th-large"></i> <span>Kategori Post</span></a>
+                        <ul class="dropdown-menu">
                             <li><a class="nav-link" href="{{ route('dashblog.category.create', ['blogid' => $blogid]) }}">Tambah Kategori</a></li>
                             <li><a class="nav-link" href="{{ route('dashblog.category.index', ['blogid' => $blogid]) }}">Semua Kategori</a></li>
                         </ul>
@@ -72,11 +80,13 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-toolbox"></i> <span>Blog+</span></a>
+                        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-toolbox"></i> <span>Pengaturan</span></a>
                         <ul class="dropdown-menu">
                             <li><a class="nav-link" href="{{ route('dashblog.setting.information.edit', ['blogid' => $blogid]) }}">Informasi Blog</a></li>
-                            <li><a class="nav-link" href="{{ route('dashblog.setting.blog.edit', ['blogid' => $blogid]) }}">Pengaturan Blog</a></li>
-                            <li><a class="nav-link" href="">Statistik</a></li>
+{{--                            <li><a class="nav-link" href="{{ route('dashblog.setting.blog.edit', ['blogid' => $blogid]) }}">Pengaturan Blog</a></li>--}}
+                            <li><a class="nav-link" href="{{ route('dashblog.setting.theme.edit', ['blogid' => $blogid]) }}">Theme Blog</a></li>
+                            {{--<li><a class="nav-link" href="">Owner Blog</a></li>--}}
+                            {{--<li><a class="nav-link" href="">Statistik</a></li>--}}
                         </ul>
                     </li>
                     {{--<li class="dropdown">--}}

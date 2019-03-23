@@ -2,13 +2,17 @@
 
 namespace App\Model;
 
+use App\Scopes\PostStatusScope;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
 class Post extends Model
 {
+    use SoftDeletes;
+
     protected $table        = 'post';
 
     protected $fillable     = [
@@ -30,7 +34,20 @@ class Post extends Model
         'labels'
     ];
 
-    // scope
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new PostStatusScope());
+    }
+
+    // local scope
     public function scopeSearch($query, $key)
     {
         $query->where('title','like', '%'.$key.'%')

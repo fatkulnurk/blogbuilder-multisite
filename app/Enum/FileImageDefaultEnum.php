@@ -13,5 +13,6 @@ class FileImageDefaultEnum
 {
     const POST      = 'https://bulma.io/images/placeholders/128x128.png';
     const PROFILE   = 'https://bulma.io/images/placeholders/128x128.png';
+    const BLOG_LOGO   = 'https://bulma.io/images/placeholders/128x128.png';
 
 }

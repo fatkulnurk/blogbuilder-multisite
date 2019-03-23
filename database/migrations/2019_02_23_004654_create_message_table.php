@@ -19,6 +19,7 @@ class CreateMessageTable extends Migration
             $table->unsignedInteger('from_user_id');
             $table->unsignedInteger('to_user_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

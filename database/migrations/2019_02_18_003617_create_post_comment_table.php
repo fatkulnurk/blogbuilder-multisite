@@ -16,9 +16,11 @@ class CreatePostCommentTable extends Migration
         Schema::create('post_comment', function (Blueprint $table) {
             $table->increments('id');
             $table->string('body');
+            $table->integer('status');
             $table->unsignedInteger('post_id');
             $table->unsignedInteger('user_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

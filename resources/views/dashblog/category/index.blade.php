@@ -86,4 +86,12 @@
 @endsection
 
 @push('push-footer')
+
+    <script type="text/javascript">
+        function deleteData(a) {
+            if(confirm("{{ __('dashblog-post.destroy-warning') }}") == true){
+                $(a).find('form').submit();
+            }
+        }
+    </script>
 @endpush

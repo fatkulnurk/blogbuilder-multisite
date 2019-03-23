@@ -10,6 +10,7 @@ namespace App\Services;
 
 use App\Enum\StatusOwnerBlogEnum;
 use App\Enum\TemplateDefault;
+use App\Enum\UncategoryEnum;
 use App\Http\Requests\Dashboard\StoreBlog;
 use App\Model\Blog;
 use App\Model\CategoryPost;
@@ -40,17 +41,12 @@ class CreateBlogInit
         // make template
         $templateLib = TemplateLib::where('id', TemplateDefault::ALL)->first();
         $template                   = new Template();
-        $template->name             = $templateLib->name;
         $template->stylesheet       = $templateLib->stylesheet;
-        $template->script_header    = $templateLib->script_header;
-        $template->script_post_up   = $templateLib->script_post_up;
-        $template->script_post_down = $templateLib->script_post_down;
-        $template->script_nav_up    = $templateLib->script_nav_up;
-        $template->script_nav_down  = $templateLib->script_nav_down;
-        $template->script_footer    = $templateLib->script_footer;
+        $template->javascript       = $templateLib->javascript;
         $template->code_header      = $templateLib->code_header;
         $template->code_footer      = $templateLib->code_footer;
         $template->code_index       = $templateLib->code_index;
+        $template->code_category    = $templateLib->code_category;
         $template->code_search      = $templateLib->code_search;
         $template->code_page        = $templateLib->code_page;
         $template->code_post        = $templateLib->code_post;
@@ -92,7 +88,7 @@ class CreateBlogInit
     private function createCategory()
     {
         $categoryPost               = new CategoryPost();
-        $categoryPost->name         = 'Uncategory';
+        $categoryPost->name         = UncategoryEnum::UNCATEGORY;
         $categoryPost->slug         = Str::slug($categoryPost->name);
         $categoryPost->description  = 'Uncategory';
         $categoryPost->blog_id      = $this->blogId;

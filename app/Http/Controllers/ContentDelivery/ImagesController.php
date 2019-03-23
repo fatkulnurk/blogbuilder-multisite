@@ -3,6 +3,7 @@ namespace App\Http\Controllers\ContentDelivery;
 
 use App\Enum\FileImageDefaultEnum;
 use App\Http\Controllers\Controller;
+use App\Model\Blog;
 use App\Model\Post;
 use App\Model\UserDetail;
 use App\User;
@@ -37,6 +38,17 @@ class ImagesController extends Controller
             return Storage::get($user->userDetail->profile);
         } else {
             return redirect()->to(FileImageDefaultEnum::PROFILE);
+        }
+    }
+
+    public function blog($id)
+    {
+        $blog = Blog::findOrFail($id);
+
+        if (Storage::exists($blog->logo)) {
+            return response(Storage::get($blog->logo), 200)->header('Content-Type', 'image/jpeg');
+        } else {
+            return redirect()->to(FileImageDefaultEnum::BLOG_LOGO);
         }
     }
 }

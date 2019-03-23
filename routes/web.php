@@ -12,17 +12,6 @@
 */
 
 
-
-Route::group(['prefix' => 'page'], function (){
-    Auth::routes(['verify' => true]);
-
-    Route::get('/logout', function () {
-        Auth::logout();
-    });
-});
-
-Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
-
 // Route for blog
 //Route::group(['domain' => '{username}.{domain}.{tld}'], function(){
 //    Route::get('/', function (\Illuminate\Http\Request $request, $username = null, $domain = null, $tld = null) {
@@ -31,6 +20,15 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 //    });
 Route::group(['domain' => '{subdomain}.dibumi.com', 'namespace' => 'Blog'], function(){
 
+    Route::get('/home', function () {
+        die('masih ada bug');
+        return redirect()->back();
+    });
+
+    Route::get('/dashboard', function () {
+        return redirect()->back();
+    });
+
     Route::get('/', 'BlogController@index')->name('blog.index');
     Route::get('style.css', 'staticController@styleCss')->name('blog.css');
     Route::get('main.js', 'staticController@mainJs')->name('blog.javascript');
@@ -38,14 +36,25 @@ Route::group(['domain' => '{subdomain}.dibumi.com', 'namespace' => 'Blog'], func
 
     Route::get('/{slug}', 'BlogController@show')->name('blog.show');
 
-    Route::post('/{slug}', 'CommentController@store')->name('blog.store-comment');
+    Route::post('/{slug}', 'CommentController@store')->name('blog.store-comment')->middleware('auth');
 
     Route::get('/category/{slug}', 'CategoryController@show')->name('blog.category');
 
     Route::get('/search/', function () {
 
     });
+
 });
+
+
+Route::group(['prefix' => 'page'], function (){
+    Auth::routes(['verify' => true]);
+
+    Route::get('/logout', 'Auth\AuthBlogController@logout')->name('logout.please');
+});
+
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+
 
 // Route for dashboard
 Route::group(['namespace' => 'Dashboard', 'prefix' => 'dashboard', 'middleware' => ['auth']], function () {
@@ -86,6 +95,7 @@ Route::group(['namespace' => 'Dashboard', 'prefix' => 'dashboard', 'middleware' 
 Route::group(['namespace' => 'ContentDelivery', 'prefix' => 'cdn'], function (){
     Route::get('/thumbnail/post/{id}', 'ImagesController@post')->name('content.images.thumbnail.post');
     Route::get('/thumbnail/user/{id}', 'ImagesController@user')->name('content.images.thumbnail.user');
+    Route::get('/thumbnail/blog/{id}', 'ImagesController@blog')->name('content.images.thumbnail.blog');
 });
 
 // Route For Dashblog
@@ -93,13 +103,35 @@ Route::group(['namespace' => 'Dashblog', 'prefix' => 'dashblog/{blogid}', 'middl
     Route::get('/', 'DashBlogController@index')->name('dashblog.index');
 
     Route::group(['prefix' => 'post'], function () {
+
         Route::get('/', 'PostController@index')->name('dashblog.post.index');
         Route::get('/create', 'PostController@create')->name('dashblog.post.create');
         Route::post('/', 'PostController@store')->name('dashblog.post.store');
-        Route::get('/{id}', 'PostController@show')->name('dashblog.post.show');
         Route::get('/{id}/edit', 'PostController@edit')->name('dashblog.post.edit');
         Route::put('/{id}', 'PostController@update')->name('dashblog.post.update');
+        Route::get('show/{id}', 'PostController@show')->name('dashblog.post.show');
         Route::delete('/{id}', 'PostController@destroy')->name('dashblog.post.destroy');
+
+        Route::get('publish', 'PostPublishController@index')->name('dashblog.post-publish.index');
+        Route::get('draft', 'PostDraftController@index')->name('dashblog.post-draft.index');
+        Route::get('trash', 'PostTrashController@index')->name('dashblog.post-trash.index');
+        Route::delete('trash-destroy/{id}', 'PostTrashController@destroy')->name('dashblog.post-trash.destroy');
+
+
+//        Route::group(['prefix' => 'publish'], function () {
+//            Route::get('/', 'PostPublishController@index')->name('dashblog.post-publish.index');
+//            Route::delete('/{id}', 'PostPublishController@destroy')->name('dashblog.post-draft.destroy');
+//        });
+//
+//        Route::group(['prefix' => 'draft'], function () {
+//            Route::get('/', 'PostDraftController@index')->name('dashblog.post-draft.index');
+//            Route::delete('/{id}', 'PostDraftController@destroy')->name('dashblog.post-draft.destroy');
+//        });
+//
+//        Route::group(['prefix' => 'trash'], function () {
+//            Route::get('/', 'PostTrashController@index')->name('dashblog.post-trash.index');
+//            Route::delete('/{id}', 'PostTrashController@destroy')->name('dashblog.post-trash.destroy');
+//        });
     });
 
     Route::group(['prefix' => 'category'], function () {
@@ -142,6 +174,8 @@ Route::group(['namespace' => 'Dashblog', 'prefix' => 'dashblog/{blogid}', 'middl
     Route::group(['prefix' => 'setting'], function (){
         Route::get('/', 'InformationBlogController@edit')->name('dashblog.setting.information.edit');
         Route::post('/', 'InformationBlogController@update')->name('dashblog.setting.information.update');
+        Route::get('theme', 'SettingThemeController@edit')->name('dashblog.setting.theme.edit');
+        Route::post('theme', 'SettingThemeController@update')->name('dashblog.setting.theme.update');
         Route::get('blog', 'SettingBlogController@edit')->name('dashblog.setting.blog.edit');
         Route::post('blog', 'SettingBlogController@update')->name('dashblog.setting.blog.update');
     });

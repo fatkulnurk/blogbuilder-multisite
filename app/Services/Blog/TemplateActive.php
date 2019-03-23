@@ -12,25 +12,26 @@ namespace App\Services\Blog;
 
 use App\Model\Blog;
 
-class Template
+class TemplateActive
 {
      // cek template yang aktif yang mana
     public static function get(Blog $blog)
     {
-
+        return self::desktop($blog);
     }
 
     // menggunakan template dekstop
-    public static function dekstop(Blog $blog)
+    public static function desktop(Blog $blog)
     {
-//        $template =
-//        return $template;
+        $template = $blog->templateDekstop()->first();
+        return $template;
     }
 
     // menggunakan template mobile
-    public static function mobile()
+    public static function mobile(Blog $blog)
     {
-
+        $template = $blog->templateDekstop()->first();
+        return $template;
     }
 
 }

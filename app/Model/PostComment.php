@@ -2,18 +2,22 @@
 
 namespace App\Model;
 
+use App\Enum\StatusComment;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PostComment extends Model
 {
-    protected $table        = 'post_comment';
+    use SoftDeletes;
 
+    protected $table        = 'post_comment';
     protected $fillable     = [
         'body',
         'post_id',
-        'user_id'
+        'user_id',
+        'status'
     ];
 
     protected $appends  = [

@@ -8,6 +8,8 @@
 
 namespace App\Services;
 
+use App\Enum\UncategoryEnum;
+use App\Model\Blog;
 use App\Model\CategoryPost;
 
 class CategoryPostService
@@ -26,6 +28,18 @@ class CategoryPostService
             $category->where('name', 'like', '%'.$title.'%');
         }
         return $category;
+    }
+
+
+    public static function getUncategory($blogid)
+    {
+        $blog = Blog::with('categoryPosts')
+            ->where('id', $blogid)
+            ->whereHas('categoryPosts', function ($query){
+                $query->where('name', UncategoryEnum::UNCATEGORY);
+            })->first();
+
+        return $blog;
     }
 
 }

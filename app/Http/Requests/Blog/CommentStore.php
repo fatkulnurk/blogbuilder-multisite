@@ -24,7 +24,7 @@ class CommentStore extends FormRequest
     public function rules()
     {
         return [
-            'body' => 'required|string|max:190'
+            'body' => 'required|string|max:190',
         ];
     }
 }

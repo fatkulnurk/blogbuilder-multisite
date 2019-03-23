@@ -22,6 +22,7 @@ class CreateCategoryPostTable extends Migration
 
             $table->unique(['slug', 'blog_id']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

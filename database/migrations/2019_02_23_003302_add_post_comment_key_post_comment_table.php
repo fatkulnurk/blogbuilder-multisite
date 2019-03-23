@@ -16,11 +16,11 @@ class AddPostCommentKeyPostCommentTable extends Migration
         Schema::table('post_comment', function (Blueprint $table) {
             $table->foreign('post_id')
                 ->references('id')
-                ->on('post');
+                ->on('post')->onDelete('cascade');;
 
             $table->foreign('user_id')
                 ->references('id')
-                ->on('users');
+                ->on('users')->onDelete('cascade');;
         });
     }
 

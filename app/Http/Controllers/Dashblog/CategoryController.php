@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Dashblog;
 
+use App\Enum\UncategoryEnum;
 use App\Http\Requests\Dashblog\StoreCategory;
 use App\Http\Requests\Dashblog\UpdateCategory;
+use App\Model\Blog;
 use App\Model\CategoryPost;
+use App\Model\Post;
 use App\Services\CategoryPostService;
 use App\Services\Random;
 use Illuminate\Http\Request;
@@ -116,8 +119,21 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($blogid, $id)
     {
-        //
+        $blog = Blog::findOrFail($blogid);
+        $uncategory = $blog->categoryPosts->where('name', UncategoryEnum::UNCATEGORY)->first();
+        $category = CategoryPost::findOrFail($id);
+
+        if ($uncategory->id == $id) {
+            return redirect()->route('dashblog.category.index', ['blogid' => $blogid])
+                ->with('error', __('dashblog-category.destroy-failed'));
+        }
+
+        $category->posts()->withTrashed()->update(['category_post_id' => $uncategory->id]);
+        $category->delete();
+
+        return redirect()->route('dashblog.category.index', ['blogid' => $blogid])
+            ->with('success', __('dashblog-category.destroy'));
     }
 }

@@ -8,6 +8,7 @@ use App\Http\Requests\Dashblog\UpdatePost;
 use App\Model\Blog;
 use App\Model\CategoryPost;
 use App\Model\Post;
+use App\Repository\PostRepository;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,6 +18,12 @@ use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
+    private $postRepo;
+
+    public function __construct(Request $request)
+    {
+        $this->postRepo = PostRepository::getInstance($request->segment(2));
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,11 +31,13 @@ class PostController extends Controller
      */
     public function index(Request $request, $blogid)
     {
-        $posts = Post::with('categoryPost', 'user')
-            ->where('blog_id', $blogid)
-            ->where('title','like', '%'.$request->title.'%')
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+        $posts = $this->postRepo->indexAll($request);
+
+//        $posts = Post::with('categoryPost', 'user')
+//            ->where('blog_id', $blogid)
+//            ->where('title','like', '%'.$request->title.'%')
+//            ->orderBy('created_at', 'desc')
+//            ->paginate(10);
 
         $search = $request->title;
 
@@ -142,9 +151,7 @@ class PostController extends Controller
      */
     public function destroy($blogid, $id)
     {
-        $page = Post::findOrFail($id);
-        $page->status = StatusPostEnum::TRASH;
-        $page->save();
+        $this->postRepo->toTrash($id);
 
         return redirect()->route('dashblog.post.index', ['blogid' => $blogid])
             ->with('success', __('dashblog-post.destroy'));

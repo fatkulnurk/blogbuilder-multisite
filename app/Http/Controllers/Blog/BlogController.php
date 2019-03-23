@@ -9,6 +9,7 @@ use App\Model\Blog;
 use App\Model\Post;
 use App\Model\Template;
 use App\Services\Blog\TemplateData;
+use App\Services\Blog\TemplateRender;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Fnk\TemplateEngine\FnkTemplate;
@@ -17,84 +18,107 @@ use Lex\Parser;
 
 class BlogController extends Controller
 {
+
     public function index(Request $request, $username)
     {
         $blog = Blog::where('subdomain', $username)->first();
-        $post = $blog->posts()->with('user')->orderBy('created_at', 'DESC')->paginate(10);
-        $category = $blog->categoryPosts()->get();
-        $template = $blog->templateDekstop()->first();
-        $templateHtml = $template->code_header
-                .$template->code_index
-            .$template->code_footer;
 
-        $tplTest = '
-        <!HTML Doctype>
-        <html>
-        <head>
-            <title>{{ title }}</title>
-        </head>
-        <body>
-            {{ post }}            
-            <div style="background: red">
+        $tplRender = TemplateRender::getInstance($blog, $request);
 
-                {{ title }} - {{ user.userdetail.first_name }}
-                <hr>
-                {{ labels }}
-                    {{ item }} - 
-                {{ /labels }}
-            </div>
-            {{ /post }}
-            <hr>
-            
-            {{ category }}
-            {{ name }}
-            {{ /category }}
-        </body>
-        </html>
-        ';
+        printf($tplRender->getIndex());
 
-        $lex = new Parser();
-        echo $lex->parse($templateHtml, [
-            'blog' => $blog,
-            'post' => $post,
-            'category' => $category,
-            'url' => TemplateData::url($request),
-            'csrf' => TemplateData::csrf(),
+//        echo $tplRender->getIndex();
 
-            // local
-            'pagination' => TemplateData::pagination($post),
-
-        ]);
+//        return response()->json($tplRender->getIndex());
+//        dd($tplRender);
+//
+//        if (!$blog) {
+//            return view('blog.not-register');
+//        }
+//
+//        $post = $blog->posts()->with('user')->orderBy('created_at', 'DESC')->paginate(10);
+//        $category = $blog->categoryPosts()->get();
+//        $template = $blog->templateDekstop()->first();
+//        $templateHtml = $template->code_header
+//                .$template->code_index
+//            .$template->code_footer;
+//
+//        $tplTest = '
+//        <!HTML Doctype>
+//        <html>
+//        <head>
+//            <title>{{ title }}</title>
+//        </head>
+//        <body>
+//            {{ post }}
+//            <div style="background: red">
+//
+//                {{ title }} - {{ user.userdetail.first_name }}
+//                <hr>
+//                {{ labels }}
+//                    {{ item }} -
+//                {{ /labels }}
+//            </div>
+//            {{ /post }}
+//            <hr>
+//
+//            {{ category }}
+//            {{ name }}
+//            {{ /category }}
+//        </body>
+//        </html>
+//        ';
+//
+//        $lex = new Parser();
+//        echo $lex->parse($templateHtml, [
+//            'blog' => $blog,
+//            'post' => $post,
+//            'category' => $category,
+//            'url' => TemplateData::url($request),
+//            'csrf' => TemplateData::csrf(),
+//
+//            // local
+//            'pagination' => TemplateData::pagination($post),
+//
+//        ]);
     }
 
     public function show(Request $request, $username, $slug)
     {
         $blog = Blog::where('subdomain', $username)->first();
-        $post = Post::with('comments')
-            ->where('slug', $slug)
-            ->whereHas('blog.domain', function ($query) use ($username){
-            $query->where('subdomain', $username);
-        })->first();
+        $tplRender = TemplateRender::getInstance($blog, $request);
 
-        $category = $blog->categoryPosts()->get();
+        printf($tplRender->getPost($slug));
 
-        $template = $blog->templateDekstop;
-
-        $templateHtml = $template->code_header.
-            $template->code_post.
-            $template->code_footer;
-
-        $lex = new Parser();
-        echo $lex->parse($templateHtml, [
-            'blog' => $blog,
-            'post' => $post,
-            'category' => $category,
-            'url' => TemplateData::url($request),
-            'csrf' => TemplateData::csrf(),
-
-            // local
-            'comment' => $post->comments,
-        ]);
+//        $post = Post::with('comments')
+//            ->where('slug', $slug)
+//            ->whereHas('blog.domain', function ($query) use ($username){
+//            $query->where('subdomain', $username);
+//        })->first();
+//
+//        if (! $post) {
+//            abort(404);
+//        }
+//
+//        $category = $blog->categoryPosts()->get();
+//
+//        $template = $blog->templateDekstop;
+//
+//        $templateHtml = $template->code_header.
+//            $template->code_post.
+//            $template->code_footer;
+//
+//        $lex = new Parser();
+//        echo $lex->parse($templateHtml, [
+//            'blog' => $blog,
+//            'post' => $post,
+//            'category' => $category,
+//            'url' => TemplateData::url($request),
+//            'csrf' => TemplateData::csrf(),
+//
+//            // local
+//            'comment' => $post->comments,
+//        ]);
     }
 
 }
