@@ -27,7 +27,7 @@
                                 <th>Category</th>
                                 <th>Author</th>
                                 <th>Created At</th>
-                                <th>Status</th>
+                                <th>Status Sebelumnya</th>
                             </tr>
                             @foreach($posts as $post)
                                 <tr>
@@ -61,6 +61,7 @@
                     </div>
                 </div>
                 <div class="card-footer align-content-center">
+                    {{ $posts->links('vendor.pagination.simple-bootstrap-4') }}
                 </div>
             </div>
         </div>
