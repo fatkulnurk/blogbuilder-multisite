@@ -14,4 +14,6 @@ class PaginateEnum
 {
     const BLOG_INDEX    = 10;
     const POST          = 10;
+    const PAGE          = 10;
+    const COMMENT       = 10;
 }

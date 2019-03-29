@@ -116,22 +116,6 @@ Route::group(['namespace' => 'Dashblog', 'prefix' => 'dashblog/{blogid}', 'middl
         Route::get('draft', 'PostDraftController@index')->name('dashblog.post-draft.index');
         Route::get('trash', 'PostTrashController@index')->name('dashblog.post-trash.index');
         Route::delete('trash-destroy/{id}', 'PostTrashController@destroy')->name('dashblog.post-trash.destroy');
-
-
-//        Route::group(['prefix' => 'publish'], function () {
-//            Route::get('/', 'PostPublishController@index')->name('dashblog.post-publish.index');
-//            Route::delete('/{id}', 'PostPublishController@destroy')->name('dashblog.post-draft.destroy');
-//        });
-//
-//        Route::group(['prefix' => 'draft'], function () {
-//            Route::get('/', 'PostDraftController@index')->name('dashblog.post-draft.index');
-//            Route::delete('/{id}', 'PostDraftController@destroy')->name('dashblog.post-draft.destroy');
-//        });
-//
-//        Route::group(['prefix' => 'trash'], function () {
-//            Route::get('/', 'PostTrashController@index')->name('dashblog.post-trash.index');
-//            Route::delete('/{id}', 'PostTrashController@destroy')->name('dashblog.post-trash.destroy');
-//        });
     });
 
     Route::group(['prefix' => 'category'], function () {
@@ -152,6 +136,11 @@ Route::group(['namespace' => 'Dashblog', 'prefix' => 'dashblog/{blogid}', 'middl
         Route::get('/{id}/edit', 'PageController@edit')->name('dashblog.page.edit');
         Route::put('/{id}', 'PageController@update')->name('dashblog.page.update');
         Route::delete('/{id}', 'PageController@destroy')->name('dashblog.page.destroy');
+
+        Route::get('publish', 'PagePublishController@index')->name('dashblog.page-publish.index');
+        Route::get('draft', 'PageDraftController@index')->name('dashblog.page-draft.index');
+        Route::get('trash', 'PageTrashController@index')->name('dashblog.page-trash.index');
+        Route::delete('trash-destroy/{id}', 'PageTrashController@destroy')->name('dashblog.page-trash.destroy');
     });
 
     Route::group(['prefix' => 'comment'], function () {

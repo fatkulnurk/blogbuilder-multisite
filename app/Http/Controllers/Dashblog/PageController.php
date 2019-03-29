@@ -7,6 +7,8 @@ use App\Http\Requests\Dashblog\StorePage;
 use App\Http\Requests\Dashblog\UpdatePage;
 use App\Model\Blog;
 use App\Model\Page;
+use App\Repository\PageRepository;
+use App\Scopes\PageStatusScope;
 use App\Services\PageService;
 use App\Services\Random;
 use App\User;
@@ -19,10 +21,12 @@ class PageController extends Controller
 {
 
     protected $pageService;
-    public function __construct()
+    protected $pageRepo;
+    public function __construct(Request $request)
     {
 //        $this->pageService = new PageService(\request()->route()->parameter('blogid'));
         $this->pageService = new PageService(\request('blogid'));
+        $this->pageRepo = PageRepository::getInstance($request->segment(2));
     }
 
     /**
@@ -32,9 +36,7 @@ class PageController extends Controller
      */
     public function index(Request $request, $blogid)
     {
-        $pages = $this->pageService->all($request->title)
-            ->whereNotIn('status',[StatusPageEnum::DELETE, StatusPageEnum::TRASH])
-            ->paginate(10);
+        $pages = $this->pageRepo->indexAll($request);
 
         $search = $request->title;
 
@@ -97,7 +99,8 @@ class PageController extends Controller
      */
     public function edit($blogid, $pageid)
     {
-        $page = Page::findOrFail($pageid);
+//        $page = Page::findOrFail($pageid);
+        $page = $this->pageRepo->findOrFailAll($blogid);
         return view('dashblog.page.edit', compact('blogid', 'page'));
     }
 
@@ -129,8 +132,9 @@ class PageController extends Controller
     public function destroy($blogid, $id)
     {
         $page = Page::findOrFail($id);
-        $page->status = StatusPageEnum::TRASH;
-        $page->save();
+//        $page->status = StatusPageEnum::TRASH;
+//        $page->save();
+        $page->delete();
 
         return redirect()->route('dashblog.page.index', ['blogid' => $blogid])
             ->with('success', __('dashblog-page.destroy'));

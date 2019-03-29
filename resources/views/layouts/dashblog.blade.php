@@ -37,11 +37,11 @@
                 <ul class="sidebar-menu">
                     <li class="menu-header">Dashboard</li>
                     <li><a class="nav-link" href="{{ route('dashblog.index', ['blogid' => $blogid]) }}"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
-                    <li class="dropdown {{ Active::checkRoute(['dashblog.post.*']) }}">
+                    <li class="dropdown {{ Active::checkRoute(['dashblog.post.*', 'dashblog.post*']) }}">
                         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Postingan</span></a>
                         <ul class="dropdown-menu">
                             <li><a class="nav-link" href="{{ route('dashblog.post.create', ['blogid' => $blogid]) }}">Tambah Postingan</a></li>
-                            <li><a class="nav-link" href="{{ route('dashblog.post.index', ['blogid' => $blogid]) }}">Semua Postingan</a></li>
+                            {{--<li><a class="nav-link" href="{{ route('dashblog.post.index', ['blogid' => $blogid]) }}">Semua Postingan</a></li>--}}
                             <li><a class="nav-link" href="{{ route('dashblog.post-publish.index', ['blogid' => $blogid]) }}">Post Terpublish</a></li>
                             <li><a class="nav-link" href="{{ route('dashblog.post-draft.index', ['blogid' => $blogid]) }}">Draft Tersimpan</a></li>
                             <li><a class="nav-link" href="{{ route('dashblog.post-trash.index', ['blogid' => $blogid]) }}">Keranjang Sampah</a></li>
@@ -54,11 +54,14 @@
                             <li><a class="nav-link" href="{{ route('dashblog.category.index', ['blogid' => $blogid]) }}">Semua Kategori</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown {{ Active::checkRoute(['dashblog.page.*']) }}">
+                    <li class="dropdown {{ Active::checkRoute(['dashblog.page.*', 'dashblog.page*']) }}">
                         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-newspaper"></i> <span>Halaman</span></a>
                         <ul class="dropdown-menu">
                             <li><a class="nav-link" href="{{ route('dashblog.page.create', ['blogid' => $blogid]) }}">Tambah Halaman</a></li>
-                            <li><a class="nav-link" href="{{ route('dashblog.page.index', ['blogid' => $blogid]) }}">Semua Halaman</a></li>
+                            {{--<li><a class="nav-link" href="{{ route('dashblog.page.index', ['blogid' => $blogid]) }}">Semua Halaman</a></li>--}}
+                            <li><a class="nav-link" href="{{ route('dashblog.page-publish.index', ['blogid' => $blogid]) }}">Halaman Terpublish</a></li>
+                            <li><a class="nav-link" href="{{ route('dashblog.page-draft.index', ['blogid' => $blogid]) }}">Draft Halaman</a></li>
+                            <li><a class="nav-link" href="{{ route('dashblog.page-trash.index', ['blogid' => $blogid]) }}">Trash Halaman</a></li>
                         </ul>
                     </li>
                     <li class="dropdown {{ Active::checkRoute(['dashblog.comment.*']) }}">

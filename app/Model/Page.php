@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Scopes\PageStatusScope;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -20,6 +21,18 @@ class Page extends Model
         'body',
         'status'
     ];
+
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+        static::addGlobalScope(new PageStatusScope());
+    }
 
     public function blog()
     {

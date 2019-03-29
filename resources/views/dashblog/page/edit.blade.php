@@ -1,13 +1,13 @@
 @extends('layouts.dashblog')
 
-@section('title', 'Add New Page')
+@section('title', 'Edit Page')
 
 @section('content')
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Tambah Halaman Baru</h4>
+                    <h4>Edit Halaman</h4>
                 </div>
                 <form method="post" action="{{ route('dashblog.page.update', ['blogid' => $blogid, 'pageid' => $page->id]) }}">
                     @csrf

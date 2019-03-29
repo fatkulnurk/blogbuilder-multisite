@@ -32,13 +32,6 @@ class PostController extends Controller
     public function index(Request $request, $blogid)
     {
         $posts = $this->postRepo->indexAll($request);
-
-//        $posts = Post::with('categoryPost', 'user')
-//            ->where('blog_id', $blogid)
-//            ->where('title','like', '%'.$request->title.'%')
-//            ->orderBy('created_at', 'desc')
-//            ->paginate(10);
-
         $search = $request->title;
 
         return view('dashblog.post.index', compact('blogid', 'posts', 'search'));
@@ -108,7 +101,7 @@ class PostController extends Controller
      */
     public function edit($blogid, $id)
     {
-        $post = Post::findOrFail($id);
+        $post = $this->postRepo->findOrFailAll($id);
         $category = CategoryPost::where('blog_id', $blogid)->get();
         return view('dashblog.post.edit', compact('blogid', 'post', 'category'));
     }
@@ -122,22 +115,23 @@ class PostController extends Controller
      */
     public function update(UpdatePost $request, $blogid, $id)
     {
-        $post = Post::findOrFail($id);
-        $post->title    = $request->title;
-        $post->status   = $request->status;
-        $post->body     = $request->body;
-
-        if ($request->file('image')) {
-            $post->thumbnail     = $request->file('image')->store('thumbnail/'.$blogid);
-        }
-
-        $post->label        = $request->label;
-        $post->status       = $request->status;
-
-        $post->categoryPost()->associate(CategoryPost::findOrFail($request->category));
-        $post->updateUser()->associate(User::findOrFail(Auth::id()));
-
-        $post->save();
+        $this->postRepo->update($request, $blogid, $id);
+//        $post = $this->postRepo->findOrFailAll($id);
+//        $post->title    = $request->title;
+//        $post->status   = $request->status;
+//        $post->body     = $request->body;
+//
+//        if ($request->file('image')) {
+//            $post->thumbnail     = $request->file('image')->store('thumbnail/'.$blogid);
+//        }
+//
+//        $post->label        = $request->label;
+//        $post->status       = $request->status;
+//
+//        $post->categoryPost()->associate(CategoryPost::findOrFail($request->category));
+//        $post->updateUser()->associate(User::findOrFail(Auth::id()));
+//
+//        $post->save();
 
         return redirect()->route('dashblog.post.index', ['blogid' => $blogid])
             ->with('success', __('dashblog-post.update'));
