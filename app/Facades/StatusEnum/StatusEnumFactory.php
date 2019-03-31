@@ -17,7 +17,7 @@ use App\Enum\StatusPostEnum;
 class StatusEnumFactory
 {
 
-    public static function comment($status)
+    public function comment($status)
     {
         if (StatusComment::status($status)) {
             return true;
@@ -26,7 +26,7 @@ class StatusEnumFactory
         return false;
     }
 
-    public static function post($status)
+    public function post($status)
     {
         if (StatusPostEnum::status($status)) {
             return true;
@@ -35,7 +35,7 @@ class StatusEnumFactory
         return false;
     }
 
-    public static function page($status)
+    public function page($status)
     {
         if (StatusPageEnum::status($status)) {
             return true;

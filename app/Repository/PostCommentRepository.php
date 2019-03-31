@@ -13,6 +13,8 @@ use App\Enum\PaginateEnum;
 use App\Enum\StatusComment;
 use App\Model\PostComment;
 use App\Scopes\PostCommentStatusScope;
+use App\Services\Error\SoftDeleteService;
+use App\Services\Error\StatusEnumService;
 use Illuminate\Http\Request;
 use MyCLabs\Enum\Enum;
 
@@ -82,24 +84,9 @@ class PostCommentRepository implements RepositoryInterface
 
     public function update(Request $request, $blogId, $id)
     {
-        /*
-         * for checking status is available or not (anti inspect element)
-         * @return boolean
-         * */
-        if (! StatusComment::status($request->status))
-        {
-            return false;
-        }
-
+        StatusEnumService::comment($request->status);
         $comment = $this->findOrFailAll($id);
-
-        /*
-         * @return boolean
-         * */
-        if (! $comment->restore())
-        {
-            die('ada kesalahan');
-        }
+        SoftDeleteService::restore($comment);
 
         $comment->status = $request->status;
         $comment->save();

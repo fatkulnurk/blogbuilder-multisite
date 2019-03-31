@@ -228,6 +228,7 @@ return [
 
         // Custom
         'Search' => App\Facades\Search\Search::class,
+//        'StatusEnum' => App\Facades\StatusEnum\StatusEnum::class,
     ],
 
 ];

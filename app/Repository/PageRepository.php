@@ -13,7 +13,8 @@ use App\Enum\PaginateEnum;
 use App\Enum\StatusPageEnum;
 use App\Model\Page;
 use App\Scopes\PageStatusScope;
-use App\Scopes\PostStatusScope;
+use App\Services\Error\SoftDeleteService;
+use App\Services\Error\StatusEnumService;
 use Illuminate\Http\Request;
 
 class PageRepository implements RepositoryInterface
@@ -86,13 +87,9 @@ class PageRepository implements RepositoryInterface
 
     public function update(Request $request, $blogId, $id)
     {
-
+        StatusEnumService::page($request->status);
         $page = $this->findOrFailAll($id);
-
-        if (! $page->restore())
-        {
-            die('ada kesalahan');
-        }
+        SoftDeleteService::restore($page);
 
         $page->title    = $request->title;
         $page->status   = $request->status;

@@ -18,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
         //
 
         $this->app->bind('search', SearchFactory::class);
-        $this->app->bind('statusEnum', StatusEnumFactory::class);
+//        $this->app->bind('statusEnum', StatusEnumFactory::class);
 
         require_once app_path('Helpers/Helper.php');
 

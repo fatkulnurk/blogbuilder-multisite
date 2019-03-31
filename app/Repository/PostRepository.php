@@ -15,6 +15,8 @@ use App\Model\CategoryPost;
 use App\Model\Post;
 use App\Scopes\PageStatusScope;
 use App\Scopes\PostStatusScope;
+use App\Services\Error\SoftDeleteService;
+use App\Services\Error\StatusEnumService;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -87,13 +89,9 @@ class PostRepository implements RepositoryInterface
 
     public function update(Request $request, $blogId, $idPost)
     {
-
+        StatusEnumService::post($request->status);
         $post = $this->findOrFailAll($idPost);
-
-        if (! $post->restore())
-        {
-            die('ada kesalahan');
-        }
+        SoftDeleteService::restore($post);
 
         $post->title    = $request->title;
         $post->status   = $request->status;
