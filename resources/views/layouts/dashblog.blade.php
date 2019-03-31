@@ -67,11 +67,10 @@
                     <li class="dropdown {{ Active::checkRoute(['dashblog.comment.*']) }}">
                         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-comment"></i> <span>Komentar</span></a>
                         <ul class="dropdown-menu">
-                            <li><a class="nav-link" href="{{ route('dashblog.comment.index', ['blogid' => $blogid]) }}">Semua Komentar</a></li>
-                            <li><a class="nav-link" href="{{ route('dashblog.comment.spam', ['blogid' => $blogid]) }}">Komentar Aktif</a></li>
-                            <li><a class="nav-link" href="{{ route('dashblog.comment.spam', ['blogid' => $blogid]) }}">Komentar Pending</a></li>
-                            <li><a class="nav-link" href="{{ route('dashblog.comment.spam', ['blogid' => $blogid]) }}">Komentar Spam</a></li>
-                            <li><a class="nav-link" href="{{ route('dashblog.comment.spam', ['blogid' => $blogid]) }}">Komentar Trash</a></li>
+                            {{--<li><a class="nav-link" href="{{ route('dashblog.comment.index', ['blogid' => $blogid]) }}">Semua Komentar</a></li>--}}
+                            <li><a class="nav-link" href="{{ route('dashblog.comment-publish.index', ['blogid' => $blogid]) }}">Komentar Aktif</a></li>
+                            <li><a class="nav-link" href="{{ route('dashblog.comment-pending.index', ['blogid' => $blogid]) }}">Komentar Pending</a></li>
+                            <li><a class="nav-link" href="{{ route('dashblog.comment-trash.index', ['blogid' => $blogid]) }}">Komentar Trash</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">

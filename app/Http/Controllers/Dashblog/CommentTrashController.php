@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers\Dashblog;
 
-use App\Model\PostComment;
 use App\Repository\PostCommentRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class CommentController extends Controller
+class CommentTrashController extends Controller
 {
+
     private $commentRepo;
 
     public function __construct(Request $request)
     {
         $this->commentRepo = PostCommentRepository::getInstance($request->segment(2));
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -23,19 +22,10 @@ class CommentController extends Controller
      */
     public function index(Request $request, $blogid)
     {
-//        $comment = PostComment::with('post.blog', 'user')
-//            ->whereHas('post.blog', function ($blog) use ($blogid){
-//                $blog->where('blog_id', $blogid);
-//            })
-//            ->where('body','like', '%'.$request->title.'%')
-//            ->orderBy('created_at', 'desc')
-//
-//            ->paginate(10);
-        $comment = $this->commentRepo->indexAll($request);
-
+        $comment = $this->commentRepo->indexTrash($request);
         $search = $request->title;
 
-        return view('dashblog.comment.index', compact('blogid', 'comment', 'search'));
+        return view('dashblog.comment.trash.index', compact('blogid', 'comment', 'search'));
     }
 
     /**
@@ -88,15 +78,9 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $blogid, $id)
+    public function update(Request $request, $id)
     {
-        if ($this->commentRepo->update($request, $blogid, $id)) {
-            return redirect()->route('dashblog.comment.index', ['blogid' => $blogid])
-                ->with('success', __('dashblog-comment.update.success'));
-        }
-
-        return redirect()->route('dashblog.comment.index', ['blogid' => $blogid])
-            ->with('error', __('dashblog-comment.update.failed'));
+        //
     }
 
     /**
@@ -105,14 +89,8 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($blogId, $id)
+    public function destroy($id)
     {
-        if ($this->commentRepo->toTrash($id)) {
-            return redirect()->route('dashblog.comment.index', ['blogid' => $blogId])
-                ->with('success', __('dashblog-comment.delete.success'));
-        }
-
-        return redirect()->route('dashblog.comment.index', ['blogid' => $blogId])
-            ->with('success', __('dashblog-comment.delete.failed'));
+        //
     }
 }

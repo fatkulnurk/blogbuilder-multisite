@@ -8,6 +8,7 @@
 
 namespace App\Enum;
 
+use Illuminate\Support\Arr;
 use MyCLabs\Enum\Enum;
 
 class StatusComment extends Enum
@@ -17,13 +18,15 @@ class StatusComment extends Enum
     const SPAM          = 3;
     const TRASH         = 4;
 
+    private static $data = array(self::ACTIVE, self::PENDING, self::SPAM, self::TRASH);
+
     public static function getDescriptions($status)
     {
         $data = [
-            self::ACTIVE        => 'Aktif',
-            self::PENDING       => 'Pending',
-            self::SPAM          => 'Spam',
-            self::TRASH         => 'Trash'
+            self::ACTIVE        => '<div class="badge badge-primary">Aktif</div>',
+            self::PENDING       => '<div class="badge badge-warning">Pending</div>',
+            self::SPAM          => '<div class="badge badge-info">Spam</div>',
+            self::TRASH         => '<div class="badge badge-danger">Trash</div>'
         ];
 
         return $data[$status];
@@ -39,5 +42,18 @@ class StatusComment extends Enum
         ];
 
         return $data;
+    }
+
+    /*
+     * Show if data exist
+     * @return : bool
+     * */
+    public static function status($status)
+    {
+        if (Arr::exists(self::$data, $status)) {
+            return true;
+        }
+
+        return false;
     }
 }

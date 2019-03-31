@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Facades\Search\SearchFactory;
+use App\Facades\StatusEnum\StatusEnumFactory;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
         //
 
         $this->app->bind('search', SearchFactory::class);
+        $this->app->bind('statusEnum', StatusEnumFactory::class);
 
         require_once app_path('Helpers/Helper.php');
 

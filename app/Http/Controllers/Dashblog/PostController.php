@@ -88,9 +88,7 @@ class PostController extends Controller
     {
         $post = Post::with('blog.domain')->findOrFail($id);
 
-
         return redirect('//'.$post->blog->subdomain.'.'.$post->blog->domain->domain.'/'.$post->slug);
-//        return __('error.empty');
     }
 
     /**
@@ -116,23 +114,6 @@ class PostController extends Controller
     public function update(UpdatePost $request, $blogid, $id)
     {
         $this->postRepo->update($request, $blogid, $id);
-//        $post = $this->postRepo->findOrFailAll($id);
-//        $post->title    = $request->title;
-//        $post->status   = $request->status;
-//        $post->body     = $request->body;
-//
-//        if ($request->file('image')) {
-//            $post->thumbnail     = $request->file('image')->store('thumbnail/'.$blogid);
-//        }
-//
-//        $post->label        = $request->label;
-//        $post->status       = $request->status;
-//
-//        $post->categoryPost()->associate(CategoryPost::findOrFail($request->category));
-//        $post->updateUser()->associate(User::findOrFail(Auth::id()));
-//
-//        $post->save();
-
         return redirect()->route('dashblog.post.index', ['blogid' => $blogid])
             ->with('success', __('dashblog-post.update'));
     }

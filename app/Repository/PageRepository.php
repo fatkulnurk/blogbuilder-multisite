@@ -10,12 +10,13 @@
 namespace App\Repository;
 
 use App\Enum\PaginateEnum;
+use App\Enum\StatusPageEnum;
 use App\Model\Page;
 use App\Scopes\PageStatusScope;
 use App\Scopes\PostStatusScope;
 use Illuminate\Http\Request;
 
-class PageRepository
+class PageRepository implements RepositoryInterface
 {
     private $model;
     private $blogid;
@@ -49,8 +50,6 @@ class PageRepository
 
     public function index($status, Request $request)
     {
-//        die(var_dump($status));
-
         $pages = $this->model
 //            ->with('user')
             ->withoutGlobalScope(new PageStatusScope())
@@ -80,6 +79,27 @@ class PageRepository
         return $posts;
     }
 
+    public function create(Request $request, $blogId)
+    {
+        // TODO: Implement create() method.
+    }
+
+    public function update(Request $request, $blogId, $id)
+    {
+
+        $page = $this->findOrFailAll($id);
+
+        if (! $page->restore())
+        {
+            die('ada kesalahan');
+        }
+
+        $page->title    = $request->title;
+        $page->status   = $request->status;
+        $page->body     = $request->body;
+        $page->save();
+    }
+
     public function findOrFailAll($id): Page
     {
         $page = Page::where('id', $id)
@@ -92,6 +112,8 @@ class PageRepository
     public function toTrash($id)
     {
         $page = $this->model->findOrFail($id);
+        $page->status = StatusPageEnum::TRASH;
+        $page->save();
         $page->delete();
 
         return true;

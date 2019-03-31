@@ -35,8 +35,6 @@ class PostDraftController extends Controller
         $posts = $this->postRepo->index(StatusPostEnum::DRAFT, $request);
         $search = $request->title;
 
-        return $posts;
-
         return view('dashblog.post.draft.index', compact('blogid', 'posts', 'search'));
     }
 

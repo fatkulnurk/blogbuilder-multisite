@@ -2,25 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ee3f00e0-cdce-4a75-88a2-bf64040deff5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Enum/NotificationTypeEnum.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repository/PageRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repository/PostCommentRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repository/RepositoryEloquent.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repository/RepositoryInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Scopes/PageStatusScope.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Scopes/PostCommentStatusScope.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/dashblog/page/draft/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/dashblog/page/publish/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/dashblog/page/trash/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Facades/StatusEnum/StatusEnum.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Facades/StatusEnum/StatusEnumFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Services/Error/StatusEnumService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Services/StatusAvailable.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/en/dashblog-comment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/dashblog/comment/pending/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/dashblog/comment/publish/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/dashblog/comment/trash/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/laravel-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/laravel-plugin.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Enum/PaginateEnum.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enum/PaginateEnum.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Enum/StatusComment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enum/StatusComment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Enum/StatusPageEnum.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enum/StatusPageEnum.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Enum/StatusPostEnum.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enum/StatusPostEnum.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Dashblog/CommentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Dashblog/CommentController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Dashblog/PageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Dashblog/PageController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Dashblog/PostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Dashblog/PostController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Dashblog/PostDraftController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Dashblog/PostDraftController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/Page.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/Page.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/Blog.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/Blog.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repository/PageRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repository/PageRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repository/PostCommentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repository/PostCommentRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Repository/PostRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repository/PostRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/en/dashblog-page.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/dashblog-page.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/dashblog/page/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashblog/page/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repository/RepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repository/RepositoryInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/dashblog/comment/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashblog/comment/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/dashblog/page/trash/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashblog/page/trash/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/dashblog.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/dashblog.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -52,134 +58,109 @@
     <favorites_list name="blogbuilder" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.63086236">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/Repository/PostRepository.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="136">
-                  <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
-                  <folding>
-                    <element signature="e#148#174#0#PHP" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Dashblog/PageTrashController.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="595">
-                  <caret line="38" selection-start-line="38" selection-end-line="38" />
-                  <folding>
-                    <element signature="e#49#77#0#PHP" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/Repository/PostCommentRepository.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1071">
-                  <caret line="72" selection-start-line="72" selection-end-line="72" />
-                  <folding>
-                    <element signature="e#147#173#0#PHP" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/User.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="425">
-                  <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
-              <provider selected="true" editor-type-id="text-editor" />
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/Scopes/PostStatusScope.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="289">
-                  <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
-                  <folding>
-                    <element signature="e#144#172#0#PHP" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/Enum/PaginateEnum.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="187">
-                  <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/Repository/PageRepository.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1513">
-                  <caret line="99" column="20" selection-start-line="99" selection-start-column="20" selection-end-line="99" selection-end-column="20" />
-                  <folding>
-                    <element signature="e#148#174#0#PHP" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/resources/views/dashblog/page/trash/index.blade.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1003">
-                  <caret line="59" column="59" selection-start-line="59" selection-start-column="59" selection-end-line="59" selection-end-column="59" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/Repository/PageRepository.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1139">
-                  <caret line="73" column="54" selection-start-line="73" selection-start-column="54" selection-end-line="77" selection-end-column="43" />
-                  <folding>
-                    <element signature="e#148#174#0#PHP" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/Notifications/NewComment.php">
-              <provider selected="true" editor-type-id="text-editor" />
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/Enum/NotificationTypeEnum.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="238">
-                  <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Services/StatusAvailable.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="84">
+              <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+              <folding>
+                <element signature="e#145#172#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Facades/Search/Search.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="17" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Facades/StatusEnum/StatusEnum.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Facades/StatusEnum/StatusEnumFactory.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="186">
+              <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+              <folding>
+                <element signature="e#156#183#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Services/Error/StatusEnumService.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="16" column="68" selection-start-line="16" selection-start-column="68" selection-end-line="16" selection-end-column="68" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Facades/Search/SearchFactory.php">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Enum/StatusPageEnum.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="441">
+              <caret line="47" column="15" selection-start-line="47" selection-start-column="15" selection-end-line="47" selection-end-column="15" />
+              <folding>
+                <element signature="e#110#137#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Enum/StatusPostEnum.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="497">
+              <caret line="50" column="21" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
+              <folding>
+                <element signature="e#110#137#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Repository/PostRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="303">
+              <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
+              <folding>
+                <element signature="e#148#174#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -206,23 +187,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Model/Post.php" />
-        <option value="$PROJECT_DIR$/app/Services/Model/PostService.php" />
-        <option value="$PROJECT_DIR$/app/Repository/Post.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Dashblog/PostPublishController.php" />
-        <option value="$PROJECT_DIR$/resources/lang/en/dashblog-post.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_02_23_003302_add_post_comment_key_post_comment_table.php" />
-        <option value="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" />
-        <option value="$PROJECT_DIR$/app/Enum/UncategoryEnum.php" />
-        <option value="$PROJECT_DIR$/app/Services/CreateBlogInit.php" />
-        <option value="$PROJECT_DIR$/app/Services/Model/CategoryPostService.php" />
-        <option value="$PROJECT_DIR$/app/Services/CategoryPostService.php" />
-        <option value="$PROJECT_DIR$/resources/lang/en/dashblog-category.php" />
-        <option value="$PROJECT_DIR$/database/seeds/PostSeeder.php" />
-        <option value="$PROJECT_DIR$/app/Scopes/PostStatusScope.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Dashblog/PostTrashController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Dashblog/CategoryController.php" />
-        <option value="$PROJECT_DIR$/database/seeds/TemplateLibTableSeeder.php" />
         <option value="$PROJECT_DIR$/database/factories/PostFactory.php" />
         <option value="$PROJECT_DIR$/resources/views/vendor/pagination/default.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/vendor/pagination/simple-bootstrap-4.blade.php" />
@@ -236,27 +200,44 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Dashblog/PagePublishController.php" />
         <option value="$PROJECT_DIR$/resources/views/dashblog/page/publish/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/dashblog/page/draft/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/Enum/StatusPageEnum.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Dashblog/PageDraftController.php" />
-        <option value="$PROJECT_DIR$/app/Model/Blog.php" />
         <option value="$PROJECT_DIR$/resources/views/dashblog/page/edit.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/dashblog.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/dashblog/page/trash/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Model/Page.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/app/Repository/PageRepository.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Dashblog/PageController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Dashblog/PostDraftController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Dashblog/PostController.php" />
-        <option value="$PROJECT_DIR$/app/Repository/RepositoryInterface.php" />
-        <option value="$PROJECT_DIR$/app/Repository/PostRepository.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Dashblog/PageTrashController.php" />
         <option value="$PROJECT_DIR$/app/Repository/PostComment.php" />
         <option value="$PROJECT_DIR$/app/Enum/PaginateEnum.php" />
         <option value="$PROJECT_DIR$/app/Scopes/PostCommentStatusScope.php" />
         <option value="$PROJECT_DIR$/app/Enum/NotificationTypeEnum.php" />
         <option value="$PROJECT_DIR$/app/Repository/RepositoryEloquent.php" />
+        <option value="$PROJECT_DIR$/app/Repository/RepositoryInterface.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/dashblog.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/dashblog/comment/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Dashblog/CommentPendingController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Dashblog/CommentTrashController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Dashblog/CommentPublishController.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/resources/lang/en/dashblog-comment.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Dashblog/CommentController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Dashblog/PostDraftController.php" />
+        <option value="$PROJECT_DIR$/app/Repository/PostRepository.php" />
+        <option value="$PROJECT_DIR$/app/Model/Blog.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Dashblog/PostController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Dashblog/PageController.php" />
+        <option value="$PROJECT_DIR$/app/Repository/PageRepository.php" />
+        <option value="$PROJECT_DIR$/resources/views/dashblog/page/trash/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Enum/StatusComment.php" />
+        <option value="$PROJECT_DIR$/resources/views/dashblog/comment/trash/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Repository/PostCommentRepository.php" />
+        <option value="$PROJECT_DIR$/app/Enum/StatusPostEnum.php" />
+        <option value="$PROJECT_DIR$/app/Enum/StatusPageEnum.php" />
+        <option value="$PROJECT_DIR$/app/Services/StatusAvailable.php" />
+        <option value="$PROJECT_DIR$/app/Facades/Status/Status.php" />
+        <option value="$PROJECT_DIR$/app/Facades/Status/StatusEnum.php" />
+        <option value="$PROJECT_DIR$/app/Facades/StatusEnum/StatusEnum.php" />
+        <option value="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
+        <option value="$PROJECT_DIR$/app/Services/Error/StatusNotExists.php" />
+        <option value="$PROJECT_DIR$/app/Services/Error/StatusEnum.php" />
+        <option value="$PROJECT_DIR$/app/Facades/StatusEnum/StatusEnumFactory.php" />
       </list>
     </option>
   </component>
@@ -362,10 +343,9 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="559" />
-    <option name="y" value="11" />
-    <option name="width" value="741" />
-    <option name="height" value="744" />
+    <option name="x" value="676" />
+    <option name="width" value="697" />
+    <option name="height" value="372" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -391,29 +371,44 @@
               <item name="blogbuilder" type="b2602c69:ProjectViewProjectNode" />
               <item name="blogbuilder" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Helpers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="blogbuilder" type="b2602c69:ProjectViewProjectNode" />
-              <item name="blogbuilder" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Providers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="blogbuilder" type="b2602c69:ProjectViewProjectNode" />
               <item name="blogbuilder" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Scopes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="blogbuilder" type="b2602c69:ProjectViewProjectNode" />
               <item name="blogbuilder" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Services" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="blogbuilder" type="b2602c69:ProjectViewProjectNode" />
+              <item name="blogbuilder" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Services" type="462c0819:PsiDirectoryNode" />
+              <item name="Error" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="blogbuilder" type="b2602c69:ProjectViewProjectNode" />
               <item name="blogbuilder" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="blogbuilder" type="b2602c69:ProjectViewProjectNode" />
+              <item name="blogbuilder" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="lang" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="blogbuilder" type="b2602c69:ProjectViewProjectNode" />
+              <item name="blogbuilder" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="lang" type="462c0819:PsiDirectoryNode" />
+              <item name="en" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="blogbuilder" type="b2602c69:ProjectViewProjectNode" />
@@ -427,6 +422,23 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="dashblog" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="blogbuilder" type="b2602c69:ProjectViewProjectNode" />
+              <item name="blogbuilder" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="dashblog" type="462c0819:PsiDirectoryNode" />
+              <item name="comment" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="blogbuilder" type="b2602c69:ProjectViewProjectNode" />
+              <item name="blogbuilder" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="dashblog" type="462c0819:PsiDirectoryNode" />
+              <item name="comment" type="462c0819:PsiDirectoryNode" />
+              <item name="trash" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="blogbuilder" type="b2602c69:ProjectViewProjectNode" />
@@ -458,23 +470,23 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="Symfony2.SettingsForm" />
     <property name="settings.editor.splitter.proportion" value="0.21746725" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\blogbuilder\resources\views\dashblog\comment\trash" />
+      <recent name="C:\xampp\htdocs\blogbuilder\resources\views\dashblog\comment\pending" />
+      <recent name="C:\xampp\htdocs\blogbuilder\resources\views\dashblog\comment\publish" />
+      <recent name="C:\xampp\htdocs\blogbuilder\resources\views\dashblog\page\draft" />
+      <recent name="C:\xampp\htdocs\blogbuilder\resources\views\dashblog\page\publish" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\blogbuilder\resources\views\dashblog\comment" />
       <recent name="C:\xampp\htdocs\blogbuilder\app\Http\Controllers\Dashblog" />
       <recent name="C:\xampp\htdocs\blogbuilder\app\Facades\Search" />
       <recent name="C:\xampp\htdocs\blogbuilder\app\Facades" />
       <recent name="C:\xampp\htdocs\blogbuilder\app\Http\Controllers\ExploreSite" />
-      <recent name="C:\xampp\htdocs\blogbuilder\app\fnk" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\blogbuilder\resources\views\dashblog\page\draft" />
-      <recent name="C:\xampp\htdocs\blogbuilder\resources\views\dashblog\page\publish" />
-      <recent name="C:\xampp\htdocs\blogbuilder\resources\views\dashblog\page\trash" />
-      <recent name="C:\xampp\htdocs\blogbuilder\resources\views\dashblog\post\draft" />
-      <recent name="C:\xampp\htdocs\blogbuilder\resources\views\dashblog\comment" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -563,17 +575,19 @@
       <workItem from="1553681937125" duration="4720000" />
       <workItem from="1553738814064" duration="35000" />
       <workItem from="1553738898883" duration="110000" />
-      <workItem from="1553854336304" duration="306000" />
+      <workItem from="1553854336304" duration="1005000" />
+      <workItem from="1553949492061" duration="11661000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="371609000" />
+    <option name="totallyTimeSpent" value="383969000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.69363165" visible="true" weight="0.1323752" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.69363165" visible="true" weight="0.24583964" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" sideWeight="0.30636832" side_tool="true" weight="0.3804841" />
@@ -588,17 +602,17 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5030257" side_tool="true" weight="0.33224222" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.4969743" visible="true" weight="0.497545" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4969743" weight="0.58919805" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Database" order="3" weight="0.32980332" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2980333" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.69363165" visible="true" weight="0.24583964" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
-      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info id="Favorites" order="3" sideWeight="0.30636832" side_tool="true" weight="0.3804841" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.2651391" />
@@ -609,12 +623,12 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5015129" side_tool="true" weight="0.41243863" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49848714" visible="true" weight="0.31587562" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5030257" side_tool="true" weight="0.33224222" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4969743" weight="0.26022914" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="right" id="Database" order="3" weight="0.32980332" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -637,342 +651,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/dashblog/post/draft/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="50" column="40" lean-forward="true" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#184#938#0#HTML" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/dashblog/post/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="49" column="41" lean-forward="true" selection-start-line="49" selection-start-column="41" selection-end-line="49" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/dashblog/post/trash/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="46" column="41" selection-start-line="46" selection-start-column="41" selection-end-line="46" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#3480#3629#0#HTML" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/dashblog/category/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="56" column="32" selection-start-line="56" selection-start-column="32" selection-end-line="56" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Model/CategoryPost.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Model/Post.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-302">
-          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
-          <folding>
-            <element signature="e#29#60#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/lang/en/dashblog-post.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="13" column="80" lean-forward="true" selection-start-line="13" selection-start-column="80" selection-end-line="15" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/lang/en/dashblog-page.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="2" lean-forward="true" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Dashblog/PostTrashController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="46" selection-end-column="5" />
-          <folding>
-            <element signature="e#49#68#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Dashblog/PostPublishController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
-          <folding>
-            <element signature="e#49#77#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Dashblog/PagePublishController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
-          <folding>
-            <element signature="e#49#77#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/dashblog/page/publish/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13090">
-          <caret line="784" column="33" lean-forward="true" selection-start-line="784" selection-start-column="33" selection-end-line="784" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasAttributes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-12945">
-          <caret line="21" column="14" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
-          <folding>
-            <element signature="e#57#76#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Dashblog/PageDraftController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
-          <folding>
-            <element signature="e#49#77#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Enum/StatusPostEnum.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/dashblog/page/draft/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Scopes/PageStatusScope.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
-          <folding>
-            <element signature="e#144#172#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/dashblog/page/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="36" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/dashblog.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="511">
-          <caret line="61" column="123" selection-start-line="61" selection-start-column="123" selection-end-line="61" selection-end-column="123" />
-          <folding>
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-            <element signature="e#0#5#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Model/Page.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="23" column="4" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
-          <folding>
-            <element signature="e#29#60#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/dashblog/post/add.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1018,23 +696,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Dashblog/PostController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="57" column="5" lean-forward="true" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
-          <folding>
-            <element signature="e#49#77#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repository/RepositoryInterface.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Model/UserDetail.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-188" />
@@ -1046,67 +707,6 @@
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_03_01_102321_create_blog_owner_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-93" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Model/Blog.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="86" column="5" lean-forward="true" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Dashblog/PostDraftController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="37" column="22" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Dashblog/PageController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1404">
-          <caret line="28" column="54" selection-start-line="28" selection-start-column="54" selection-end-line="28" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="142" column="32" selection-start-line="142" selection-start-column="32" selection-end-line="142" selection-end-column="32" />
-          <folding>
-            <element signature="e#1638#1775#1#PHP" />
-            <element signature="e#1981#3742#1#PHP" />
-            <element signature="e#3831#4157#1#PHP" />
-            <element signature="e#5477#6133#1#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Enum/StatusComment.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Enum/StatusPageEnum.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="15" column="23" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Scopes/PostCommentStatusScope.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="29" column="59" selection-start-line="29" selection-start-column="59" selection-end-line="29" selection-end-column="59" />
-          <folding>
-            <element signature="e#143#170#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Model/PostComment.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-270">
-          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_03_27_103530_create_notifications_table.php">
@@ -1128,16 +728,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repository/PostRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
-          <folding>
-            <element signature="e#148#174#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Dashblog/PageTrashController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="595">
@@ -1148,26 +738,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repository/PostCommentRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="72" selection-start-line="72" selection-end-line="72" />
-          <folding>
-            <element signature="e#147#173#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Scopes/PostStatusScope.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
+        <state relative-caret-position="340">
           <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
           <folding>
             <element signature="e#144#172#0#PHP" expanded="true" />
@@ -1182,33 +755,463 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/dashblog/page/trash/index.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Enum/NotificationTypeEnum.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="59" column="59" selection-start-line="59" selection-start-column="59" selection-end-line="59" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repository/PageRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1139">
-          <caret line="73" column="54" selection-start-line="73" selection-start-column="54" selection-end-line="77" selection-end-column="43" />
-          <folding>
-            <element signature="e#148#174#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="204">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Notifications/NewComment.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Enum/NotificationTypeEnum.php">
+    <entry file="file://$PROJECT_DIR$/app/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+        <state relative-caret-position="425">
+          <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Scopes/PostCommentStatusScope.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="29" column="61" lean-forward="true" selection-start-line="29" selection-start-column="61" selection-end-line="29" selection-end-column="61" />
+          <folding>
+            <element signature="e#143#170#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Dashboard/StoreBlog.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-29" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repository/RepositoryInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="25" column="33" lean-forward="true" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/navbar.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/dashblog.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="71" column="98" selection-start-line="71" selection-start-column="98" selection-end-line="71" selection-end-column="98" />
+          <folding>
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/dashblog/page/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="35" column="65" lean-forward="true" selection-start-line="35" selection-start-column="65" selection-end-line="37" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/dashblog/comment/publish/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/dashblog/comment/pending/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Dashblog/CommentPendingController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-778">
+          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="29" />
+          <folding>
+            <element signature="e#49#76#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Dashblog/CommentPublishController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-473">
+          <caret line="29" column="51" selection-start-line="29" selection-start-column="51" selection-end-line="29" selection-end-column="51" />
+          <folding>
+            <element signature="e#49#76#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/dashblog/comment/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="47" column="55" lean-forward="true" selection-start-line="47" selection-start-column="55" selection-end-line="47" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="155" column="7" lean-forward="true" selection-start-line="155" selection-start-column="7" selection-end-line="155" selection-end-column="7" />
+          <folding>
+            <element signature="e#1638#1775#1#PHP" />
+            <element signature="e#1981#3742#1#PHP" />
+            <element signature="e#3831#4157#1#PHP" />
+            <element signature="e#5477#6133#1#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/lang/en/dashblog-comment.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="22" column="36" lean-forward="true" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Dashblog/CommentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="113" lean-forward="true" selection-start-line="113" selection-end-line="113" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Dashblog/CommentTrashController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="27" column="49" selection-start-line="27" selection-start-column="49" selection-end-line="27" selection-end-column="49" />
+          <folding>
+            <element signature="e#49#90#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Model/PostComment.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Model/Domain.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Dashblog/PostDraftController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Model/Blog.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="50" column="50" selection-start-line="50" selection-start-column="50" selection-end-line="50" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Dashblog/PostController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1582">
+          <caret line="14" column="8" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Dashblog/PageController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="129" column="38" lean-forward="true" selection-start-line="129" selection-start-column="38" selection-end-line="129" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repository/PageRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="136" column="1" lean-forward="true" selection-start-line="136" selection-start-column="1" selection-end-line="136" selection-end-column="1" />
+          <folding>
+            <element signature="e#148#174#0#PHP" expanded="true" />
+            <element signature="e#395#511#0#PHP" />
+            <element signature="e#517#713#0#PHP" />
+            <element signature="e#719#1053#0#PHP" />
+            <element signature="e#1059#1534#0#PHP" />
+            <element signature="e#1540#2049#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/dashblog/page/trash/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="50" column="89" selection-start-line="50" selection-start-column="89" selection-end-line="50" selection-end-column="89" />
+          <folding>
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/dashblog/comment/trash/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="47" column="55" lean-forward="true" selection-start-line="47" selection-start-column="55" selection-end-line="47" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+            <element signature="e#0#5#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repository/PostCommentRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="77">
+          <caret line="91" column="9" lean-forward="true" selection-start-line="91" selection-start-column="9" selection-end-line="91" selection-end-column="9" />
+          <folding>
+            <element signature="e#147#173#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Enum/StatusComment.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="49" column="9" lean-forward="true" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
+          <folding>
+            <element signature="e#110#137#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Enum/StatusPageEnum.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="47" column="15" selection-start-line="47" selection-start-column="15" selection-end-line="47" selection-end-column="15" />
+          <folding>
+            <element signature="e#110#137#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Enum/StatusPostEnum.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="497">
+          <caret line="50" column="21" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
+          <folding>
+            <element signature="e#110#137#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Facades/Search/SearchFactory.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Facades/Search/Search.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="17" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Facades/StatusEnum/StatusEnum.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Services/StatusAvailable.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+          <folding>
+            <element signature="e#145#172#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Services/Error/StatusEnumService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="16" column="68" selection-start-line="16" selection-start-column="68" selection-end-line="16" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Facades/StatusEnum/StatusEnumFactory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+          <folding>
+            <element signature="e#156#183#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repository/PostRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
+          <folding>
+            <element signature="e#148#174#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

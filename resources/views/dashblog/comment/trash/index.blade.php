@@ -1,13 +1,13 @@
 @extends('layouts.dashblog')
 
-@section('title', 'Comment')
+@section('title', 'Trash Comment')
 
 @section('content')
     <div class="row mt-4">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Komentar</h4>
+                    <h4>Trash Komentar</h4>
                     <div class="card-header-form">
                         <form method="get" action="{{ route('dashblog.comment.index', ['blogid' => $blogid]) }}">
                             <div class="input-group">
@@ -26,22 +26,22 @@
                                 <th width="10px">#</th>
                                 <th width="220px">Name</th>
                                 <th>Comment</th>
+                                <td>Status</td>
                             </tr>
 
                             @foreach($comment as $item)
                                 <tr>
                                     <td>{{ (( $comment->currentPage() - 1 ) * $comment->perPage() ) + $loop->iteration }}</td>
                                     <td>{{ $item->user->name }}
-
                                         <div class="table-links form-inline">
-                                            <a onclick="approveData(this)" href="javascript:void(0);" class="text-danger">Approve
-                                                <form action="{{ route('dashblog.comment.update', ['blogid' => $blogid, 'commentId' => $item->id , 'status' => App\Enum\StatusComment::ACTIVE ]) }}" method="post">
+                                            <a onclick="approveData(this)" href="javascript:void(0);" class="text-danger">To Pending
+                                                <form action="{{ route('dashblog.comment.update', ['blogid' => $blogid, 'commentId' => $item->id , 'status' => App\Enum\StatusComment::PENDING ]) }}" method="post">
                                                     @csrf
                                                     @method('put')
                                                 </form>
                                             </a>
                                             <div class="bullet"></div>
-                                            <a onclick="deleteData(this)" href="javascript:void(0);" class="text-danger">Trash
+                                            <a onclick="deleteData(this)" href="javascript:void(0);" class="text-danger">Force Delete
                                                 <form action="{{ route('dashblog.comment.destroy', ['blogid' => $blogid, 'commentId' => $item->id ]) }}" method="post">
                                                     @csrf
                                                     @method('delete')
@@ -52,6 +52,7 @@
                                     <td>
                                         <p>{{ $item->body }}</p>
                                     </td>
+                                    <td>{!! \App\Enum\StatusComment::getDescriptions($item->status) !!}</td>
                                 </tr>
                             @endforeach
                         </table>

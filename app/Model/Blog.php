@@ -26,6 +26,11 @@ class Blog extends Model
         'logo'
     ];
 
+    protected $appends  = [
+        'domain',
+        'full_domain'
+    ];
+
     // Local Scope
     public function scopeSearch($query, $key)
     {
@@ -33,6 +38,17 @@ class Blog extends Model
             ->orWhere('title','like', '%'.$key.'%')
             ->orWhere('short_desc','like', '%'.$key.'%')
             ->orWhere('description','like', '%'.$key.'%');
+    }
+
+    // accesor
+    public function getDomainAttribute()
+    {
+        $this->attributes['domain'] = $this->domain->domain;
+    }
+
+    public function getFullDomainAttribute()
+    {
+        return $this->subdomain.'.'.$this->domain;
     }
 
     // Mutator

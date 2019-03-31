@@ -53,7 +53,7 @@ class PostRepository implements RepositoryInterface
     public function index($status, Request $request)
     {
         $posts = $this->model->with('categoryPost', 'user')
-//            ->withoutGlobalScope(new PostStatusScope())
+            ->withoutGlobalScope(new PostStatusScope())
             ->where('blog_id', $this->blogid)
             ->where('status', $status)
             ->where('title','like', '%'.$request->get('title').'%')
@@ -90,6 +90,11 @@ class PostRepository implements RepositoryInterface
 
         $post = $this->findOrFailAll($idPost);
 
+        if (! $post->restore())
+        {
+            die('ada kesalahan');
+        }
+
         $post->title    = $request->title;
         $post->status   = $request->status;
         $post->body     = $request->body;
@@ -114,7 +119,7 @@ class PostRepository implements RepositoryInterface
         $page = $this->model
             ->where('id', $id)
             ->withTrashed()
-            ->withoutGlobalScope(new PageStatusScope())
+            ->withoutGlobalScope(new PostStatusScope())
             ->first();
         return $page;
     }
@@ -122,8 +127,8 @@ class PostRepository implements RepositoryInterface
     public function toTrash($id)
     {
         $post = $this->model->findOrFail($id);
-//        $post->status = StatusPostEnum::TRASH;
-//        $post->save();
+        $post->status = StatusPostEnum::TRASH;
+        $post->save();
 
         $post->delete();
 

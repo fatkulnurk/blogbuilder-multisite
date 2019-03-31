@@ -8,7 +8,9 @@
 
 namespace App\Enum;
 
+use Illuminate\Support\Arr;
 use MyCLabs\Enum\Enum;
+use phpDocumentor\Reflection\Types\Self_;
 
 class StatusPostEnum extends Enum
 {
@@ -16,6 +18,8 @@ class StatusPostEnum extends Enum
     const DRAFT     = 2;
     const DELETE    = 3;
     const TRASH     = 4;
+
+    private static $data = array(self::PUBLISH, self::DRAFT, self::DELETE, self::TRASH);
 
     public static function getDescriptions($status)
     {
@@ -36,5 +40,14 @@ class StatusPostEnum extends Enum
             self::DRAFT     => 'Draft'
         ];
         return $data;
+    }
+
+    public static function status($status)
+    {
+        if (Arr::exists(self::$data, $status)) {
+            return true;
+        }
+
+        return false;
     }
 }

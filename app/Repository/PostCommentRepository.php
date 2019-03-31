@@ -10,9 +10,11 @@
 namespace App\Repository;
 
 use App\Enum\PaginateEnum;
+use App\Enum\StatusComment;
 use App\Model\PostComment;
 use App\Scopes\PostCommentStatusScope;
 use Illuminate\Http\Request;
+use MyCLabs\Enum\Enum;
 
 class PostCommentRepository implements RepositoryInterface
 {
@@ -50,7 +52,7 @@ class PostCommentRepository implements RepositoryInterface
     {
         $comments = $this->model
             ->withoutGlobalScope(new PostCommentStatusScope())
-            ->where('blog_id', $this->blogid)
+//            ->where('blog_id', $this->blogid)
             ->where('status', $status)
             ->where('body','like', '%'.$request->get('title').'%')
             ->orderBy('created_at', 'desc')
@@ -65,10 +67,80 @@ class PostCommentRepository implements RepositoryInterface
             ->onlyTrashed()
             ->withoutGlobalScope(new PostCommentStatusScope())
             ->with('user')
-            ->where('blog_id', $this->blogid)
-            ->where('title','like', '%'.$request->get('title').'%')
+//            ->where('blog_id', $this->blogid)
+            ->where('body','like', '%'.$request->get('title').'%')
             ->orderBy('updated_at', 'desc')
             ->paginate(PaginateEnum::COMMENT);
+
+        return $comments;
     }
 
+    public function create(Request $request, $blogId)
+    {
+        // TODO: Implement create() method.
+    }
+
+    public function update(Request $request, $blogId, $id)
+    {
+        /*
+         * for checking status is available or not (anti inspect element)
+         * @return boolean
+         * */
+        if (! StatusComment::status($request->status))
+        {
+            return false;
+        }
+
+        $comment = $this->findOrFailAll($id);
+
+        /*
+         * @return boolean
+         * */
+        if (! $comment->restore())
+        {
+            die('ada kesalahan');
+        }
+
+        $comment->status = $request->status;
+        $comment->save();
+
+        return true;
+    }
+
+    public function findOrFailAll($id)
+    {
+        $comment = $this->model
+            ->where('id', $id)
+            ->withTrashed()
+            ->withoutGlobalScope(new PostCommentStatusScope())
+            ->first();
+        return $comment;
+    }
+
+    public function toTrash($id)
+    {
+        $comment = $this->model->findOrFail($id);
+        $comment->status = StatusComment::TRASH;
+        $comment->save();
+
+        $comment->delete();
+
+        return true;
+    }
+
+    public function toDelete($id)
+    {
+
+        $comment = $this->model
+            ->withTrashed()
+            ->withoutGlobalScope(PostCommentStatusScope::class)
+            ->where('id', $id)
+            ->first();
+
+        try {
+            $comment->forceDelete();
+            return true;
+        }catch (\Error $exception) {
+            return false;
+        }    }
 }

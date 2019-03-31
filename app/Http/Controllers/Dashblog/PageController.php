@@ -100,7 +100,7 @@ class PageController extends Controller
     public function edit($blogid, $pageid)
     {
 //        $page = Page::findOrFail($pageid);
-        $page = $this->pageRepo->findOrFailAll($blogid);
+        $page = $this->pageRepo->findOrFailAll($pageid);
         return view('dashblog.page.edit', compact('blogid', 'page'));
     }
 
@@ -113,11 +113,7 @@ class PageController extends Controller
      */
     public function update(UpdatePage $request, $blogid, $pageid)
     {
-        $page = Page::findOrFail($pageid);
-        $page->title    = $request->title;
-        $page->status   = $request->status;
-        $page->body     = $request->body;
-        $page->save();
+        $this->pageRepo->update($request, $blogid, $pageid);
 
         return redirect()->route('dashblog.page.index', ['blogid' => $blogid])
             ->with('success', __('dashblog-page.update'));
@@ -131,10 +127,12 @@ class PageController extends Controller
      */
     public function destroy($blogid, $id)
     {
-        $page = Page::findOrFail($id);
+        $this->pageRepo->toTrash($id);
+//        $page = Page::findOrFail($id);
 //        $page->status = StatusPageEnum::TRASH;
 //        $page->save();
-        $page->delete();
+//
+//        $page->delete();
 
         return redirect()->route('dashblog.page.index', ['blogid' => $blogid])
             ->with('success', __('dashblog-page.destroy'));

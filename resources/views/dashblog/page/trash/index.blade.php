@@ -27,7 +27,7 @@
                                 <th>Title</th>
                                 <th>Author</th>
                                 <th>Created At</th>
-                                <th>Status Sebelumnya</th>
+                                <th>Status</th>
                             </tr>
                             @foreach($pages as $page)
                                 <tr>

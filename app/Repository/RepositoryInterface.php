@@ -21,7 +21,7 @@ interface RepositoryInterface
     public function index($status, Request $request);
     public function indexTrash(Request $request);
     public function create(Request $request, $blogId);
-    public function update(Request $request, $blogId, $postId);
+    public function update(Request $request, $blogId, $id);
     public function findOrFailAll($id);
     public function toTrash($id);
     public function toDelete($id);

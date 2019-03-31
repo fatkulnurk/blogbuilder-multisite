@@ -145,7 +145,14 @@ Route::group(['namespace' => 'Dashblog', 'prefix' => 'dashblog/{blogid}', 'middl
 
     Route::group(['prefix' => 'comment'], function () {
         Route::get('/', 'CommentController@index')->name('dashblog.comment.index');
-        Route::get('/spam', 'CommentController@create')->name('dashblog.comment.spam');
+        Route::put('/{id}', 'CommentController@update')->name('dashblog.comment.update');
+        Route::delete('/{id}', 'CommentController@destroy')->name('dashblog.comment.destroy');
+
+        Route::get('/publish', 'CommentPublishController@index')->name('dashblog.comment-publish.index');
+        Route::get('/pending', 'CommentPendingController@index')->name('dashblog.comment-pending.index');
+        Route::get('/trash', 'CommentTrashController@index')->name('dashblog.comment-trash.index');
+        Route::delete('trash-destroy/{id}', 'CommentTrashController@destroy')->name('dashblog.comment-trash.destroy');
+
     });
 
     Route::group(['prefix' => 'theme', 'namespace' => 'Theme'], function (){
