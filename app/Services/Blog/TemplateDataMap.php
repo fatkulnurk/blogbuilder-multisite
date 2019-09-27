@@ -58,9 +58,13 @@ class TemplateDataMap
         ];
     }
 
-    public function getPage()
+    public function getPage($slug)
     {
-
+        return [
+            'blog' => $this->blogService->getBlog(),
+            'page' => $this->blogService->getPage($slug),
+            'global' => $this->blogService->global($this->request)
+        ];
     }
 
     public function getSearch()

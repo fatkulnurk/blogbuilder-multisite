@@ -116,4 +116,48 @@ class User extends Authenticatable implements MustVerifyEmail
             ->withPivot('role')
             ->withTimestamps();
     }
+
+    public function userRoles()
+    {
+        return $this->belongsToMany(Role::class,'user_roles', 'user_id', 'role_id');
+    }
+
+
+
+    /*
+    * Method untuk menambahkan role (hak akses) baru pada user
+    */
+    public function putRole($role)
+    {
+        if (is_string($role))
+        {
+            $role = Role::whereRoleName($role)->first();
+        }
+        return $this->userRoles()->attach($role);
+    }
+
+    /*
+    * Method untuk menghapus role (hak akses) pada user
+    */
+    public function forgetRole($role)
+    {
+        if (is_string($role))
+        {
+            $role = Role::whereRoleName($role)->first();
+        }
+        return $this->userRoles()->detach($role);
+    }
+
+    /*
+    * Method untuk mengecek apakah user yang sedang login punya hak akses untuk mengakses page sesuai rolenya
+    */
+    public function hasRole($roleName)
+    {
+        $roles = $this->userRoles;
+        foreach ($roles as $role)
+        {
+            if ($role->role_name === $roleName) return true;
+        }
+        return false;
+    }
 }

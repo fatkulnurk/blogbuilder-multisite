@@ -12,6 +12,7 @@ namespace App\Services\Blog;
 
 use App\Enum\PaginateEnum;
 use App\Model\Blog;
+use App\Model\Page;
 use App\Model\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -60,7 +61,8 @@ class BlogService
 
     private function getCategorys()
     {
-        $category = $this->blog->categoryPosts()->get();
+//        $category = $this->blog->categoryPosts()->get();
+        $category = $this->blog->categoryPosts;
 
         return $category;
     }
@@ -78,6 +80,17 @@ class BlogService
 
     public function getPage($slug)
     {
+        $username = $this->blog->subdomain;
+        $page = Page::where('slug', $slug)
+            ->whereHas('blog.domain', function ($query) use($username){
+                $query->where('subdomain', $username);
+            })->first();
+
+        if (! $page) {
+            return $this->pageError();
+        }
+
+        return $page;
 
     }
 

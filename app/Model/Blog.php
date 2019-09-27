@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Enum\DomainEnum;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -26,10 +27,13 @@ class Blog extends Model
         'logo'
     ];
 
-    protected $appends  = [
-        'domain',
-        'full_domain'
-    ];
+    protected $appends = ['full_domain'];
+
+    public function getFullDomainAttribute()
+    {
+//        return $this->attributes['full_domain'] = $this->attributes['subdomain'].'.'.$this->domain->domain;
+        return $this->attributes['full_domain'] = $this->attributes['subdomain'].'.'.DomainEnum::getDescription($this->attributes['domain_id']);
+    }
 
     // Local Scope
     public function scopeSearch($query, $key)
@@ -38,17 +42,6 @@ class Blog extends Model
             ->orWhere('title','like', '%'.$key.'%')
             ->orWhere('short_desc','like', '%'.$key.'%')
             ->orWhere('description','like', '%'.$key.'%');
-    }
-
-    // accesor
-    public function getDomainAttribute()
-    {
-        $this->attributes['domain'] = $this->domain->domain;
-    }
-
-    public function getFullDomainAttribute()
-    {
-        return $this->subdomain.'.'.$this->domain;
     }
 
     // Mutator

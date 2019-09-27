@@ -57,6 +57,10 @@
                         </table>
                     </div>
                 </div>
+
+                <div class="card-footer align-content-center">
+                    {{ $comment->links('vendor.pagination.simple-bootstrap-4') }}
+                </div>
             </div>
         </div>
     </div>

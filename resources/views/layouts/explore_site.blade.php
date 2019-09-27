@@ -64,18 +64,6 @@
 
             <div id="navbarBasicExample" class="navbar-menu">
                 <div class="navbar-start">
-                    {{--<a class="navbar-item">--}}
-                        {{--Cari Informasi--}}
-                    {{--</a>--}}
-                    {{--<a href="{{ route('public.blog.index') }}" class="navbar-item">--}}
-                        {{--Blog--}}
-                    {{--</a>--}}
-                    {{--<a href="{{ route('public.forum.index') }}" class="navbar-item">--}}
-                        {{--Forum--}}
-                    {{--</a>--}}
-                    {{--<a href="{{ route('public.chatting.index') }}" class="navbar-item">--}}
-                        {{--Chatting--}}
-                    {{--</a>--}}
 
                     <div class="navbar-item field">
                         <form action="{{ route('public.search') }}" method="get">

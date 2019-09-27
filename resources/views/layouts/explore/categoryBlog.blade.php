@@ -1,8 +1,8 @@
 <div class="tabs">
     <ul>
-        <li class="has-text-weight-bold is-uppercase">Choose Topics</li>
-        @foreach(\App\Model\CategoryBlog::all() as $item)
-            <li><a href="{{ route('public.topics.show', ['categoryBlogName' => \Illuminate\Support\Str::slug($item->name)]) }}">{{ $item->name }}</a></li>
+        <li class="has-text-weight-bold is-uppercase"><a href="{{ route('homepage') }}" title="All topics">Choose Topics</a> </li>
+        @foreach(\App\Model\CategoryBlog::select('name', 'slug')->get() as $item)
+            <li><a href="{{ route('public.topics.show', ['categoryBlogName' => $item->slug]) }}" title="Topics {{ $item->name }}">{{ $item->name }}</a></li>
         @endforeach
     </ul>
 </div>

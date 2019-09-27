@@ -37,7 +37,7 @@
                                             <div class="bullet"></div>
                                             <a href="{{ route('dashblog.post.edit', ['blogid' => $blogid, 'id' => $post->id]) }}">Edit</a>
                                             <div class="bullet"></div>
-                                            <a onclick="deleteData(this)" href="javascript:void(0);" class="text-danger">Trash
+                                            <a onclick="deleteData(this)" href="javascript:void(0);" class="text-danger">Force Delete
                                                 <form action="{{ route('dashblog.post-trash.destroy', ['blogid' => $blogid, 'postid' => $post->id]) }}" method="post">
                                                     @csrf
                                                     @method('delete')

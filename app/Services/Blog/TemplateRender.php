@@ -56,4 +56,11 @@ class TemplateRender
         );
     }
 
+    public function getPage($slug)
+    {
+        return $this->lexEngine->parse(
+            $this->templateCodeService->page(),
+            $this->templateDataMap->getPage($slug)
+        );
+    }
 }

@@ -9,14 +9,16 @@
     "license": "MIT",
     "require": {
         "php": "^7.1.3",
+        "ext-json": "*",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
+        "mobiledetect/mobiledetectlib": "^2.8",
         "myclabs/php-enum": "^1.6",
         "pyaesone17/active-state": "1.1.1",
         "pyrocms/lex": "^2.3",
-        "unisharp/laravel-filemanager": "^1.9",
-        "ext-json": "*"
+        "spatie/laravel-sluggable": "^2.1",
+        "unisharp/laravel-filemanager": "^1.9"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

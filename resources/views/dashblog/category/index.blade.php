@@ -56,6 +56,11 @@
                 <div class="card-footer align-content-center">
                     {{ $category->links('vendor.pagination.simple-bootstrap-4') }}
                 </div>
+
+                <div class="card-footer bg-light">
+                    <p>Menghapus kategori yang memiliki postingan akan membuat semua postingan di kategori tersebut dipindahkan ke Uncategory.</p>
+                    <p>Slug kategori tidak akan berubah meski di edit.</p>
+                </div>
             </div>
         </div>
     </div>

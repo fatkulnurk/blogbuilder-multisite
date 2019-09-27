@@ -21,7 +21,7 @@ class StatusEnumService
             return true;
         }
 
-        return false;
+        self::false();
     }
 
     public static function post($status)
@@ -30,7 +30,7 @@ class StatusEnumService
             return true;
         }
 
-        return false;
+        self::false();
     }
 
     public static function page($status)
@@ -39,11 +39,11 @@ class StatusEnumService
             return true;
         }
 
-        return false;
+        self::false();
     }
 
     public static function false()
     {
-        die('Ups ada kesalahan, sepertinya status tidak ditemukan');
+        die('Ups ada kesalahan, sepertinya status tidak ditemukan.');
     }
 }

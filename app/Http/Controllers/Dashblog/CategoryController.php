@@ -9,6 +9,7 @@ use App\Model\Blog;
 use App\Model\CategoryPost;
 use App\Model\Post;
 use App\Services\CategoryPostService;
+use App\Services\Error\CategoryService;
 use App\Services\Random;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -92,6 +93,8 @@ class CategoryController extends Controller
     {
         $category = CategoryPost::findOrFail($id);
 
+        CategoryService::unCategory($category);
+
         return view('dashblog.category.edit', compact('category', 'blogid'));
     }
 
@@ -105,6 +108,8 @@ class CategoryController extends Controller
     public function update(UpdateCategory $request, $blogid, $id)
     {
         $category = CategoryPost::findOrFail($id);
+        CategoryService::unCategory($category);
+
         $category->name         = $request->name;
         $category->description  = $request->description;
         $category->save();

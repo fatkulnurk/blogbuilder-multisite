@@ -30,7 +30,5 @@ class CommentController extends Controller
             'username' => $username,
             'slug' => $slug,
         ])->with('success', 'Comment Successfully Posted');
-
-//        $post->comments()->attach(['body' => $request->body]);
     }
 }

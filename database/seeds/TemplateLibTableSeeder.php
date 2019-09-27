@@ -63,7 +63,7 @@ class TemplateLibTableSeeder extends Seeder
 EOT;
 
     protected $codeFooter = <<<EOT
-        
+             
  
   <hr>
 
@@ -118,7 +118,7 @@ EOT;
 EOT;
 
     protected $codeIndex = <<<EOT
-        
+            
   <!-- Page Header -->
   <header class="masthead" style="background-image: url('https://source.unsplash.com/random/1080x400')">
     <div class="overlay"></div>
@@ -203,8 +203,10 @@ EOT;
   {{ comment }}
   {{ user.name }} <br>
   {{ body }}  <hr>
-
   {{ /comment }}
+{{ if exists success }}
+{{ success }} aaaaaaaaaaaaaaaaaaaaaaa
+{{ endif }}
   <form action="{{ global.url.url }}" method="post">
   {{ global.csrf.csrf_field }}
   <textarea name="body" class="form-control">
@@ -212,6 +214,41 @@ EOT;
 <button class="btn btn-block btn-primary">Submit</button>
 </form>
 EOT;
+
+    protected $codePage = <<<EOT
+<!-- Page Header -->
+  <header class="masthead" style="background-image: url('https://source.unsplash.com/random/1080x400')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>{{ page.title }}</h1>
+            <h2 class="subheading">{{ page.body_short }}</h2>
+            <span class="meta">Posted by
+              <a href="#">{{ page.user.name }}</a>
+              on {{ page.date }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  
+
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+        {{ page.body }}
+        </div>
+      </div>
+    </div>
+  </article>
+EOT;
+
+
 
     /**
      * Run the database seeds.
@@ -229,7 +266,7 @@ EOT;
             'code_index'        => $this->codeIndex,
             'code_search'       => '<h1>saya di search</h1>',
             'code_category'     => '<h1>saya di category</h1>',
-            'code_page'         => '<h1>saya di page</h1>',
+            'code_page'         => $this->codePage,
             'code_post'         => $this->codePost,
             'code_about'        => '<h1>saya di about</h1>',
             'code_404'          => '<h1>saya di 404</h1>',

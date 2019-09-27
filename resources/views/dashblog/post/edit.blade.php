@@ -77,8 +77,8 @@
                         </div>
                     </form>
                 </div>
-                <div class="card-footer">
-
+                <div class="card-footer bg-light">
+                    <p>Merubah judul tidak akan merubah slug url.</p>
                 </div>
             </div>
         </div>

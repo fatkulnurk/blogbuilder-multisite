@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Blog;
 
+use App\Enum\BlogShowEnum;
 use App\Fnk\TemplateEnum\TplBlogHeaderEnum;
 use App\Fnk\TemplateEnum\TplPostEnum;
 use App\Fnk\TemplateEnum\TplBlogIndexPostEnum;
 use App\Model\Blog;
 use App\Model\Post;
 use App\Model\Template;
+use App\Services\BlogShow\Template as TemplateRenderData;
 use App\Services\Blog\TemplateData;
 use App\Services\Blog\TemplateRender;
 use Illuminate\Http\Request;
@@ -18,69 +20,39 @@ use Lex\Parser;
 
 class BlogController extends Controller
 {
+    private $template = null;
+
+    public function __construct(TemplateRenderData $template)
+    {
+        $this->template = $template;
+    }
 
     public function index(Request $request, $username)
     {
-        $blog = Blog::where('subdomain', $username)->first();
+        $hahaha = $this->template->render([
+            'request' => $request,
+            'username' => $username,
+            'type' => BlogShowEnum::HOMEPAGE
+        ]);
 
-        $tplRender = TemplateRender::getInstance($blog, $request);
-
-        printf($tplRender->getIndex());
-
-//        echo $tplRender->getIndex();
-
-//        return response()->json($tplRender->getIndex());
-//        dd($tplRender);
+        return response($hahaha, 200)
+            ->header('Content-Type', 'text/html; charset=utf-8');
 //
-//        if (!$blog) {
-//            return view('blog.not-register');
+//        $blog = Blog::where('subdomain', $username)->first();
+//
+//        if (! $blog)
+//        {
+//            abort(404);
 //        }
 //
-//        $post = $blog->posts()->with('user')->orderBy('created_at', 'DESC')->paginate(10);
-//        $category = $blog->categoryPosts()->get();
-//        $template = $blog->templateDekstop()->first();
-//        $templateHtml = $template->code_header
-//                .$template->code_index
-//            .$template->code_footer;
+//        $tplRender = TemplateRender::getInstance($blog, $request);
 //
-//        $tplTest = '
-//        <!HTML Doctype>
-//        <html>
-//        <head>
-//            <title>{{ title }}</title>
-//        </head>
-//        <body>
-//            {{ post }}
-//            <div style="background: red">
+//        return response($tplRender->getIndex(), 200)
+////            ->header('Content-Type', 'text/plain');
+//            ->header('Content-Type', 'text/html; charset=utf-8');
 //
-//                {{ title }} - {{ user.userdetail.first_name }}
-//                <hr>
-//                {{ labels }}
-//                    {{ item }} -
-//                {{ /labels }}
-//            </div>
-//            {{ /post }}
-//            <hr>
-//
-//            {{ category }}
-//            {{ name }}
-//            {{ /category }}
-//        </body>
-//        </html>
-//        ';
-//
-//        $lex = new Parser();
-//        echo $lex->parse($templateHtml, [
-//            'blog' => $blog,
-//            'post' => $post,
-//            'category' => $category,
-//            'url' => TemplateData::url($request),
-//            'csrf' => TemplateData::csrf(),
-//
-//            // local
-//            'pagination' => TemplateData::pagination($post),
-//
-//        ]);
+////        printf($tplRender->getIndex());
+
     }
 
     public function show(Request $request, $username, $slug)
@@ -89,36 +61,13 @@ class BlogController extends Controller
         $tplRender = TemplateRender::getInstance($blog, $request);
 
         printf($tplRender->getPost($slug));
-
-//        $post = Post::with('comments')
-//            ->where('slug', $slug)
-//            ->whereHas('blog.domain', function ($query) use ($username){
-//            $query->where('subdomain', $username);
-//        })->first();
-//
-//        if (! $post) {
-//            abort(404);
-//        }
-//
-//        $category = $blog->categoryPosts()->get();
-//
-//        $template = $blog->templateDekstop;
-//
-//        $templateHtml = $template->code_header.
-//            $template->code_post.
-//            $template->code_footer;
-//
-//        $lex = new Parser();
-//        echo $lex->parse($templateHtml, [
-//            'blog' => $blog,
-//            'post' => $post,
-//            'category' => $category,
-//            'url' => TemplateData::url($request),
-//            'csrf' => TemplateData::csrf(),
-//
-//            // local
-//            'comment' => $post->comments,
-//        ]);
     }
 
+    public function showPage(Request $request, $username, $slug)
+    {
+        $blog = Blog::where('subdomain', $username)->first();
+        $tplRender = TemplateRender::getInstance($blog, $request);
+
+        printf($tplRender->getPage($slug));
+    }
 }

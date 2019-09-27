@@ -5,6 +5,7 @@ namespace App\Model;
 use App\Scopes\PostStatusScope;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
@@ -43,8 +44,11 @@ class Post extends Model
     protected static function boot()
     {
         parent::boot();
-
         static::addGlobalScope(new PostStatusScope());
+
+        static::addGlobalScope('sort', function (Builder $builder){
+            $builder->orderBy('created_at', 'desc');
+        });
     }
 
     // local scope
