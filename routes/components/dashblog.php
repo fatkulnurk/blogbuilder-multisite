@@ -7,6 +7,9 @@
  * Email: fatkulnurk@gmail.com
  */
 
+Route::group(['namespace' => 'Dashblog', 'prefix' => 'dashblog'], function (){
+    Route::get('/', 'HomeController@index')->name('dashblog');
+});
 
 // Route For Dashblog
 Route::group(['namespace' => 'Dashblog', 'prefix' => 'dashblog/{blogid}', 'middleware' => ['auth', 'isOwnerBlog']], function () {

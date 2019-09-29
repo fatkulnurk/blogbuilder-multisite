@@ -10,7 +10,10 @@ class PostController extends Controller
 {
     public function index()
     {
-        return "Ah masih kosong";
+        $posts = Post::orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        return view('blog_catalog.topics.home', compact('posts'));
     }
 
     public function show(Request $request, $categoryBlogName)

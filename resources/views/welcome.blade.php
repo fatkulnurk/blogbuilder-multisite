@@ -2,7 +2,17 @@
 
 @section('title', 'Ini Landing Page')
 @section('content')
-
+    <div class="tabs is-fullwidth" style="padding-bottom: 0; margin-bottom: 0;">
+        <ul>
+            <li><a>Berita</a></li>
+            <li><a href="{{ route('public.blog.index') }}">Blogging</a></li>
+            <li><a href="{{ route('group') }}">Grup Diskusi</a></li>
+            <li><a>Lirik Lagu</a></li>
+            <li><a href="{{ route('meme') }}">Meme</a></li>
+            <li><a>Chatting</a></li>
+            <li><a href="{{ route('public.donation.index') }}">Donasi</a></li>
+        </ul>
+    </div>
     <div class="hero is-medium is-info">
         <div class="hero-body has-text-centered">
             <div class="container">

@@ -37,6 +37,21 @@
             border-radius: 50%;
         }
 
+        .tabs {
+            margin-bottom: 0;
+            border-bottom: 1px solid #e3e3e3;
+        }
+
+        .list-box:first-child {
+            margin-top: 0;
+        }
+        .list-box {
+            margin-bottom: 20px;
+        }
+        .list-box:last-child {
+            margin-bottom: 0;
+        }
+
         @media screen and (max-width: 800px) {
             .search-navbar{
                 width: 100%;

@@ -39,7 +39,7 @@
                     <ul class="sidebar-menu">
                         <li class="menu-header">Dashboard</li>
                         <li class="{{ Active::checkRoute(['dashboard.index']) }}"><a class="nav-link" href="{{ route('dashboard.index') }}"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
-                        <li class="{{ Active::checkRoute(['dashboard.index']) }}"><a class="nav-link" href="{{ route('dashboard.index') }}"><i class="fas fa-fire"></i> <span>Dashboard Blog</span></a></li>
+                        <li class="{{ Active::checkRoute(['dashblog']) }}"><a class="nav-link" href="{{ route('dashblog') }}"><i class="fas fa-fire"></i> <span>Blogging</span></a></li>
                         <li class="{{ Active::checkRoute(['dashboard.chatroom.*']) }}"><a class="nav-link" href="{{ route('dashboard.chatroom.index') }}"><i class="fas fa-comment-alt"></i> <span>Chat Room</span></a></li>
                         <li class="{{ Active::checkRoute(['dashboard.chat.*']) }}"><a class="nav-link" href="{{ route('dashboard.chat.index') }}"><i class="fas fa-comment"></i> <span>Message</span></a></li>
                         <li class="{{ Active::checkRoute(['dashboard.notification.*']) }}"><a class="nav-link" href="{{ route('dashboard.notification.index') }}"><i class="fas fa-bell"></i> <span>Notification</span></a></li>

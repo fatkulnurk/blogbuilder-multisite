@@ -20,6 +20,31 @@ require_once __DIR__. '/components/dashblog.php';
 require_once __DIR__.'/components/page.php';
 require_once __DIR__.'/components/cdn.php';
 
+Route::group([
+    'prefix' => 'group',
+    'namespace' => 'Group'
+], function (){
+    Route::get('/', 'HomeController@index')->name('group');
+});
+
+Route::group([
+    'prefix' => 'meme',
+    'namespace' => 'Meme',
+], function (){
+    Route::get('/', 'HomeController@index')->name('meme');
+    Route::get('/{id}', 'HomeController@show')->name('meme.show');
+
+    Route::resource('manage', 'ManageController')->names([
+        'index' => 'meme.manage.index',
+        'create' => 'meme.manage.create',
+        'store' => 'meme.manage.store',
+        'show' => 'meme.manage.show',
+        'edit' => 'meme.manage.edit',
+        'update' => 'meme.manage.update',
+        'destroy' => 'meme.manage.destroy',
+    ]);
+});
+
 // landing page
 Route::get('/', 'LandingController@index')->name('homepage');
 Route::get('/crawl', 'Statistic\Crawl@index')->name('crawl');
@@ -61,3 +86,5 @@ Route::group([
         Route::delete('/{id}', 'UserRolesController@destroy')->name('.destroy');
     });
 });
+
+Route::get('/home', 'HomeController@index')->name('home');
