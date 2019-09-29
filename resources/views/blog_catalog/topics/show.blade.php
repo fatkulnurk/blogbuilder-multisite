@@ -1,43 +1,19 @@
 @extends('layouts.explore_site')
 
-@section('title', 'Ini Landing Page')
+@section('title', 'Artikel Topik')
 @section('content')
-
-    <div class="hero is-medium is-info">
+@include('layouts.explore.categoryBlog')
+    <div class="hero is-small is-white">
         <div class="hero-body has-text-centered">
             <div class="container">
-                <h1 class="title">
-                    Lebih banyak pengetahuan lebih bagus
+                <h1 class="title is-capitalized">
+                    Topik {{ str_replace('-', ' ', $categoryBlogName) }}
                 </h1>
-                <h2 class="subtitle">Buat blog dan terhubung ke teman baru secara gratis.</h2>
-                @auth
-                    <a href="{{ route('dashboard.index') }}" class="button is-info is-inverted">Create Story</a>
-                @else
-                    <a href="{{ route('register') }}" class="button is-info is-inverted">Daftar Sekarang</a>
-                @endauth
             </div>
         </div>
     </div>
-
-{{--    <div class="hero is-medium is-info">--}}
-{{--        <div class="hero-body has-text-centered">--}}
-{{--            <div class="container">--}}
-{{--                <h1 class="title">--}}
-{{--                    Lebih banyak pengetahuan lebih bagus--}}
-{{--                </h1>--}}
-{{--                <h2 class="subtitle">Buat blog dan terhubung ke teman baru secara gratis.</h2>--}}
-{{--                @auth--}}
-{{--                    <a href="{{ route('dashboard.index') }}" class="button is-info is-inverted">Create Story</a>--}}
-{{--                @else--}}
-{{--                    <a href="{{ route('register') }}" class="button is-info is-inverted">Daftar Sekarang</a>--}}
-{{--                @endauth--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
     <section class="section">
         <div class="container">
-            @include('layouts.explore.categoryBlog')
-
             <div class="columns">
                 <div class="column is-8">
                     <div class="box">

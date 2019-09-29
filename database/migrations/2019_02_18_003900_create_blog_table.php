@@ -14,20 +14,20 @@ class CreateBlogTable extends Migration
     public function up()
     {
         Schema::create('blog', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('subdomain');
-            $table->unsignedInteger('domain_id');
+            $table->unsignedBigInteger('domain_id');
 
             $table->unique(['subdomain','domain_id']);
 
             $table->string('title');
             $table->string('short_desc');
             $table->string('description');
-            $table->unsignedInteger('user_id');
-            $table->unsignedInteger('category_blog_id');
-            $table->unsignedInteger('template_dekstop')->default(null);
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('category_blog_id');
+            $table->unsignedBigInteger('template_dekstop')->default(null);
             $table->integer('template_dekstop_status')->default(\App\Enum\StatusTemplateEnum::ON);
-            $table->unsignedInteger('template_mobile')->default(null);
+            $table->unsignedBigInteger('template_mobile')->default(null);
             $table->integer('template_mobile_status')->default(\App\Enum\StatusTemplateEnum::OFF);
             $table->text('meta_header')->nullable();
             $table->text('meta_footer')->nullable();

@@ -14,13 +14,13 @@ class CreatePageTable extends Migration
     public function up()
     {
         Schema::create('page', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('title');
             $table->longText('body');
             $table->string('slug');
             $table->string('status')->default(\App\Enum\StatusPageEnum::PUBLISH);
-            $table->unsignedInteger('blog_id');
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('blog_id');
+            $table->unsignedBigInteger('user_id');
 
             $table->unique(['slug', 'blog_id']);
 

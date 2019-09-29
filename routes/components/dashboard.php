@@ -12,6 +12,8 @@
 Route::group(['namespace' => 'Dashboard', 'prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     Route::get('/', 'DashboardController@index')->name('dashboard.index');
 
+
+
     Route::group(['prefix' => 'blog'], function () {
         Route::get('/', 'BlogController@index')->name('dashboard.blog.index');
         Route::get('/add', 'BlogController@create')->name('dashboard.blog.add');

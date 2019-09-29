@@ -14,10 +14,10 @@ class CreateMessageTable extends Migration
     public function up()
     {
         Schema::create('message', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('chat');
-            $table->unsignedInteger('from_user_id');
-            $table->unsignedInteger('to_user_id');
+            $table->unsignedBigInteger('from_user_id');
+            $table->unsignedBigInteger('to_user_id');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -14,7 +14,7 @@ class CreateTemplateTable extends Migration
     public function up()
     {
         Schema::create('template', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->longText('stylesheet');
             $table->longText('javascript');
 
@@ -27,7 +27,7 @@ class CreateTemplateTable extends Migration
             $table->text('code_post')->default(null)->nullable();
             $table->text('code_about')->default(null)->nullable();
             $table->text('code_404')->default(null)->nullable();
-            $table->unsignedInteger('template_lib_id');
+            $table->unsignedBigInteger('template_lib_id');
             $table->timestamps();
         });
     }

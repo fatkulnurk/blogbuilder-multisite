@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\ExploreSite;
+namespace App\Http\Controllers\BlogCatalog;
 
 use App\Model\Post;
 use Illuminate\Http\Request;
@@ -22,6 +22,10 @@ class PostController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
-        return view('explore_site.topics.show', compact('posts', 'categoryBlogName'));
+        if (count($posts) == 0) {
+            abort(404);
+        }
+
+        return view('blog_catalog.topics.show', compact('posts', 'categoryBlogName'));
     }
 }

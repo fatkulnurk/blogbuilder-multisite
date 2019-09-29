@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\ExploreSite;
+namespace App\Http\Controllers\Search;
 
 use App\Facades\Search\Search;
 use App\Model\Blog;

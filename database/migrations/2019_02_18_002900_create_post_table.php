@@ -14,7 +14,7 @@ class CreatePostTable extends Migration
     public function up()
     {
         Schema::create('post', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('title');
             $table->longText('body');
             $table->string('thumbnail')->default(null);
@@ -22,10 +22,10 @@ class CreatePostTable extends Migration
             $table->string('label');
             $table->string('status')->default(\App\Enum\StatusPostEnum::PUBLISH);
             $table->string('privilege')->nullable();
-            $table->unsignedInteger('category_post_id');
-            $table->unsignedInteger('blog_id');
-            $table->unsignedInteger('user_id');
-            $table->unsignedInteger('update_user_id')->nullable();
+            $table->unsignedBigInteger('category_post_id');
+            $table->unsignedBigInteger('blog_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('update_user_id')->nullable();
 
             $table->unique(['slug', 'blog_id']);
 

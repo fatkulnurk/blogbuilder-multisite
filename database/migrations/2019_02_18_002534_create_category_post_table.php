@@ -14,11 +14,11 @@ class CreateCategoryPostTable extends Migration
     public function up()
     {
         Schema::create('category_post', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('name');
             $table->string('slug');
             $table->string('description')->nullable();
-            $table->unsignedInteger('blog_id');
+            $table->unsignedBigInteger('blog_id');
 
             $table->unique(['slug', 'blog_id']);
             $table->timestamps();

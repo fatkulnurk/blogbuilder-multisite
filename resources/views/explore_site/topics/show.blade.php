@@ -48,7 +48,7 @@
                             </article>
                         @endforeach
                     </div>
-                    {{ $posts->appends(\Illuminate\Support\Facades\Input::except('page'))->render('vendor.pagination.simple-bulma') }}
+                    {{ $posts->appends(\Illuminate\Support\Facades\Request::except('page'))->render('vendor.pagination.simple-bulma') }}
                 </div>
                 <div class="column is-4" data-sticky-container>
                     <div class="box sticky">

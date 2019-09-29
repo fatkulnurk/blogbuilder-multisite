@@ -14,9 +14,9 @@ class CreateBlogOwnerTable extends Migration
     public function up()
     {
         Schema::create('blog_owner', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('blog_id');
-            $table->unsignedInteger('user_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('blog_id');
+            $table->unsignedBigInteger('user_id');
             $table->tinyInteger('role')->default(\App\Enum\StatusOwnerBlogEnum::CREATOR);
 
             $table->foreign('blog_id')

@@ -14,7 +14,7 @@ class CreateTemplateLibTable extends Migration
     public function up()
     {
         Schema::create('template_lib', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('name');
             $table->longText('stylesheet');
             $table->longText('javascript');

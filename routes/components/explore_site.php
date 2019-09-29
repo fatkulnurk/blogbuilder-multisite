@@ -7,13 +7,14 @@
  * Email: fatkulnurk@gmail.com
  */
 
+// blog
+Route::group(['prefix' => 'blog', 'namespace' => 'BlogCatalog'], function (){
 
-// Namespace ExploreSite
-Route::group(['namespace' => 'ExploreSite'], function (){
+    Route::get('/', 'HomeController@index')->name('public.blog.index');
+    Route::get('/category', 'CategoryController@index')->name('public.blog.category');
+    Route::get('/category/{categoryid}', 'CategoryController@show')->name('public.blog.category.show');
+    Route::get('/top', function (){})->name('public.blog.top');
 
-    Route::get('search', 'SearchController@index')->name('public.search');
-
-    // post by category
     Route::group(['prefix' => 'topics'], function (){
         Route::get('/', 'PostController@index')->name('public.topics.index');
 
@@ -30,22 +31,26 @@ Route::group(['namespace' => 'ExploreSite'], function (){
         });
     });
 
-    // user detail in public
-    Route::group(['prefix' => 'user'], function (){
-        Route::get('/{username}', 'UserController@profile')->name('public.profile');
-    });
+});
+// searcg
+Route::group(['namespace' => 'Search'], function (){
 
-    // directory blog
-    Route::group(['prefix' => 'blog'], function (){
-        Route::get('/', function (){})->name('public.blog.index');
-        Route::get('/category', function (){})->name('public.blog.category');
-        Route::get('/category/{categoryid}', function (){})->name('public.blog.category.index');
-        Route::get('/top', function (){})->name('public.blog.top');
-    });
+    Route::get('search', 'SearchController@index')->name('public.search');
 
     Route::group(['prefix' => 'chatting'], function (){
         Route::get('/', function () {
 
         })->name('public.chatting.index');
     });
+});
+
+
+// user detail in public
+Route::group(['prefix' => 'user', 'namespace' => 'User'], function (){
+    Route::get('/{username}', 'UserController@profile')->name('public.profile');
+});
+
+// user detail in public
+Route::group(['prefix' => 'donation', 'namespace' => 'Donation'], function (){
+    Route::get('/', 'DonationController@index')->name('public.donation.index');
 });
