@@ -13,6 +13,7 @@ class Role extends Model
         'role_name',
         'description'
     ];
+    public $timestamps = true;
 
     public function users()
     {

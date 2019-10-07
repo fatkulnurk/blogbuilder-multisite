@@ -10,16 +10,22 @@ class RolesEnum extends Enum
     const MEMBER        = 3;
     const SECURITY      = 4;
 
+    private static $data = [
+        self::ROOT          => 'root',
+        self::ADMINISTRATOR => 'admin',
+        self::MEMBER        => 'member',
+        self::SECURITY      => 'security'
+    ];
 
     public static function getDescription($status)
     {
-        $data = [
-            self::ROOT          => 'Root',
-            self::ADMINISTRATOR => 'Administrator',
-            self::MEMBER        => 'Members',
-            self::SECURITY      => 'Security'
-        ];
+        $data = self::$data;
 
         return $data[$status];
+    }
+
+    public static function all()
+    {
+        return self::$data;
     }
 }

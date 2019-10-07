@@ -64,7 +64,7 @@ Route::group([
     'namespace' => 'Admin',
     'prefix' => 'admin',
     'as' => 'admin',
-//    'middleware' => ['role:user']
+    'middleware' => ['role:root']
 ], function (){
     Route::get('/', 'HomeController@index')->name('.index');
 

@@ -25,14 +25,5 @@ class RoleMiddleware
         }
 
         abort(404);
-//        if (!Auth::user()) {
-//            return $next($request);
-//        }
-//        if(! $request->user()->hasRole($roleName))
-//        {
-//            abort(404);
-//        }
-//
-//        return $next($request);
     }
 }

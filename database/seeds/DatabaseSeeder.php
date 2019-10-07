@@ -16,10 +16,10 @@ class DatabaseSeeder extends Seeder
          $this->call(DomainTableSeeder::class);
          $this->call(TemplateLibTableSeeder::class);
 
+        // role user seeder
+        $this->call(RolesSeeder::class);
          // user seeder
         $this->call(UsersTableSeeder::class);
 
-        // role seeder
-        $this->call(RolesSeeder::class);
     }
 }

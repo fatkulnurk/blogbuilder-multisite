@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\User;
 
 class UsersTableSeeder extends Seeder
 {
@@ -11,14 +12,14 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        // root
-        \App\User::create([
+        $root = App\User::create([
             'name'  => 'root',
             'email'     => 'root@dibumi.com',
             'email_verified_at' => '2019-02-23 16:42:24',
             'password'  => \Illuminate\Support\Facades\Hash::make('12345678'),
-            'roles'     => \App\Enum\RolesEnum::ROOT,
-        ])->userDetail()->create([
+        ]);
+        $root->putRole(\App\Enum\RolesEnum::ROOT);
+        $root->userDetail()->create([
             'first_name'    => 'R',
             'middle_name'   => 'OO',
             'last_name'     => 'T',
@@ -26,48 +27,25 @@ class UsersTableSeeder extends Seeder
         ]);
 
         // admin
-        \App\User::create([
+        $admin = User::create([
             'name'  => 'admin',
             'email'     => 'admin@dibumi.com',
             'email_verified_at' => '2019-02-23 16:42:24',
             'password'  => \Illuminate\Support\Facades\Hash::make('12345678'),
-            'roles'     => \App\Enum\RolesEnum::ADMINISTRATOR,
-        ])->userDetail()->create([
+        ]);
+        $admin->putRole(\App\Enum\RolesEnum::ADMINISTRATOR);
+        $admin->userDetail()->create([
             'first_name'    => 'A',
             'middle_name'   => 'DMI',
             'last_name'     => 'N',
             'birthday'      => '1999-01-18',
         ]);
 
-        // SECURITY
-        \App\User::create([
-            'name'  => 'security',
-            'email'     => 'security@dibumi.com',
-            'email_verified_at' => '2019-02-23 16:42:24',
-            'password'  => \Illuminate\Support\Facades\Hash::make('12345678'),
-            'roles'     => \App\Enum\RolesEnum::SECURITY,
-        ])->userDetail()->create([
-            'first_name'    => 'S',
-            'middle_name'   => 'ECURIT',
-            'last_name'     => 'Y',
-            'birthday'      => '1999-01-18',
-        ]);
-        \App\User::create([
-            'name'  => 'satpam',
-            'email'     => 'satpam@dibumi.com',
-            'email_verified_at' => '2019-02-23 16:42:24',
-            'password'  => \Illuminate\Support\Facades\Hash::make('12345678'),
-            'roles'     => \App\Enum\RolesEnum::SECURITY,
-        ])->userDetail()->create([
-            'first_name'    => 'S',
-            'middle_name'   => 'ATPA',
-            'last_name'     => 'M',
-            'birthday'      => '1999-01-18',
-        ]);
 
         // Seeder
-        factory(App\User::class, 10)->create()->each(function ($user){
+        factory(User::class, 10)->create()->each(function ($user){
            $user->userDetail()->save(factory(App\Model\UserDetail::class)->make());
+           $user->putRole(\App\Enum\RolesEnum::MEMBER);
 
 //           $user->blogs()->save(factory(App\Model\Blog::class, 5)->make());
 //           $user->blogs()->save(factory(App\Model\Blog::class)->make());

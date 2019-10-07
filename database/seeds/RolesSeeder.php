@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Role;
+use App\Enum\RolesEnum;
 
 class RolesSeeder extends Seeder
 {
@@ -12,18 +13,18 @@ class RolesSeeder extends Seeder
      */
     public function run()
     {
-        $roles = [
-            'root',
-            'admin',
-            'satpam',
-            'satpol pp'
-        ];
-
-        foreach ($roles as $role) {
+        $roles = RolesEnum::all();
+        array_walk($roles, function ($value, $key){
             Role::create([
-                'role_name' => $role,
+                'role_name' => $value,
                 'description' => ''
             ]);
-        }
+        });
+//        foreach ($roles as $role) {
+//            Role::create([
+//                'role_name' => $role,
+//                'description' => ''
+//            ]);
+//        }
     }
 }

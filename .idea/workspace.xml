@@ -2,30 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ee3f00e0-cdce-4a75-88a2-bf64040deff5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/group.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/lyrics.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/lyrics/detail.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/lyrics/home.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/lyrics/manage/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/lyrics/manage/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/lyrics/manage/home.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Home.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Meme/ManageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Meme/ManageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Enum/RolesEnum.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enum/RolesEnum.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/RoleMiddleware.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/RoleMiddleware.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Role.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Role.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_02_18_003617_create_post_comment_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_02_18_003617_create_post_comment_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/TemplateLibTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/TemplateLibTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/RolesSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/RolesSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/explore_site/search/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/explore_site/search/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/group/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/group/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/components/app_bulma_header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/components/app_bulma_header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/meme/manage/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/meme/manage/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/meme/manage/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/meme/manage/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/meme/manage/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/meme/manage/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/route.list.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -310,7 +296,7 @@
       <workItem from="1569823605569" duration="627000" />
       <workItem from="1569853913379" duration="29000" />
       <workItem from="1570201006231" duration="3328000" />
-      <workItem from="1570435665840" duration="1668000" />
+      <workItem from="1570435665840" duration="4180000" />
     </task>
     <servers />
   </component>
