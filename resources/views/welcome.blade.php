@@ -6,9 +6,9 @@
         <ul>
             <li><a>Berita</a></li>
             <li><a href="{{ route('public.blog.index') }}">Blogging</a></li>
-            <li><a href="{{ route('group') }}">Grup Diskusi</a></li>
-            <li><a>Lirik Lagu</a></li>
-            <li><a href="{{ route('meme') }}">Meme</a></li>
+            <li><a href="{{ route('group.index') }}">Grup Diskusi</a></li>
+            <li><a href="{{ route('lyrics.index') }}">Lirik Lagu</a></li>
+            <li><a href="{{ route('meme.index') }}">Meme</a></li>
             <li><a>Chatting</a></li>
             <li><a href="{{ route('public.donation.index') }}">Donasi</a></li>
         </ul>

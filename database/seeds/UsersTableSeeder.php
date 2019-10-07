@@ -66,7 +66,7 @@ class UsersTableSeeder extends Seeder
         ]);
 
         // Seeder
-        factory(App\User::class, 100)->create()->each(function ($user){
+        factory(App\User::class, 10)->create()->each(function ($user){
            $user->userDetail()->save(factory(App\Model\UserDetail::class)->make());
 
 //           $user->blogs()->save(factory(App\Model\Blog::class, 5)->make());

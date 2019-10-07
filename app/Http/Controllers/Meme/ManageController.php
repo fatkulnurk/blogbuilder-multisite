@@ -14,7 +14,7 @@ class ManageController extends Controller
      */
     public function index()
     {
-        view('meme.manage.home');
+        return view('meme.manage.home');
     }
 
     /**
@@ -24,7 +24,7 @@ class ManageController extends Controller
      */
     public function create()
     {
-        view('meme.manage.create');
+        return view('meme.manage.create');
     }
 
     /**

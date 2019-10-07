@@ -21,7 +21,7 @@
             <div class="columns">
                 <div class="column is-8">
 
-                    <div class="tabs is-centered is-medium">
+                    <div class="tabs is-centered is-fullwidth is-medium">
                         <ul>
                             <li><a href="{{ route('public.search', ['type' => 'blog', 'key' => $keyword]) }}">Artikel</a></li>
                             <li><a href="{{ route('public.search', ['type' => 'blog', 'key' => $keyword]) }}">Blog</a></li>

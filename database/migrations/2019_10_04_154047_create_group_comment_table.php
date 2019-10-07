@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreatePostCommentTable extends Migration
+class CreateGroupCommentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreatePostCommentTable extends Migration
      */
     public function up()
     {
-        Schema::create('post_comment', function (Blueprint $table) {
+        Schema::create('group_comment', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('body');
-            $table->integer('status');
-            $table->unsignedBigInteger('post_id');
+            $table->unsignedBigInteger('group_post_id');
             $table->unsignedBigInteger('user_id');
+            $table->text('body');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -31,6 +29,6 @@ class CreatePostCommentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post_comment');
+        Schema::dropIfExists('group_comment');
     }
 }

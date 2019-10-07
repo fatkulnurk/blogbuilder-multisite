@@ -22,27 +22,29 @@ require_once __DIR__.'/components/cdn.php';
 
 Route::group([
     'prefix' => 'group',
-    'namespace' => 'Group'
+    'namespace' => 'Group',
+    'as' => 'group.'
 ], function (){
-    Route::get('/', 'HomeController@index')->name('group');
+    Route::get('/', 'HomeController@index')->name('index');
 });
 
 Route::group([
     'prefix' => 'meme',
     'namespace' => 'Meme',
+    'as' => 'meme.'
 ], function (){
-    Route::get('/', 'HomeController@index')->name('meme');
-    Route::get('/{id}', 'HomeController@show')->name('meme.show');
+    Route::get('/', 'HomeController@index')->name('index');
+    Route::get('/{id}', 'HomeController@show')->name('show');
 
-    Route::resource('manage', 'ManageController')->names([
-        'index' => 'meme.manage.index',
-        'create' => 'meme.manage.create',
-        'store' => 'meme.manage.store',
-        'show' => 'meme.manage.show',
-        'edit' => 'meme.manage.edit',
-        'update' => 'meme.manage.update',
-        'destroy' => 'meme.manage.destroy',
-    ]);
+    Route::resource('manage', 'ManageController')->middleware('auth');
+});
+
+Route::group([
+    'prefix' => 'lyrics',
+    'namespace' => 'Lyrics',
+    'as' => 'lyrics'
+], function (){
+    Route::get('/', 'HomeController@index')->name('.index');
 });
 
 // landing page
@@ -62,7 +64,7 @@ Route::group([
     'namespace' => 'Admin',
     'prefix' => 'admin',
     'as' => 'admin',
-    'middleware' => ['role:user']
+//    'middleware' => ['role:user']
 ], function (){
     Route::get('/', 'HomeController@index')->name('.index');
 

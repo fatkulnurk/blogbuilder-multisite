@@ -196,6 +196,10 @@ EOT;
     </div>
   </article>
   <hr>
+EOT;
+
+    /*
+     *
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
@@ -213,7 +217,7 @@ EOT;
 </textarea>
 <button class="btn btn-block btn-primary">Submit</button>
 </form>
-EOT;
+    */
 
     protected $codePage = <<<EOT
 <!-- Page Header -->

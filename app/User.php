@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Model\BlogOwner;
+use App\Model\Meme;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -159,5 +160,10 @@ class User extends Authenticatable implements MustVerifyEmail
             if ($role->role_name === $roleName) return true;
         }
         return false;
+    }
+
+    public function meme()
+    {
+        return $this->hasMany(Meme::class, 'user_id', 'id');
     }
 }

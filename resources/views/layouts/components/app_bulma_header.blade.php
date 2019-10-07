@@ -38,7 +38,7 @@
         }
 
         .tabs {
-            margin-bottom: 0;
+            margin-bottom: 0 !important;
             border-bottom: 1px solid #e3e3e3;
         }
 
